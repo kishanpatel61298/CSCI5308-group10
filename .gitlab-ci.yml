@@ -1,0 +1,19 @@
+image: java-latest
+
+stages:
+    - build
+    - test
+
+build:
+    tags:
+      - ugrad
+    stage: build
+    script:
+      - mvn compile
+
+test:
+    tags:
+      - ugrad
+    stage: test
+    script:
+      - mvn clean test
