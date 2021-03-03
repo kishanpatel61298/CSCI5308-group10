@@ -9,6 +9,7 @@ build:
       - ugrad
     stage: build
     script:
+      - cd ./Ludo_Game
       - mvn compile
 
 test:
@@ -16,4 +17,5 @@ test:
       - ugrad
     stage: test
     script:
+      - cd ./Ludo_Game
       - mvn clean test
