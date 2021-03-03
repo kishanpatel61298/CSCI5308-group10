@@ -11,37 +11,37 @@
 <div class="game">
     <div class="house green">
         <div class="box">
-            <div class="square square-one green"></div>
-            <div class="square square-two green"></div>
-            <div class="square square-three green"></div>
-            <div class="square square-four green"></div>
+            <div class="square square-one green">G1</div>
+            <div class="square square-two green">G2</div>
+            <div class="square square-three green">G3</div>
+            <div class="square square-four green">G4</div>
         </div>
     </div>
 
     <div class="house yellow" style="right: 0">
         <div class="box">
-            <div class="square square-one yellow"></div>
-            <div class="square square-two yellow"></div>
-            <div class="square square-three yellow"></div>
-            <div class="square square-four yellow"></div>
+            <div class="square square-one yellow">Y1</div>
+            <div class="square square-two yellow">Y2</div>
+            <div class="square square-three yellow">Y3</div>
+            <div class="square square-four yellow">Y4</div>
         </div>
     </div>
 
     <div class="house red" style="bottom: 0">
         <div class="box">
-            <div class="square square-one red"></div>
-            <div class="square square-two red"></div>
-            <div class="square square-three red"></div>
-            <div class="square square-four red"></div>
+            <div class="square square-one red">R1</div>
+            <div class="square square-two red">R2</div>
+            <div class="square square-three red">R3</div>
+            <div class="square square-four red">R4</div>
         </div>
     </div>
 
     <div class="house blue" style="bottom: 0;right: 0">
         <div class="box">
-            <div class="square square-one blue"></div>
-            <div class="square square-two blue"></div>
-            <div class="square square-three blue"></div>
-            <div class="square square-four blue"></div>
+            <div class="square square-one blue">B1</div>
+            <div class="square square-two blue">B2</div>
+            <div class="square square-three blue">B3</div>
+            <div class="square square-four blue">B4</div>
         </div>
     </div>
 
