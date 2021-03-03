@@ -1,7 +1,7 @@
 package dal.cs.playing_pieces;
 
 public class Token {
-    int[][] position = new int[10][10];
+    int position ;
     boolean is_token_base=true;
     String token_colour;
 
@@ -17,11 +17,19 @@ public class Token {
         this.token_colour = token_colour;
     }
 
-    public int[][] get_position() {
+    public int get_position() {
         return position;
     }
 
-    public void set_position(int[][] position) {
+    public void set_position(int position) {
         this.position = position;
+    }
+
+    public int move_token(){
+
+        int roll=6;
+
+
+        return position+roll;
     }
 }
