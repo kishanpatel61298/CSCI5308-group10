@@ -13,13 +13,21 @@ class Token_test {
     }
 
     @Test
-    void move_token_test() {
+    void move_token_x_coordinate_test() {
         Dice_mock dice_mock = new Dice_mock();
-        int roll=dice_mock.roll_dice();
-        Token token = new Token("blue");
-        int position= token.get_position();
+        int roll= dice_mock.roll_dice();
+        Token token = new Token("green");
+        token.setX_coordinate_position(4);
+        Assertions.assertEquals(token.move_token_x_coordinate(roll),6);
 
-        Assertions.assertEquals(token.move_token(),position+roll);
+    }
 
+    @Test
+    void move_token_y_coordinate_test() {
+        Dice_mock dice_mock = new Dice_mock();
+        int roll= dice_mock.roll_dice();
+        Token token = new Token("green");
+        token.setY_coordinate_position(4);
+        Assertions.assertEquals(token.move_token_y_coordinate(roll),6);
     }
 }

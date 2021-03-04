@@ -5,6 +5,8 @@ import java.util.*;
 
 public class Dice_mock {
      public int roll_dice(){
-         return new Random().nextInt(6)+1;
+         public int roll_dice(){
+             return 2;
+         }
      }
 }

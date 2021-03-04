@@ -1,7 +1,9 @@
 package dal.cs.playing_pieces;
 
 public class Token {
-    int position ;
+    int x_coordinate_position;
+    int y_coordinate_position;
+
     boolean is_token_base=true;
     String token_colour;
 
@@ -17,19 +19,35 @@ public class Token {
         this.token_colour = token_colour;
     }
 
-    public int get_position() {
-        return position;
+    public int getX_coordinate_position() {
+        return x_coordinate_position;
     }
 
-    public void set_position(int position) {
-        this.position = position;
+    public void setX_coordinate_position(int x_coordinate_position) {
+        this.x_coordinate_position = x_coordinate_position;
     }
 
-    public int move_token(){
+    public int getY_coordinate_position() {
+        return y_coordinate_position;
+    }
 
-        int roll=6;
+    public void setY_coordinate_position(int y_coordinate_position) {
+        this.y_coordinate_position = y_coordinate_position;
+    }
+
+    public int move_token_x_coordinate(int roll){
 
 
-        return position+roll;
+        x_coordinate_position=x_coordinate_position+roll;
+
+        return x_coordinate_position;
+    }
+
+    public int move_token_y_coordinate(int roll){
+
+        y_coordinate_position=y_coordinate_position+roll;
+
+
+        return y_coordinate_position;
     }
 }
