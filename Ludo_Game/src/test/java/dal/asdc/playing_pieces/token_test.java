@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
 
+package dal.asdc.playing_pieces;
+
 class token_test {
 
     @Test

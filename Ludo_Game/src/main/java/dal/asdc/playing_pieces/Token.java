@@ -1,4 +1,4 @@
-package dal.cs.playing_pieces;
+package dal.asdc.playing_pieces;
 
 public class Token {
     int x_coordinate_position;
