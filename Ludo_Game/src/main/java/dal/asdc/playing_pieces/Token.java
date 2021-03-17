@@ -67,6 +67,14 @@ public class Token {
         return false;
     }
 
+    public boolean take_piece_out(){
+        if(takenOut==false){
+            return false;
+        }
+
+        takenOut=true;
+        return true;
+    }
 
     public boolean can_piece_take_out(){
         if (takenOut){
