@@ -3,6 +3,7 @@ package dal.asdc.playing_pieces;
 public class Token {
     int x_coordinate_position;
     int y_coordinate_position;
+    private boolean takenOut;
 
     boolean is_token_base=true;
     String token_colour;
@@ -13,6 +14,14 @@ public class Token {
 
     public String get_token_colour() {
         return token_colour;
+    }
+
+    public boolean isTakenOut() {
+        return takenOut;
+    }
+
+    public void setTakenOut(boolean takenOut) {
+        this.takenOut = takenOut;
     }
 
     public void set_token_colour(String token_colour) {
@@ -36,18 +45,34 @@ public class Token {
     }
 
     public int move_token_x_coordinate(int roll){
-
-
         x_coordinate_position=x_coordinate_position+roll;
 
         return x_coordinate_position;
     }
 
     public int move_token_y_coordinate(int roll){
-
         y_coordinate_position=y_coordinate_position+roll;
 
-
         return y_coordinate_position;
+    }
+
+    public boolean is_move_possible(int roll){
+        if(roll==6){
+            for (int i=0;i<4;i++){
+                if(takenOut){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    public boolean can_piece_take_out(){
+        if (takenOut){
+            return false;
+        }
+
+        return false;
     }
 }
