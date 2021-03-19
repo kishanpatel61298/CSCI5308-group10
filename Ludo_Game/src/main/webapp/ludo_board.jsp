@@ -1,3 +1,4 @@
+<%@ page import="java.util.* ,dal.asdc.ludo_board_structure.Token_positions"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,6 +9,12 @@
 <title>Ludo Game</title>
 </head>
 <body>
+<%	
+	Map<String,String> red_token_positions_map = new HashMap<String,String>();
+	Token_positions tkn_pos=new Token_positions();
+	tkn_pos.get_red_token_positions();
+	red_token_positions_map = tkn_pos.get_red_token_positions();
+%>
 <div class="game">
     <div class="house green">
         <div class="box">
@@ -29,10 +36,10 @@
 
     <div class="house red" style="bottom: 0">
         <div class="box">
-            <div class="square square-one red">R1</div>
-            <div class="square square-two red">R2</div>
-            <div class="square square-three red">R3</div>
-            <div class="square square-four red">R4</div>
+            <div class="square square-one red"><%=red_token_positions_map.get("{2,3}")%></div>
+            <div class="square square-two red"><%=red_token_positions_map.get("{3,3}")%></div>
+            <div class="square square-three red"><%=red_token_positions_map.get("{3,2}")%></div>
+            <div class="square square-four red"><%=red_token_positions_map.get("{2,2}")%></div>
         </div>
     </div>
 

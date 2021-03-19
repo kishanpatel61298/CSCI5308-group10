@@ -11,5 +11,5 @@ public class No_of_players {
 		sc.close();
 		return players_num;
 	}
-
+	
 }

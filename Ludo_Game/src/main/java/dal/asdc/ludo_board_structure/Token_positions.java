@@ -5,16 +5,18 @@ import java.util.Map;
 
 public class Token_positions {
 	
-	 Map<String,String> red_token_positions_map = new HashMap<String,String>();
+	 static Map<String,String> red_token_positions_map = new HashMap<String,String>() {{
+		    put("{2,3}", "R1");
+		    put("{3,3}", "R2");
+		}};;
 	 Map<String,String> green_token_positions_map = new HashMap<String,String>();
 	 Map<String,String> yellow_token_positions_map = new HashMap<String,String>();
 	 Map<String,String> blue_token_positions_map = new HashMap<String,String>();
-	
 	public void set_red_token_positions() {
-		red_token_positions_map.put("R1","{2,3}");
-		red_token_positions_map.put("R2","{3,3}");
-		red_token_positions_map.put("R3","{3,2}");
-		red_token_positions_map.put("R4","{2,2}");
+		red_token_positions_map.put("{2,3}","R1");
+		red_token_positions_map.put("{3,3}","R2");
+		red_token_positions_map.put("{3,2}","R3");
+		red_token_positions_map.put("{2,2}","R4");
 	}
 
 	public void set_green_token_positions() {
@@ -38,4 +40,8 @@ public class Token_positions {
 		blue_token_positions_map.put("B4","{3,11}");
 	}
 
+	public Map<String,String> get_red_token_positions() {
+		return red_token_positions_map;
+	}
+	
 }
