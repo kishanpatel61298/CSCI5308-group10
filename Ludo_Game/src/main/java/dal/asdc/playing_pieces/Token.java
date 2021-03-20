@@ -1,7 +1,7 @@
 package dal.asdc.playing_pieces;
 
 public abstract class Token {
-    private int[][] position;
+    int[][] position;
     private boolean is_token_at_home=true;
 	private boolean is_token_at_winning_box = false;
     private String token_colour;
@@ -23,8 +23,9 @@ public abstract class Token {
         return position;
     }
 
-    public void set_coordinate_position(int[][] possition) {
-        this.position = position;
+    public void set_coordinate_position(int[][] position_new) {
+		System.out.println(position_new[0][0]+" --- "+position_new[0][1] );
+        position = position_new;
     }
     
     public int get_token_number() {

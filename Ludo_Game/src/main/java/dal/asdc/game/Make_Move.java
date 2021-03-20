@@ -22,6 +22,7 @@ public class Make_Move {
 		if(check_move.check_is_token_movable(token, 6)){
 			make_move(token,6);
 		}else {
+			//show error
 			System.out.print("You can't play this token");
 		}
 	}
