@@ -16,7 +16,7 @@ import dal.asdc.model.Player;
 @Controller
 public class Player_controller {
 	@Autowired
-	private PlayerDao plyr_dao;
+//	private PlayerDao plyr_dao;
 	
 //	@PostMapping("/bookTickets")
 //	public String bookTicket(@RequestBody List<Player> player) {
@@ -24,10 +24,10 @@ public class Player_controller {
 //		return "ticket booked : " + player.size();
 //	}
 
-	@GetMapping(value="/get_players")
-	public List<Player> getPlayers() {
-		return (List<Player>) plyr_dao.findAll();
-	}
+//	@GetMapping(value="/get_players")
+//	public List<Player> getPlayers() {
+//		return (List<Player>) plyr_dao.findAll();
+//	}
 	
 	@RequestMapping(value="player")
 	public String getPlayersTest() {
