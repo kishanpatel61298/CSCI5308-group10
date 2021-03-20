@@ -11,7 +11,7 @@ public class Player {
 
     private int roll;
 
-    Token token = new Token(colour);
+    Make_Move make_move = new Make_Move();
     Dice dice = new Dice();
 
     public int roll(){
@@ -21,7 +21,7 @@ public class Player {
 
     public void move(){
         if(roll==6){
-
+            make_move.make_move();
         }
     }
 
