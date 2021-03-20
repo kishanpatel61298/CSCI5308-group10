@@ -7,8 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 "dal.asdc.model", "dal.asdc.controllers"})
 public class LudoGameApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		SpringApplication.run(LudoGameApplication.class, args);
+		//pl_his.get_all_player_history();
 	}
 
 }
