@@ -32,7 +32,7 @@ public abstract class Token {
     	return token_number;
     }
     
-    public boolean is_is_token_at_home() {
+    public boolean get_is_token_at_home() {
 		return is_token_at_home;
 	}
 

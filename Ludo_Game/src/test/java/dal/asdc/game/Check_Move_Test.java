@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import dal.asdc.playing_pieces.IToken;
 import dal.asdc.playing_pieces.Red_Token;
 import dal.asdc.playing_pieces.Token;
 
