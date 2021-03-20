@@ -1,4 +1,4 @@
-package dal.asdc.ludo_board_structure;
+package dal.asdc.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
