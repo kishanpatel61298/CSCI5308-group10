@@ -9,7 +9,7 @@ import dal.asdc.playing_pieces.Red_Token;
 
 public class Check_Move_Test {
 
-	@Test
+	/*@Test
 	public void check_is_red_token_6_dice_movable_test() {
 		Check_Move check_move = new Check_Move();
 		int[][] red_home = {{2,3}};
@@ -52,7 +52,7 @@ public class Check_Move_Test {
 		IToken token = new Red_Token(0,red_home);
 		boolean is_movable = check_move.check_is_token_movable(token,6);
 		assertEquals(false,is_movable);
-	}
+	}*/
 	
 	
 }

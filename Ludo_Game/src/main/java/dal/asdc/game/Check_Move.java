@@ -1,16 +1,16 @@
 package dal.asdc.game;
 
-import dal.asdc.playing_pieces.IToken;
+import dal.asdc.playing_pieces.Token;
 
 public class Check_Move {
 		
-	public boolean check_is_token_movable(IToken selected_token,int dice_number) {
+	public boolean check_is_token_movable(Token selected_token,int dice_number) {
 		if(selected_token.is_home() && dice_number<6) {
 			return false;
 		}
-		if(selected_token.check_move_towards_winning_square(dice_number)) {
+		/*if(selected_token.check_move_towards_winning_square(dice_number)) {
 			return false;
-		}
+		}*/
 		
 		if(selected_token.is_at_winning_square()) {
 			return false;

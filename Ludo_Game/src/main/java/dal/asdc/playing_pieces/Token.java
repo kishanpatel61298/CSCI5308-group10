@@ -1,53 +1,57 @@
 package dal.asdc.playing_pieces;
 
-public class Token {
-    int x_coordinate_position;
-    int y_coordinate_position;
+public abstract class Token {
+    private int[][] position;
+    private boolean is_token_at_home=true;
+	private boolean is_token_at_winning_box = false;
+    private String token_colour;
+    private int token_number;
 
-    boolean is_token_base=true;
-    String token_colour;
-
-    public Token(String token_colour) {
+    public Token(String token_colour, int token_number, int positionX, int positionY) {
         this.token_colour = token_colour;
+        this.token_number = token_number;
+        int positionX_temp = positionX;
+        int positionY_temp = positionY;
+        position = new int[][]{{positionX_temp,positionY_temp}};
     }
 
     public String get_token_colour() {
         return token_colour;
     }
 
-    public void set_token_colour(String token_colour) {
-        this.token_colour = token_colour;
+    public int[][] get_coordinate_position() {
+        return position;
     }
 
-    public int getX_coordinate_position() {
-        return x_coordinate_position;
+    public void set_coordinate_position(int[][] possition) {
+        this.position = position;
     }
-
-    public void setX_coordinate_position(int x_coordinate_position) {
-        this.x_coordinate_position = x_coordinate_position;
+    
+    public int get_token_number() {
+    	return token_number;
     }
+    
+    public boolean is_is_token_at_home() {
+		return is_token_at_home;
+	}
 
-    public int getY_coordinate_position() {
-        return y_coordinate_position;
-    }
+	public void set_is_token_at_home(boolean is_token_at_home) {
+		this.is_token_at_home = is_token_at_home;
+	}
+	
+	public boolean get_is_token_at_winning_box() {
+		return is_token_at_winning_box;
+	}
 
-    public void setY_coordinate_position(int y_coordinate_position) {
-        this.y_coordinate_position = y_coordinate_position;
-    }
-
-    public int move_token_x_coordinate(int roll){
-
-
-        x_coordinate_position=x_coordinate_position+roll;
-
-        return x_coordinate_position;
-    }
-
-    public int move_token_y_coordinate(int roll){
-
-        y_coordinate_position=y_coordinate_position+roll;
-
-
-        return y_coordinate_position;
-    }
+	public void set_is_token_at_winning_box(boolean is_token_at_winning_box) {
+		this.is_token_at_winning_box = is_token_at_winning_box;
+	}
+	
+    
+    public abstract boolean is_home();
+    public abstract boolean check_move_towards_winning_square(int dice_number);
+    public abstract boolean is_at_winning_square();
+    public abstract int[][] get_token_path();
+    public abstract int[][] get_winning_square();
+    public abstract void set_at_home();
 }
