@@ -19,15 +19,15 @@ public class Blue_Token extends Token{
 		}
 		return false;
 	}
-	
+	//if na thay then return true
 	public boolean check_move_towards_winning_square( int dice_number) {
 		int[][] selected_token_postion = get_coordinate_position();
 		for(int i=0;i<blue_token_path.length;i++) {
 			if(blue_token_path[i][0]==selected_token_postion[0][0] && blue_token_path[i][1]==selected_token_postion[0][1]) {
 				if((i+dice_number)>blue_token_path.length) {
-					return false;
-				}else {
 					return true;
+				}else {
+					return false;
 				}
 			}
 		}

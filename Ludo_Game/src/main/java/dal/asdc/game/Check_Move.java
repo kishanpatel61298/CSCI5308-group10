@@ -8,9 +8,9 @@ public class Check_Move {
 		if(selected_token.is_home() && dice_number<6) {
 			return false;
 		}
-		/*if(selected_token.check_move_towards_winning_square(dice_number)) {
+		if(selected_token.check_move_towards_winning_square(dice_number)) {
 			return false;
-		}*/
+		}
 		
 		if(selected_token.is_at_winning_square()) {
 			return false;

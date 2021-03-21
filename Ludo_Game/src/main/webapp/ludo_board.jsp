@@ -10,10 +10,10 @@
 </head>
 <body>
 <%	
-	Map<String,String> red_token_positions_map = new HashMap<String,String>();
+	/*Map<String,String> red_token_positions_map = new HashMap<String,String>();
 	Token_positions tkn_pos=new Token_positions();
 	tkn_pos.get_red_token_positions();
-	red_token_positions_map = tkn_pos.get_red_token_positions();
+	red_token_positions_map = tkn_pos.get_red_token_positions();*/
 %>
 <div class="game">
     <div class="house green">
@@ -36,10 +36,10 @@
 
     <div class="house red" style="bottom: 0">
         <div class="box">
-            <div class="square square-one red"><%=red_token_positions_map.get("{2,3}")%></div>
-            <div class="square square-two red"><%=red_token_positions_map.get("{3,3}")%></div>
-            <div class="square square-three red"><%=red_token_positions_map.get("{3,2}")%></div>
-            <div class="square square-four red"><%=red_token_positions_map.get("{2,2}")%></div>
+            <div class="square square-one red"></div>
+            <div class="square square-two red"></div>
+            <div class="square square-three red"></div>
+            <div class="square square-four red"></div>
         </div>
     </div>
 
