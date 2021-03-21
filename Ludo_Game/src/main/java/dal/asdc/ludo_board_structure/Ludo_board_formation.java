@@ -9,6 +9,7 @@ public class Ludo_board_formation {
     Map<String,Integer> movable_positions_map = new HashMap<String,Integer>();
     Map<String,Integer> safe_positions_map = new HashMap<String,Integer>();
     Map<String,Integer> winning_positions_map = new HashMap<String,Integer>();
+    
 
     public void form_matrix(){
         int value=1;
@@ -69,6 +70,11 @@ public class Ludo_board_formation {
                 winning_positions_map.put("[" + i + "][" + j + "]",board[i][j]);
             }
         }
+    }
+    
+    public Map<String,String> board_attributes(int ply_num){
+		
+    	return null;
     }
 
     public static void main(String args[]) {
