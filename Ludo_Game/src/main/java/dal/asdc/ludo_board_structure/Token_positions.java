@@ -6,42 +6,30 @@ import java.util.Map;
 public class Token_positions {
 	
 	 static Map<String,String> red_token_positions_map = new HashMap<String,String>() {{
-		    put("{2,3}", "R1");
-		    put("{3,3}", "R2");
+		 put("{2,3}","R1");
+		 put("{3,3}","R2");
+		 put("{3,2}","R3");
+		 put("{2,2}","R4");
 		}};;
-	 Map<String,String> green_token_positions_map = new HashMap<String,String>();
-	 Map<String,String> yellow_token_positions_map = new HashMap<String,String>();
-	 Map<String,String> blue_token_positions_map = new HashMap<String,String>();
-	public void set_red_token_positions() {
-		red_token_positions_map.put("{2,3}","R1");
-		red_token_positions_map.put("{3,3}","R2");
-		red_token_positions_map.put("{3,2}","R3");
-		red_token_positions_map.put("{2,2}","R4");
-	}
-
-	public void set_green_token_positions() {
-		green_token_positions_map.put("G1","{11,3}");
-		green_token_positions_map.put("G2","{12,3}");
-		green_token_positions_map.put("G3","{12,2}");
-		green_token_positions_map.put("G4","{11,2}");
-	}
+	 static Map<String,String> green_token_positions_map = new HashMap<String,String>() {{
+		 put("{11,3}","G1");
+		 put("{12,3}","G2");
+		 put("{12,2}","G3");
+		 put("{11,2}","G4");
+	 }};
+	static Map<String,String> yellow_token_positions_map = new HashMap<String,String>() {{
+		 put("{11,12}","Y1");
+		 put("{11,11}","Y2");
+		 put("{12,11}","Y3");
+		 put("{12,12}","Y4");
+	 }};;
+	static Map<String,String> blue_token_positions_map = new HashMap<String,String>() {{
+		 put("{2,12}","B1");
+		 put("{2,11}","B2");
+		 put("{3,12}","B3");
+		 put("{3,11}","B4");
+	 }};;
 	
-	public void set_yellow_token_positions() {
-		yellow_token_positions_map.put("Y1","{11,12}");
-		yellow_token_positions_map.put("Y2","{11,11}");
-		yellow_token_positions_map.put("Y3","{12,11}");
-		yellow_token_positions_map.put("Y4","{12,12}");
-	}
-
-	public void set_blue_token_positions() {
-		blue_token_positions_map.put("B1","{2,12}");
-		blue_token_positions_map.put("B2","{2,11}");
-		blue_token_positions_map.put("B3","{3,12}");
-		blue_token_positions_map.put("B4","{3,11}");
-	}
-
-	public Map<String,String> get_red_token_positions() {
-		return red_token_positions_map;
-	}
+	 
 	
 }
