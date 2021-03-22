@@ -4,10 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
 
+public abstract class Token_Test {
 
-
-class token_test {
-
+	/*@Test
+	void constructor_test() {
+		Token token = new Red()
+	}
+	
     @Test
     void get_token_colour_test() {
         Token token = new Token("blue");
@@ -31,5 +34,5 @@ class token_test {
         Token token = new Token("green");
         token.setY_coordinate_position(4);
         Assertions.assertEquals(token.move_token_y_coordinate(roll),6);
-    }
+    }*/
 }

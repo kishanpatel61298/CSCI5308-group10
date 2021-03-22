@@ -5,9 +5,11 @@ import java.util.*;
 
 public class Ludo_board_formation {
     int [][] board = new int [15][15];
+    int board_value_count = 0;
     Map<String,Integer> movable_positions_map = new HashMap<String,Integer>();
     Map<String,Integer> safe_positions_map = new HashMap<String,Integer>();
     Map<String,Integer> winning_positions_map = new HashMap<String,Integer>();
+    
 
     public void form_matrix(){
         int value=1;
@@ -15,14 +17,18 @@ public class Ludo_board_formation {
             for(int j=0;j<board[i].length;j++) {
                 board[i][j] = value;
                 value = value + 1;
+                board_value_count = board_value_count+1;
             }
         }
 
 //        for(int i=0;i<board.length;i++){
 //            for(int j=0;j<board[i].length;j++){
-//                System.out.println("board["+i+"]["+j+"]="+board[i][j]);
+//                //System.out.println("board["+i+"]["+j+"]="+board[i][j]);
+//                count = count+1;
 //            }
 //        }
+//        System.out.println("board count"+count);
+//        System.out.println("board count"+board.length);
     }
     public void set_movable_positions(){
         int count=0,count2= 0;
@@ -44,14 +50,15 @@ public class Ludo_board_formation {
                     count2 = count2 + 1;
                 }  }
         }
-        System.out.println(movable_positions_map.size());
+       // System.out.println(movable_positions_map.size());
 
     };
     public void set_safe_positions(){
         for(int i=0;i<board.length;i++){
             for(int j=0;j<board[i].length;j++) {
                 if(i==1&&j==8 || i==2&&j==6 || i==6&&j==1 || i==6&&j==12 || i==8&&j==2 || i==8&&j==13 || i==12&&j==8 || i==13&&j==6){
-                    System.out.println("board[" + i + "][" + j + "]=" + board[i][j]);
+                    //System.out.println("board[" + i + "][" + j + "]=" + board[i][j]);
+                	safe_positions_map.put("[" + i + "][" + j + "]",board[i][j]);
                 }
             }
         }
@@ -63,6 +70,11 @@ public class Ludo_board_formation {
                 winning_positions_map.put("[" + i + "][" + j + "]",board[i][j]);
             }
         }
+    }
+    
+    public Map<String,String> board_attributes(int ply_num){
+		
+    	return null;
     }
 
     public static void main(String args[]) {
