@@ -3,7 +3,7 @@ image: java-latest
 stages:
     - build
     - test
-
+    - deploy
 build:
     tags:
       - ugrad
@@ -19,3 +19,15 @@ test:
     script:
       - cd ./Ludo_Game
       - mvn clean test
+
+deploy-test:
+    tags:
+      - ugrad
+    stage: deploy
+    script:
+      - apt-get update -qy
+      - apt-get install -y maven
+      - gem install dpl
+      - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+    only:
+      - develop
