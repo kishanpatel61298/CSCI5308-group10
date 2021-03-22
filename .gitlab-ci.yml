@@ -21,9 +21,9 @@ test:
       - mvn clean test
 
 deploy-test:
-    tags:
-      - ugrad
     stage: deploy
+    tags:
+      - dalfcs_gitlab_docker_ci
     image: ruby:latest
     script:
       - apt-get update -qy
