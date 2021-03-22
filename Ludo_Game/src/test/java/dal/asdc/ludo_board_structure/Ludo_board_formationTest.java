@@ -2,6 +2,8 @@ package dal.asdc.ludo_board_structure;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Map;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,5 +39,17 @@ class Ludo_board_formationTest {
 		lbf.set_winning_square();
 		assertEquals(9,lbf.winning_positions_map.size());
 	}
+	
+	@Test
+	void testadd_game_type() {
+		lbf.add_game_type(1);
+		assertEquals(2,lbf.player_num);
+	}
+	
 
+	@Test
+	Map<String,String> board_attributes(){
+		return null;
+		
+	}
 }
