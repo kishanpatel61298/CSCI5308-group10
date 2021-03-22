@@ -8,7 +8,7 @@ class Main_dashboard_menu_Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		
 	}
 
 }
