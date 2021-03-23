@@ -57,7 +57,7 @@ public class Ludo_board_formation {
         for(int i=0;i<board.length;i++){
             for(int j=0;j<board[i].length;j++) {
                 if(i==1&&j==8 || i==2&&j==6 || i==6&&j==1 || i==6&&j==12 || i==8&&j==2 || i==8&&j==13 || i==12&&j==8 || i==13&&j==6){
-                    //System.out.println("board[" + i + "][" + j + "]=" + board[i][j]);
+                    System.out.println("board[" + i + "][" + j + "]=" + board[i][j]);
                 	safe_positions_map.put("[" + i + "][" + j + "]",board[i][j]);
                 }
             }

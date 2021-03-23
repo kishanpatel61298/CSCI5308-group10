@@ -37,13 +37,9 @@ public class Red_Token extends Token{
 	public boolean is_at_winning_square() {
 
 		int[][] selected_token_postion = get_coordinate_position();
-		System.out.println(selected_token_postion[0][0]+" -*- "+selected_token_postion[0][1] );
 
 		for(int i=0;i<5;i++) {
-			System.out.println(winning_square[i][0]+" win "+winning_square[i][1] );
-
 			if(winning_square[i][0]==selected_token_postion[0][0] && winning_square[i][1]==selected_token_postion[0][1]) {
-				System.out.println("true" );
 				return true;
 			}
 		}

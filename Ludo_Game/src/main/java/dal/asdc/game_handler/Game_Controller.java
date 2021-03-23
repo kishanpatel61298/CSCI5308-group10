@@ -46,40 +46,89 @@ public class Game_Controller {
 
 	public void user_input_receiver(String input) {
 		is_defeat_move = false;
+		Token token_from_input;
+		char[] word_tokens;
 		assert(input_parser!=null);
-		if(dice_rolled) {
-			if(input_parser.check_input(input)) {
-				char[] word_tokens = input_parser.get_word_tokens(input);
-				Token token_from_input = input_parser.get_player_from_input(get_total_player_list(), word_tokens);
-				if(check_turn(token_from_input)) {
-					if(make_move.check_moving_path(token_from_input,dice_number)) {
-						List<Token> updated_tokens = new ArrayList<>();
-						updated_tokens = make_move.play_move(token_from_input, dice_number,get_total_player_list());
-						if(updated_tokens.size()>1) {
-							is_defeat_move = true;
-						}
-						next_turn();
-						//logic to update tokens in player
-					}else {
-						//return that cann't play this token
-					}
-				}else {
-					//return that not selected token's turn
-				}
-			}else {
-				//return that input is not correct means not r1 or y4 type
-			}
+		if(dice_rolled) {	
 		}else {
 			//return that first roll the dice then select token
+			return;
+		}
+		
+		if(input_parser.check_input(input)) {
+			word_tokens = input_parser.get_word_tokens(input);
+			token_from_input = input_parser.get_player_from_input(get_total_player_list(), word_tokens);
+		}else {
+			//return that input is not correct means not r1 or y4 type
+			return;
+		}
+		
+		if(check_turn(token_from_input)) {
+		}else {
+			//return that not selected token's turn
+			return;
+		}
+		
+		if(make_move.check_moving_path(token_from_input,dice_number)) {
+			List<Token> updated_tokens = new ArrayList<>();
+			updated_tokens = make_move.play_move(token_from_input, dice_number,get_total_player_list());
+			if(updated_tokens.size()>1) {
+				is_defeat_move = true;
+			}
+			update_player(updated_tokens);
+			next_turn();
+			send_data_to_controller();
+		}else {
+			//return that cann't play this token
+			return;
 		}
 	}
 	
+	private void send_data_to_controller() {
+		String current_turn_text = get_current_turn().getColour().concat("'s turn");
+		
+	}
+
 	private boolean check_turn(Token token_from_input) {
 		Player temp_current_player = get_current_turn();
 		if(token_from_input.get_token_colour().equals(temp_current_player.getColour())) {
 			return true;
 		}
 		return false;
+	}
+	
+	public void update_player(List<Token> updated_tokens) {
+		List<Player> all_players = get_total_player_list();
+		for(int player_index = 0 ; player_index < all_players.size() ; player_index++) {
+			Player temp_player = all_players.get(player_index);
+			List<Token> four_tokens = temp_player.get_all_tokens();
+			
+			for(int token_index = 0 ; token_index < four_tokens.size() ; token_index++ ) {
+				Token temp_token = four_tokens.get(token_index);
+				
+				for(int updated_token_index = 0; updated_token_index < updated_tokens.size() ; updated_token_index++) {
+					if(temp_token.get_token_colour().equals(updated_tokens.get(updated_token_index).get_token_colour()) &&
+							temp_token.get_token_number() == updated_tokens.get(updated_token_index).get_token_number()) {
+						four_tokens.set(updated_token_index, updated_tokens.get(updated_token_index));
+					}
+				}
+			}
+			
+			int tokens_at_winning_box = 0;
+			for(int token_index = 0 ; token_index < four_tokens.size() ; token_index++ ) {
+				if(four_tokens.get(token_index).get_is_token_at_winning_box()) {
+					tokens_at_winning_box++;
+				}
+			}
+			if(tokens_at_winning_box==4) {
+				temp_player.set_is_done(true);
+			}else {
+				temp_player.set_is_done(false);
+			}
+			temp_player.set_tokens(four_tokens);
+			all_players.set(player_index, temp_player);
+		}
+		set_total_player_list(all_players);
 	}
 
 	public void next_turn() {

@@ -69,6 +69,10 @@ public class Player {
         return token_list.get(token_number);
 
     }
+    
+    public void set_tokens(List<Token> four_tokens) {
+    	token_list = four_tokens;
+    }
 
     public String getColour() {
         return colour;
