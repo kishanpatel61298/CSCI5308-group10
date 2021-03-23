@@ -1,4 +1,4 @@
-package game_handler;
+package dal.asdc.game_handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,7 @@ public class Game_Controller {
 	Input_Parser input_parser = null;
 	Make_Move make_move = null;
 	int dice_number;
+	boolean is_defeat_move = false;
 	
 	public static Game_Controller instance(String type) {
 		if(null == game_controller) {
@@ -44,16 +45,20 @@ public class Game_Controller {
 	}
 
 	public void user_input_receiver(String input) {
+		is_defeat_move = false;
 		assert(input_parser!=null);
 		if(dice_rolled) {
 			if(input_parser.check_input(input)) {
 				char[] word_tokens = input_parser.get_word_tokens(input);
 				Token token_from_input = input_parser.get_player_from_input(get_total_player_list(), word_tokens);
 				if(check_turn(token_from_input)) {
-					if(make_move.check_moving_path(token_from_input)) {
+					if(make_move.check_moving_path(token_from_input,dice_number)) {
 						List<Token> updated_tokens = new ArrayList<>();
 						updated_tokens = make_move.play_move(token_from_input, dice_number,get_total_player_list());
-						
+						if(updated_tokens.size()>1) {
+							is_defeat_move = true;
+						}
+						next_turn();
 						//logic to update tokens in player
 					}else {
 						//return that cann't play this token
@@ -85,12 +90,21 @@ public class Game_Controller {
 			set_current_turn(current_player_temp);
 			return;
 		}else {
+			if(dice_number == 6) {
+				return;
+			}
 			int index = temp_list.indexOf(current_player_temp);
 			if(index == (temp_list.size()-1)) {
 				current_player_temp = temp_list.get(0);
-				set_current_turn(current_player_temp);
 			}else {
 				current_player_temp = temp_list.get(index+1);
+			}
+
+			set_current_turn(current_player_temp);
+
+			if(current_player_temp.get_is_done()) {
+				next_turn();
+			}else {
 				set_current_turn(current_player_temp);
 			}
 			return;
@@ -150,5 +164,13 @@ public class Game_Controller {
 
 	public void set_total_player_list(List<Player> total_player_list_temp_var) {
 		total_player_list = total_player_list_temp_var;
+	}
+	
+	public boolean get_dice_rolled() {
+		return dice_rolled;
+	}
+
+	public void set_dice_rolled(boolean dice_rolled) {
+		this.dice_rolled = dice_rolled;
 	}
 }

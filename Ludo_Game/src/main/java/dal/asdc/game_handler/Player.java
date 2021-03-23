@@ -1,4 +1,4 @@
-package game_handler;
+package dal.asdc.game_handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ public class Player {
     List<Token> token_list= new ArrayList<>();
     private String name;
     private int user_id;
+    private boolean is_done = false;
 
     private int roll;
 
@@ -80,5 +81,13 @@ public class Player {
     public void setPosition(int[][] position) {
         this.position = position;
     }
+
+	public boolean get_is_done() {
+		return is_done;
+	}
+
+	public void set_is_done(boolean is_done) {
+		this.is_done = is_done;
+	}
 
 }

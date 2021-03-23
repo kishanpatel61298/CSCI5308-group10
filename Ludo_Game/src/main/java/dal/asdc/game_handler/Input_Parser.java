@@ -1,4 +1,4 @@
-package game_handler;
+package dal.asdc.game_handler;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -10,14 +10,6 @@ public class Input_Parser {
 	String input_text = "";
 	
 	public boolean check_input(String input) {
-		if(check_pattern(input)) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-
-	private boolean check_pattern(String input) {
 		input_text = input.trim().toLowerCase();
 		String regular_expression = "[rgby]{1}[1-4]{1}";
 		boolean result = Pattern.matches(regular_expression, input_text);
@@ -32,14 +24,17 @@ public class Input_Parser {
 		return tokens;
 	}
 	
-	public Token get_player_from_input(List<Player> player_list, char[] input_tokens) {
+	public Token get_player_from_input(List<Player> player_list_temp, char[] input_tokens) {
 		char first_letter = input_tokens[0];
+		first_letter = Character.toLowerCase(first_letter);
+		List<Player> player_list = player_list_temp;
 		switch(first_letter) {
 			case 'r':
 				for(int player = 0 ; player < player_list.size() ; player++) {
 					Player temp_player = player_list.get(player);
 					if(temp_player.getColour().equals("RED")) {
 						Token red_token = get_token(player_list.get(player),input_tokens[1]);
+						System.out.print(red_token.get_token_number());
 						return red_token;
 					}
 				}

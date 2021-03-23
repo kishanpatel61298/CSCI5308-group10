@@ -3,29 +3,25 @@ package dal.asdc.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import dal.asdc.game_handler.Player;
 import dal.asdc.playing_pieces.Green_Token;
 import dal.asdc.playing_pieces.Red_Token;
 import dal.asdc.playing_pieces.Token;
-import game_handler.Player;
 
 public class Make_Move {
 	
 	Check_Move check_move = new Check_Move();
-	List<Token> red_tokens = new ArrayList();
 	List<Token> return_token = null;
 	List<Token> all_tokens = null;
-	int total_player = 4;
 	
 	public Make_Move() {
 		
 	}
 	
-	public boolean check_moving_path(Token token) {
-		if(check_move.check_is_token_movable(token, 6)){
+	public boolean check_moving_path(Token token, int dice_number) {
+		if(check_move.check_is_token_movable(token, dice_number)){
 			return true;
-//			make_move(token,6);
 		}else {
-			//show error
 			System.out.print("You can't play this token");
 			return false;
 		}
@@ -41,11 +37,7 @@ public class Make_Move {
 				int[][] new_position = {{token_path[0][0],token_path[0][1]}};
 				selected_token.set_coordinate_position(new_position);
 				selected_token.set_is_token_at_home(false);
-				
-				//this is list of tokens of current player
-				//set this im game controller
 				//red_tokens.set(selected_token.get_token_number(), selected_token);
-				//set token_moved
 				return_token.add(selected_token);
 				return return_token;
 			}
