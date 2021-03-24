@@ -1,4 +1,5 @@
 package dal.asdc.player;
+import dal.asdc.playing_pieces.*;
 
 public class Red_token_command extends Player_command {
 
@@ -10,5 +11,10 @@ public class Red_token_command extends Player_command {
 
     public void execute() {
         player.setPosition(RED_HOME_POSITION);
+
+        for(int i=0;i<4;i++){
+            Token token = new Red_Token(i);
+            player.set_selected_token(token);
+        }
     }
 }

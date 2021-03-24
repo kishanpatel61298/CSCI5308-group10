@@ -1,11 +1,11 @@
 package dal.asdc.ludo_game_decide_players;
 
 public class Display_board {
+//	No_of_players num = new No_of_players();
+//	int num_of_players = num.player_num();
 
-	public String display_board() {
+	public String display_board(int num_of_players) {
 		
-		No_of_players num = new No_of_players();
-		int num_of_players = num.player_num();
 		String board_type = "";
 		
 		if(num_of_players>0) {
@@ -13,10 +13,13 @@ public class Display_board {
 			{
 				case 2 :
 					board_type="activate_red_yellow";
+					break;
 				case 3 :
 					board_type="activate_red_green_yellow";
+					break;
 				case 4 :
 					board_type="activate_all";
+					break;
 			}
 		}
 		

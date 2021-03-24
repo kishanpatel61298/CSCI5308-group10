@@ -2,7 +2,7 @@ package dal.asdc.player;
 
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.game.*;
-import org.springframework.aop.target.LazyInitTargetSource;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ public class Player {
     List<Token> token_list= new ArrayList<>();
     private String name;
     private int user_id;
+    private boolean is_done = false;
 
     private int roll;
 
@@ -27,7 +28,7 @@ public class Player {
     }
 
     public void move(int token_number){
-        if(roll==6){
+        if(is_turn){
             make_move.make_move(get_selected_token(token_number),roll);
         }
     }
@@ -35,6 +36,10 @@ public class Player {
     public Token get_selected_token(int token_number){
         return token_list.get(token_number);
 
+    }
+
+    public void set_selected_token(Token token){
+        token_list.add(token);
     }
 
     public String getColour() {
@@ -48,4 +53,13 @@ public class Player {
     public void setPosition(int[][] position) {
         this.position = position;
     }
+
+    public boolean get_is_done(){
+        return is_done;
+    }
+
+    public void set_is_done(boolean is_done) {
+        this.is_done = is_done;
+    }
+
 }

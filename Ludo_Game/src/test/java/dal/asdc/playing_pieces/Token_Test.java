@@ -4,9 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
 
-
-
-class token_test {
+public abstract class Token_Test {
 
 	/*@Test
 	void constructor_test() {
