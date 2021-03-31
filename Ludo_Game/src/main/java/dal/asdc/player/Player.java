@@ -1,7 +1,7 @@
 package dal.asdc.player;
 
 import dal.asdc.playing_pieces.Token;
-import dal.asdc.game.*;
+import dal.asdc.token_movement.*;
 
 
 import java.util.ArrayList;
