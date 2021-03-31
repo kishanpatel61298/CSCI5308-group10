@@ -12,21 +12,11 @@ import dal.asdc.model.Player;
 /**
  * @author Reshma Unnikrishnan **/
 
-public class Player_dao implements IDao {
-	
-	public void execute_statement() {
-		JDBC_Connection jdbc = new JDBC_Connection();
-		try {
-		Connection conn = jdbc.createDBConnection();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-
+public class Player_dao implements IPlayer_dao {
+		
 	@Override
-	public void create_record(Player player) {
-		JDBC_Connection jdbc = new JDBC_Connection();
+	public void save_record(Player player) {
+		IJDBC_Connection jdbc = new JDBC_Connection();
 		String create_query = "INSERT into Player (player_id, player_name, player_email, player_password, acc_created_date) "
 				+ "values(?,?,?,?,?)";
 		try {
@@ -38,7 +28,7 @@ public class Player_dao implements IDao {
             preparedStatement.setString(4, player.getPlayer_password());
             preparedStatement.setString(5, player.getAcc_created_date());
             preparedStatement.executeUpdate();
-			}catch(Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -46,8 +36,8 @@ public class Player_dao implements IDao {
 	@Override
 	public List<Player> select_all_record() {
 	        List<Player> player_list = new ArrayList<>();
-	        JDBC_Connection jdbc = new JDBC_Connection();
-	        String select_all_query = "";
+	        IJDBC_Connection jdbc = new JDBC_Connection();
+	        String select_all_query = "SELECT * from Players";
 	        try {
 				Connection conn = jdbc.createDBConnection();
 				PreparedStatement preparedStatement = conn.prepareStatement(select_all_query);
@@ -69,8 +59,8 @@ public class Player_dao implements IDao {
 	}
 
 	@Override
-	public void update_record(Integer player_id, Player player) {
-		 JDBC_Connection jdbc = new JDBC_Connection();
+	public void update_record(int player_id, Player player) {
+		 IJDBC_Connection jdbc = new JDBC_Connection();
 		 String player_update_query = "UPDATE Player SET player_name = ?, player_email = ?, player_password = ?," +
                  " acc_created_date = ? WHERE player_id = ?";
 		 try {
@@ -92,9 +82,28 @@ public class Player_dao implements IDao {
 	}
 
 	@Override
-	public void filter_by_id() {
-		// TODO Auto-generated method stub
-		
+	public Player filter_by_id(int player_id) {
+		IJDBC_Connection jdbc = new JDBC_Connection();
+		String filter_by_id_query = "SELECT * from Player where player_id = ?";
+		 try{
+			 Connection conn = jdbc.createDBConnection();
+	         PreparedStatement preparedStatement = conn.prepareStatement(filter_by_id_query);
+	         preparedStatement.setInt(1, player_id);
+	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	        	 Player player = null;
+	             	if (resultSet.next()) {
+	             		player = new Player();
+	             		player.setPlayer_name(resultSet.getString("player_name"));
+	             		player.setPlayer_email(resultSet.getString("player_email"));
+	             		player.setPlayer_password(resultSet.getString("player_password"));
+	             		player.setAcc_created_date(resultSet.getString("acc_created_date"));
+	                }
+	                return player;
+	            }
+	        } catch (SQLException sqlException) {
+	            throw new RuntimeException(sqlException);
+	        }
 	}
+
 
 }
