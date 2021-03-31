@@ -2,6 +2,9 @@ package dal.asdc.model;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Reshma Unnikrishnan**/
+
 @Component
 public class Game_menu {
 	public String game_menu;

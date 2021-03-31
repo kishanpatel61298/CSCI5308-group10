@@ -1,5 +1,8 @@
 package dal.asdc.ludo_menu;
 
+/**
+ * @author Reshma Unnikrishnan**/
+
 public class Main_dashboard_menu {
 	
 	private enum menu_options{
@@ -12,7 +15,6 @@ public class Main_dashboard_menu {
 		Player_login,
 		Player_register
 	}
-	
 	
 	public class Main_menu {
 		public final menu_options menu;
