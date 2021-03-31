@@ -25,9 +25,9 @@ public class Green_Token extends Token{
 		for(int i=0;i<green_token_path.length;i++) {
 			if(green_token_path[i][0]==selected_token_postion[0][0] && green_token_path[i][1]==selected_token_postion[0][1]) {
 				if((i+dice_number)>green_token_path.length) {
-					return true;
-				}else {
 					return false;
+				}else {
+					return true;
 				}
 			}
 		}

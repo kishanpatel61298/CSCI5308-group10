@@ -10,4 +10,10 @@ public class Board_controller {
 	public String home() {
 		return "ludo_board.jsp";
 	}
+	
+	@RequestMapping("/start_game")
+	public String display_board() {
+		return "ludo_board.jsp";
+	}
+	
 }

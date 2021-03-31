@@ -25,9 +25,9 @@ public class Yellow_Token extends Token{
 		for(int i=0;i<yellow_token_path.length;i++) {
 			if(yellow_token_path[i][0]==selected_token_postion[0][0] && yellow_token_path[i][1]==selected_token_postion[0][1]) {
 				if((i+dice_number)>yellow_token_path.length) {
-					return true;
-				}else {
 					return false;
+				}else {
+					return true;
 				}
 			}
 		}

@@ -1,4 +1,4 @@
-<%@ page import="java.util.* ,dal.asdc.ludo_board_structure.Token_positions"%>
+<%@ page import="java.util.* ,dal.asdc.ludo_board_structure.Ludo_board_formation"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,45 +10,45 @@
 </head>
 <body>
 <%	
-	/*Map<String,String> red_token_positions_map = new HashMap<String,String>();
-	Token_positions tkn_pos=new Token_positions();
-	tkn_pos.get_red_token_positions();
-	red_token_positions_map = tkn_pos.get_red_token_positions();*/
+	Map<String,String> token_positions_map = new HashMap<String,String>();
+	Ludo_board_formation tkn_pos=new Ludo_board_formation();
+	token_positions_map = tkn_pos.board_attributes();
 %>
+
 <div class="game">
     <div class="house green">
         <div class="box">
-            <div class="square square-one green">G1</div>
-            <div class="square square-two green">G2</div>
-            <div class="square square-three green">G3</div>
-            <div class="square square-four green">G4</div>
+            <div class="square square-one green"><%=token_positions_map.get("{11,3}")%></div>
+            <div class="square square-two green"><%=token_positions_map.get("{12,3}")%></div>
+            <div class="square square-three green"><%=token_positions_map.get("{12,2}")%></div>
+            <div class="square square-four green"><%=token_positions_map.get("{11,2}")%></div>
         </div>
     </div>
 
     <div class="house yellow" style="right: 0">
         <div class="box">
-            <div class="square square-one yellow">Y1</div>
-            <div class="square square-two yellow">Y2</div>
-            <div class="square square-three yellow">Y3</div>
-            <div class="square square-four yellow">Y4</div>
+            <div class="square square-one yellow"><%=token_positions_map.get("{11,12}")%></div>
+            <div class="square square-two yellow"><%=token_positions_map.get("{11,11}")%></div>
+            <div class="square square-three yellow"><%=token_positions_map.get("{12,11}")%></div>
+            <div class="square square-four yellow"><%=token_positions_map.get("{12,12}")%></div>
         </div>
     </div>
 
     <div class="house red" style="bottom: 0">
         <div class="box">
-            <div class="square square-one red"></div>
-            <div class="square square-two red"></div>
-            <div class="square square-three red"></div>
-            <div class="square square-four red"></div>
+            <div class="square square-one red"><%=token_positions_map.get("{2,3}")%></div>
+ 			<div class="square square-two red"><%=token_positions_map.get("{3,3}")%></div>
+ 			<div class="square square-three red"><%=token_positions_map.get("{3,2}")%></div>
+ 			<div class="square square-four red"><%=token_positions_map.get("{2,2}")%></div>
         </div>
     </div>
 
     <div class="house blue" style="bottom: 0;right: 0">
         <div class="box">
-            <div class="square square-one blue">B1</div>
-            <div class="square square-two blue">B2</div>
-            <div class="square square-three blue">B3</div>
-            <div class="square square-four blue">B4</div>
+            <div class="square square-one blue"><%=token_positions_map.get("{2,12}")%></div>
+            <div class="square square-two blue"><%=token_positions_map.get("{2,11}")%></div>
+            <div class="square square-three blue"><%=token_positions_map.get("{3,12}")%></div>
+            <div class="square square-four blue"><%=token_positions_map.get("{3,11}")%></div>
         </div>
     </div>
 

@@ -30,7 +30,7 @@ public class Green_Token_Test {
 		int[][] token_path = token.get_token_path();
 		int[][] token_position = {{token_path[(token_path.length - 3)][0],token_path[(token_path.length - 3)][1]}};
 		token.set_coordinate_position(token_position);
-		assertEquals(false,token.check_move_towards_winning_square(2));
+		assertEquals(true,token.check_move_towards_winning_square(2));
 	}
 	
 	@Test
@@ -39,7 +39,7 @@ public class Green_Token_Test {
 		int[][] token_path = token.get_token_path();
 		int[][] token_position = {{token_path[(token_path.length - 3)][0],token_path[(token_path.length - 3)][1]}};
 		token.set_coordinate_position(token_position);
-		assertEquals(true,token.check_move_towards_winning_square(4));
+		assertEquals(false,token.check_move_towards_winning_square(4));
 	}
 	
 	@Test

@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import dal.asdc.token_movement.Dice;
-
 public class DiceTest {
 
 	@Test

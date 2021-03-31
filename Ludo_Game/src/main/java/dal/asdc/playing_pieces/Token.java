@@ -3,10 +3,9 @@ package dal.asdc.playing_pieces;
 public abstract class Token {
     int[][] position;
     private boolean is_token_at_home=true;
-	private boolean is_token_at_winning_box = false;
+    private boolean is_token_at_winning_box = false;
     private String token_colour;
     private int token_number;
-    private int[][] safe_boxes = {{1,8},{2,6},{6,1},{6,12},{8,2},{8,13},{12,8},{13,6}};
 
     public Token(String token_colour, int token_number, int positionX, int positionY) {
         this.token_colour = token_colour;
@@ -25,43 +24,35 @@ public abstract class Token {
     }
 
     public void set_coordinate_position(int[][] position_new) {
-		System.out.println(position_new[0][0]+" --- "+position_new[0][1] );
+        System.out.println(position_new[0][0]+" --- "+position_new[0][1] );
         position = position_new;
     }
-    
+
     public int get_token_number() {
-    	return token_number;
+        return token_number;
     }
-    
+
     public boolean get_is_token_at_home() {
-		return is_token_at_home;
-	}
+        return is_token_at_home;
+    }
 
-	public void set_is_token_at_home(boolean is_token_at_home) {
-		this.is_token_at_home = is_token_at_home;
-	}
-	
-	public boolean get_is_token_at_winning_box() {
-		return is_token_at_winning_box;
-	}
+    public void set_is_token_at_home(boolean is_token_at_home) {
+        this.is_token_at_home = is_token_at_home;
+    }
 
-	public void set_is_token_at_winning_box(boolean set_is_token_at_winning_box) {
-		is_token_at_winning_box = set_is_token_at_winning_box;
-	}
-	
-    
+    public boolean get_is_token_at_winning_box() {
+        return is_token_at_winning_box;
+    }
+
+    public void set_is_token_at_winning_box(boolean is_token_at_winning_box) {
+        this.is_token_at_winning_box = is_token_at_winning_box;
+    }
+
+
     public abstract boolean is_home();
     public abstract boolean check_move_towards_winning_square(int dice_number);
     public abstract boolean is_at_winning_square();
     public abstract int[][] get_token_path();
     public abstract int[][] get_winning_square();
     public abstract void set_at_home();
-
-	public int[][] get_safe_boxes() {
-		return safe_boxes;
-	}
-
-	public void set_safe_boxes(int[][] safe_boxes) {
-		this.safe_boxes = safe_boxes;
-	}
 }
