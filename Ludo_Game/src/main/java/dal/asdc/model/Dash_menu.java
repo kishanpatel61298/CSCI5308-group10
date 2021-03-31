@@ -2,9 +2,6 @@ package dal.asdc.model;
 
 import org.springframework.stereotype.Component;
 
-/**
- * @author Reshma Unnikrishnan**/
-
 @Component
 public class Dash_menu {
 	public String dash_menu;
