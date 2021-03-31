@@ -3,6 +3,9 @@ package dal.asdc.ludo_board_structure;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Reshma Unnikrishnan**/
+
 public class Token_positions {
 	
 	 static Map<String,String> two_player_positions_map = new HashMap<String,String>();

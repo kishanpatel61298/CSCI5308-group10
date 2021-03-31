@@ -37,7 +37,7 @@ public class Player_dao implements IPlayer_dao {
 	public List<Player> select_all_record() {
 	        List<Player> player_list = new ArrayList<>();
 	        IJDBC_Connection jdbc = new JDBC_Connection();
-	        String select_all_query = "";
+	        String select_all_query = "SELECT * from Players";
 	        try {
 				Connection conn = jdbc.createDBConnection();
 				PreparedStatement preparedStatement = conn.prepareStatement(select_all_query);

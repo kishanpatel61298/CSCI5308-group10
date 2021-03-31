@@ -1,5 +1,8 @@
 package dal.asdc.model;
 
+/**
+ * @author Reshma Unnikrishnan**/
+
 public class Tournaments {
 	private int tournament_id;
 	private String tournament_time;

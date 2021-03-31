@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Reshma Unnikrishnan**/
+
 public class Token_paths {
 	List<String> red_path_1 = Arrays.asList("{1,5}","{2,5}","{3,5}","{4,5}","{5,5}");
 	List<String> red_path_2 = Arrays.asList("{6,4}","{6,3}","{6,2}","{6,1}","{6,0}","{7,0}","{8,0}");

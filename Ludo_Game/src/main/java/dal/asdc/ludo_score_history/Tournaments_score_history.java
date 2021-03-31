@@ -1,27 +1,25 @@
 package dal.asdc.ludo_score_history;
 
-public class Tournaments_score_history implements ITournament_score_history{
+import java.util.Map;
+
+/**
+ * @author Reshma Unnikrishnan**/
+
+public class Tournaments_score_history implements IScore_history{
 
 	@Override
-	public void save_tournament_history(int id) {
-		// TODO Auto-generated method stub
+	public void save_history() {
 		
 	}
 
 	@Override
-	public void load_tournament_history(int id) {
-		// TODO Auto-generated method stub
+	public void load_history(int id) {
 		
 	}
 
 	@Override
-	public void form_tournament_score_board() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void display_tournament_score_board() {
+	public Map<String,String> form_score_board() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

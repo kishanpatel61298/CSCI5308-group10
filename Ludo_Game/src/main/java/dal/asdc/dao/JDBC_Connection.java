@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import dal.asdc.dao.*;
+
 /**
  * @author Reshma Unnikrishnan
  * */
@@ -43,7 +45,7 @@ public class JDBC_Connection implements IJDBC_Connection{
 		db_config = read_db_property_file();
 		Connection conn = null;
 		try{  
-			Class.forName(db_config.get("db_driver"));
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 //			conn = DriverManager.getConnection(  
 //			"jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_10_DEVINT?"

@@ -8,6 +8,9 @@ import dal.asdc.dao.IPlayer_dao;
 import dal.asdc.dao.Player_dao;
 import dal.asdc.model.Player;
 
+/**
+ * @author Reshma Unnikrishnan**/
+
 public class Player_history{
 
 	private final IPlayer_dao iPlayer_dao;

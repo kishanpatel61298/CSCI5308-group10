@@ -1,5 +1,8 @@
 package dal.asdc.model;
 
+/**
+ * @author Reshma Unnikrishnan**/
+
 public class Game_player_score {
 	private String score_id;
 	private int game_id;

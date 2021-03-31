@@ -2,6 +2,9 @@ package dal.asdc.ludo_board_structure;
 
 import java.util.*;
 
+/**
+ * @author Reshma Unnikrishnan**/
+
 public class Ludo_board_formation {
     int [][] board = new int [15][15];
     int board_value_count = 0;
