@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import dal.asdc.game_handler.Player;
 import dal.asdc.playing_pieces.Token;
+import dal.asdc.token_movement.Make_Move;
 
 public class Make_Move_Test {
 	 Make_Move make_move;
@@ -37,7 +38,7 @@ public class Make_Move_Test {
 		int[][] token_position = {{3,4}};
 		int[][] token_path = {{2,3},{3,4},{4,5}};
 		
-		int index = make_move.get_token_path_index(token_position, token_path);
+		int index = make_move.get_index_of_token_on_path(token_position, token_path);
 		
 		assertEquals(1,index);
 	}

@@ -1,4 +1,4 @@
-package dal.asdc.game;
+package dal.asdc.token_movement;
 
 import java.util.Random;
 

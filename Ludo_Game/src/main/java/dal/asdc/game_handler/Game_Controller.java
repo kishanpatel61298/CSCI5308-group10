@@ -3,8 +3,8 @@ package dal.asdc.game_handler;
 import java.util.ArrayList;
 import java.util.List;
 
-import dal.asdc.game.Make_Move;
 import dal.asdc.playing_pieces.Token;
+import dal.asdc.token_movement.Make_Move;
 
 public class Game_Controller {
 	
@@ -49,37 +49,35 @@ public class Game_Controller {
 		Token token_from_input;
 		char[] word_tokens;
 		assert(input_parser!=null);
-		if(dice_rolled) {	
+		if(dice_rolled) {
+			if(input_parser.check_input(input)) {
+				word_tokens = input_parser.get_word_tokens(input);
+				token_from_input = input_parser.get_player_from_input(get_total_player_list(), word_tokens);
+			}else {
+				//return that input is not correct means not r1 or y4 type
+				return;
+			}
 		}else {
 			//return that first roll the dice then select token
 			return;
 		}
 		
-		if(input_parser.check_input(input)) {
-			word_tokens = input_parser.get_word_tokens(input);
-			token_from_input = input_parser.get_player_from_input(get_total_player_list(), word_tokens);
-		}else {
-			//return that input is not correct means not r1 or y4 type
-			return;
-		}
-		
 		if(check_turn(token_from_input)) {
+			if(make_move.check_moving_path(token_from_input,dice_number)) {
+				List<Token> updated_tokens = new ArrayList<>();
+				updated_tokens = make_move.play_move(token_from_input, dice_number,get_total_player_list());
+				if(updated_tokens.size()>1) {
+					is_defeat_move = true;
+				}
+				update_player(updated_tokens);
+				next_turn();
+				send_data_to_controller();
+			}else {
+				//return that cann't play this token
+				return;
+			}
 		}else {
 			//return that not selected token's turn
-			return;
-		}
-		
-		if(make_move.check_moving_path(token_from_input,dice_number)) {
-			List<Token> updated_tokens = new ArrayList<>();
-			updated_tokens = make_move.play_move(token_from_input, dice_number,get_total_player_list());
-			if(updated_tokens.size()>1) {
-				is_defeat_move = true;
-			}
-			update_player(updated_tokens);
-			next_turn();
-			send_data_to_controller();
-		}else {
-			//return that cann't play this token
 			return;
 		}
 	}

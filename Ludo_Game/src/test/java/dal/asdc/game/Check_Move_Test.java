@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import dal.asdc.playing_pieces.Red_Token;
 import dal.asdc.playing_pieces.Token;
+import dal.asdc.token_movement.Check_Move;
 
 public class Check_Move_Test {
 

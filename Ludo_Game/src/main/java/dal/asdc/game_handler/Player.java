@@ -3,13 +3,13 @@ package dal.asdc.game_handler;
 import java.util.ArrayList;
 import java.util.List;
 
-import dal.asdc.game.Dice;
-import dal.asdc.game.Make_Move;
 import dal.asdc.playing_pieces.Blue_Token;
 import dal.asdc.playing_pieces.Green_Token;
 import dal.asdc.playing_pieces.Red_Token;
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.playing_pieces.Yellow_Token;
+import dal.asdc.token_movement.Dice;
+import dal.asdc.token_movement.Make_Move;
 
 public class Player {
 	private String colour;
@@ -19,7 +19,6 @@ public class Player {
     private String name;
     private int user_id;
     private boolean is_done = false;
-
     private int roll;
 
     //Make_Move make_move = new Make_Move();
@@ -59,15 +58,8 @@ public class Player {
     	return token_list;
     }
 
-    /*public void move(int token_number){
-        if(roll==6){
-            make_move.make_move(get_selected_token(token_number),roll);
-        }
-    }*/
-
     public Token get_selected_token(int token_number){
         return token_list.get(token_number);
-
     }
     
     public void set_tokens(List<Token> four_tokens) {
