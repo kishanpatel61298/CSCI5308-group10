@@ -1,9 +1,7 @@
 package dal.asdc.ludo_board_structure;
 
-import java.util.*;
 
-/**
- * @author Reshma Unnikrishnan**/
+import java.util.*;
 
 public class Ludo_board_formation {
     int [][] board = new int [15][15];
@@ -11,8 +9,6 @@ public class Ludo_board_formation {
     Map<String,Integer> movable_positions_map = new HashMap<String,Integer>();
     Map<String,Integer> safe_positions_map = new HashMap<String,Integer>();
     Map<String,Integer> winning_positions_map = new HashMap<String,Integer>();
-    static int player_num = 0;
-    Token_positions tk_pos = new Token_positions();
     
 
     public void form_matrix(){
@@ -61,7 +57,7 @@ public class Ludo_board_formation {
         for(int i=0;i<board.length;i++){
             for(int j=0;j<board[i].length;j++) {
                 if(i==1&&j==8 || i==2&&j==6 || i==6&&j==1 || i==6&&j==12 || i==8&&j==2 || i==8&&j==13 || i==12&&j==8 || i==13&&j==6){
-                    //System.out.println("board[" + i + "][" + j + "]=" + board[i][j]);
+                    System.out.println("board[" + i + "][" + j + "]=" + board[i][j]);
                 	safe_positions_map.put("[" + i + "][" + j + "]",board[i][j]);
                 }
             }
@@ -76,30 +72,17 @@ public class Ludo_board_formation {
         }
     }
     
-    public void add_game_type(int choice) {
-    	if(choice == 1) {
-    		player_num = 2;
-    	}else if(choice == 2) {
-    		player_num = 3;
-    	}else if(choice == 3) {
-    		player_num = 4;
-    	}else {
-    		player_num = 5;
-    	}
-    }
-    
-    public Map<String,String> board_attributes(){
-    	Map<String,String> initial_board_attributes_map = new HashMap<String,String>();
-    	initial_board_attributes_map = tk_pos.get_board_attributes(player_num);
-    	return initial_board_attributes_map;
+    public Map<String,String> board_attributes(int ply_num){
+		
+    	return null;
     }
 
-//    public static void main(String args[]) {
-//        Ludo_board_formation lbf = new Ludo_board_formation();
-//        lbf.form_matrix();
-//        lbf.set_movable_positions();
-//        lbf.set_winning_square();
-//        lbf.set_safe_positions();
-//    }
+    public static void main(String args[]) {
+        Ludo_board_formation lbf = new Ludo_board_formation();
+        lbf.form_matrix();
+        lbf.set_movable_positions();
+        lbf.set_winning_square();
+        lbf.set_safe_positions();
+    }
 
 }
