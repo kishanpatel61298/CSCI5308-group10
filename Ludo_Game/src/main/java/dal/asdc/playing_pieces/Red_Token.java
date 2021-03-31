@@ -25,9 +25,9 @@ public class Red_Token extends Token{
 		for(int i=0;i<red_token_path.length;i++) {
 			if(red_token_path[i][0]==selected_token_postion[0][0] && red_token_path[i][1]==selected_token_postion[0][1]) {
 				if((i+dice_number)>red_token_path.length) {
-					return false;
-				}else {
 					return true;
+				}else {
+					return false;
 				}
 			}
 		}
@@ -40,10 +40,7 @@ public class Red_Token extends Token{
 		System.out.println(selected_token_postion[0][0]+" -*- "+selected_token_postion[0][1] );
 
 		for(int i=0;i<5;i++) {
-			System.out.println(winning_square[i][0]+" win "+winning_square[i][1] );
-
 			if(winning_square[i][0]==selected_token_postion[0][0] && winning_square[i][1]==selected_token_postion[0][1]) {
-				System.out.println("true" );
 				return true;
 			}
 		}
