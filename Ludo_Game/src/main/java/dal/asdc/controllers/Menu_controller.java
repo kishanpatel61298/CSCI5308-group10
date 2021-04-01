@@ -4,13 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dal.asdc.dao.Player_dao;
 import dal.asdc.ludo_board_structure.Ludo_board_formation;
 import dal.asdc.ludo_menu.Dashboard_menu;
 import dal.asdc.model.Main_menu;
+import dal.asdc.model.Player;
 import dal.asdc.model.Dash_menu;
 import dal.asdc.model.Game_menu;
 
@@ -19,6 +24,7 @@ public class Menu_controller {
 	
 	Dashboard_menu dash_menu = new Dashboard_menu();
 	Ludo_board_formation l_board = new Ludo_board_formation();
+	private Player_dao plyr_dao = new Player_dao();
 	
 	@Autowired
 	Main_menu m_menu;
@@ -59,5 +65,37 @@ public class Menu_controller {
 		return "ludo_board.jsp";
 	}
 	
+	@GetMapping("/register")
+	public String show_registration_form(Model model) {
+		Player user = new Player();	       
+	    model.addAttribute("user", user);    
+	    return "register_form.jsp";
+	}
 	
+	@GetMapping("/login")
+	public String show_login_form(Model model) {
+		Player user = new Player();	       
+	    model.addAttribute("user", user);    
+	    return "login_form.jsp";
+	}
+	
+	@PostMapping("/process_register")
+	public String processRegister(@ModelAttribute("user") Player player) {
+		plyr_dao.save_record(player);
+	    return "login_form.jsp";
+	}
+	
+	@PostMapping("/process_login")
+	public String process_login(@ModelAttribute("user") Player player, Model model) {
+		Player fatched_player = new Player();
+		fatched_player = plyr_dao.filter_by_emailid(player.getPlayer_email());
+		if(fatched_player!= null && fatched_player.getPlayer_password().equals(player.getPlayer_password())) {
+			model.addAttribute("Main_menu", m_menu);
+			return "Menu_display.jsp";			
+		}
+		else {
+			return "error_page.jsp";
+		}
+	}
+		
 }

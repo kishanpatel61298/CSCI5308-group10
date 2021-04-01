@@ -28,6 +28,7 @@ public class Player_dao implements IPlayer_dao {
             preparedStatement.setString(4, player.getPlayer_password());
             preparedStatement.setString(5, player.getAcc_created_date());
             preparedStatement.executeUpdate();
+            System.out.print("Added Player");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -89,6 +90,30 @@ public class Player_dao implements IPlayer_dao {
 			 Connection conn = jdbc.createDBConnection();
 	         PreparedStatement preparedStatement = conn.prepareStatement(filter_by_id_query);
 	         preparedStatement.setInt(1, player_id);
+	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	        	 Player player = null;
+	             	if (resultSet.next()) {
+	             		player = new Player();
+	             		player.setPlayer_name(resultSet.getString("player_name"));
+	             		player.setPlayer_email(resultSet.getString("player_email"));
+	             		player.setPlayer_password(resultSet.getString("player_password"));
+	             		player.setAcc_created_date(resultSet.getString("acc_created_date"));
+	                }
+	                return player;
+	            }
+	        } catch (SQLException sqlException) {
+	            throw new RuntimeException(sqlException);
+	        }
+	}
+	
+	@Override
+	public Player filter_by_emailid(String player_email) {
+		IJDBC_Connection jdbc = new JDBC_Connection();
+		String filter_by_id_query = "SELECT * from Player where player_email = ?";
+		 try{
+			 Connection conn = jdbc.createDBConnection();
+	         PreparedStatement preparedStatement = conn.prepareStatement(filter_by_id_query);
+	         preparedStatement.setString(1, player_email);
 	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
 	        	 Player player = null;
 	             	if (resultSet.next()) {
