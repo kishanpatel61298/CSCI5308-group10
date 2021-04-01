@@ -6,6 +6,7 @@ public abstract class Token {
     private boolean is_token_at_winning_box = false;
     private String token_colour;
     private int token_number;
+    private int[][] safe_boxes = {{1,8},{2,6},{6,1},{6,12},{8,2},{8,13},{12,8},{13,6}};
 
     public Token(String token_colour, int token_number, int positionX, int positionY) {
         this.token_colour = token_colour;
@@ -48,7 +49,14 @@ public abstract class Token {
         this.is_token_at_winning_box = is_token_at_winning_box;
     }
 
+    public int[][] get_safe_boxes() {
+		return safe_boxes;
+	}
 
+	public void set_safe_boxes(int[][] safe_boxes) {
+		this.safe_boxes = safe_boxes;
+	}
+	
     public abstract boolean is_home();
     public abstract boolean check_move_towards_winning_square(int dice_number);
     public abstract boolean is_at_winning_square();
