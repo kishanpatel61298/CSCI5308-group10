@@ -84,7 +84,7 @@ public class Game_Controller {
 	}
 	
 	private void send_data_to_controller() {
-		String current_turn_text = get_current_turn().getColour().concat("'s turn");
+		//String current_turn_text = get_current_turn().getColour().concat("'s turn");
 		
 	}
 
@@ -102,20 +102,21 @@ public class Game_Controller {
 			Player temp_player = all_players.get(player_index);
 			List<Token> four_tokens = temp_player.get_all_tokens();
 			
-			for(int token_index = 0 ; token_index < four_tokens.size() ; token_index++ ) {
-				Token temp_token = four_tokens.get(token_index);
-				
-				for(int updated_token_index = 0; updated_token_index < updated_tokens.size() ; updated_token_index++) {
-					if(temp_token.get_token_colour().equals(updated_tokens.get(updated_token_index).get_token_colour()) &&
-							temp_token.get_token_number() == updated_tokens.get(updated_token_index).get_token_number()) {
-						four_tokens.set(updated_token_index, updated_tokens.get(updated_token_index));
+			for(Token token : four_tokens) {
+				Token temp_token = token;
+				int updated_token_index = 0;
+				for(Token updated_token : updated_tokens) {
+					if(temp_token.get_token_colour().equals(updated_token.get_token_colour()) &&
+							temp_token.get_token_number() == updated_token.get_token_number()) {
+						four_tokens.set(updated_token_index, updated_token);
 					}
+					updated_token_index++;
 				}
 			}
 			
 			int tokens_at_winning_box = 0;
-			for(int token_index = 0 ; token_index < four_tokens.size() ; token_index++ ) {
-				if(four_tokens.get(token_index).get_is_token_at_winning_box()) {
+			for(Token token : four_tokens) {
+				if(token.get_is_token_at_winning_box()) {
 					tokens_at_winning_box++;
 				}
 			}

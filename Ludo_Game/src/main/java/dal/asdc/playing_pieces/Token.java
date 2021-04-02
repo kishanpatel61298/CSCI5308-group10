@@ -25,7 +25,6 @@ public abstract class Token {
     }
 
     public void set_coordinate_position(int[][] position_new) {
-        System.out.println(position_new[0][0]+" --- "+position_new[0][1] );
         position = position_new;
     }
 
