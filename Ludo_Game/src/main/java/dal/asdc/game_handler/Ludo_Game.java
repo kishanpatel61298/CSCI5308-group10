@@ -1,13 +1,16 @@
 package dal.asdc.game_handler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dal.asdc.playing_pieces.Token;
+import dal.asdc.game.Dice;
 import dal.asdc.game.Make_Move;
 import dal.asdc.player.Player;
 
-public class Game_Controller {
+public class Ludo_Game {
 	
 	Player player1 = null;
 	Player player2 = null;
@@ -15,21 +18,23 @@ public class Game_Controller {
 	Player player4 = null;
 	private Player current_turn = null;
 	private List<Player> total_player_list = new ArrayList<>();
-	private static Game_Controller game_controller = null;
+	private static Ludo_Game ludo_game = null;
 	private boolean dice_rolled = false;
 	Input_Parser input_parser = null;
 	Make_Move make_move = null;
+	Dice dice = new Dice();
 	int dice_number;
 	boolean is_defeat_move = false;
+	Map<String,Integer> winner_map = new HashMap<>();
 	
-	public static Game_Controller instance(String type) {
-		if(null == game_controller) {
-			game_controller = new Game_Controller(type);
+	public static Ludo_Game instance(String type, Map<Integer,String> player_list) {
+		if(null == ludo_game) {
+			ludo_game = new Ludo_Game(type, player_list);
 		}
-		return game_controller;
+		return ludo_game;
 	}
 	
-	private Game_Controller(String game_type) {
+	private Ludo_Game(String game_type, Map<Integer,String> player_list) {
 		input_parser = new Input_Parser();
 		if(game_type.equals("two_player")) {
 			initialize_two_players();
@@ -42,7 +47,7 @@ public class Game_Controller {
 		}
 		next_turn();
 		make_move = new Make_Move();
-		dice_rolled = false;
+		set_dice_rolled(false);
 	}
 
 	public void user_input_receiver(String input) {
@@ -83,19 +88,6 @@ public class Game_Controller {
 		}
 	}
 	
-	private void send_data_to_controller() {
-		//String current_turn_text = get_current_turn().getColour().concat("'s turn");
-		
-	}
-
-	private boolean check_turn(Token token_from_input) {
-		Player temp_current_player = get_current_turn();
-		if(token_from_input.get_token_colour().equals(temp_current_player.getColour())) {
-			return true;
-		}
-		return false;
-	}
-	
 	public void update_player(List<Token> updated_tokens) {
 		List<Player> all_players = get_total_player_list();
 		for(int player_index = 0 ; player_index < all_players.size() ; player_index++) {
@@ -113,19 +105,7 @@ public class Game_Controller {
 					updated_token_index++;
 				}
 			}
-			
-			int tokens_at_winning_box = 0;
-			for(Token token : four_tokens) {
-				if(token.get_is_token_at_winning_box()) {
-					tokens_at_winning_box++;
-				}
-			}
-			if(tokens_at_winning_box==4) {
-				temp_player.set_is_done(true);
-			}else {
-				temp_player.set_is_done(false);
-			}
-			temp_player.set_tokens(four_tokens);
+			temp_player = check_player_is_done(four_tokens,temp_player);
 			all_players.set(player_index, temp_player);
 		}
 		set_total_player_list(all_players);
@@ -142,13 +122,9 @@ public class Game_Controller {
 			if(dice_number == 6) {
 				return;
 			}
-			int index = temp_list.indexOf(current_player_temp);
-			if(index == (temp_list.size()-1)) {
-				current_player_temp = temp_list.get(0);
-			}else {
-				current_player_temp = temp_list.get(index+1);
-			}
-
+			
+			get_next_player(temp_list,current_player_temp);
+			
 			set_current_turn(current_player_temp);
 
 			if(current_player_temp.get_is_done()) {
@@ -158,6 +134,68 @@ public class Game_Controller {
 			}
 			return;
 		}	
+	}
+	
+	private Player get_next_player(List<Player> temp_list, Player current_player_temp) {
+		int index = temp_list.indexOf(current_player_temp);
+		if(index == (temp_list.size()-1)) {
+			current_player_temp = temp_list.get(0);
+		}else {
+			current_player_temp = temp_list.get(index+1);
+		}
+		return current_player_temp;
+	}
+
+	public boolean roll_dice() {
+		int number = dice.roll_dice();
+		if(number <= 6 && number >= 1) {
+			dice_number = number;
+			set_dice_rolled(true);
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	private void send_data_to_controller() {
+		//String current_turn_text = get_current_turn().getColour().concat("'s turn");
+		
+	}
+
+	private boolean check_turn(Token token_from_input) {
+		Player temp_current_player = get_current_turn();
+		if(token_from_input.get_token_colour().equals(temp_current_player.getColour())) {
+			return true;
+		}
+		return false;
+	}
+		
+	private Player check_player_is_done(List<Token> four_tokens, Player temp_player) {
+		int tokens_at_winning_box = 0;
+		for(Token token : four_tokens) {
+			if(token.get_is_token_at_winning_box()) {
+				tokens_at_winning_box++;
+			}
+		}
+		if(tokens_at_winning_box==4) {
+			set_winner_in_map(temp_player);
+			temp_player.set_is_done(true);
+		}else {
+			temp_player.set_is_done(false);
+		}
+		temp_player.set_tokens(four_tokens);
+		return temp_player;
+	}
+	
+	private void set_winner_in_map(Player temp_player) {
+		if(winner_map.isEmpty()) {
+			//winner_map.put("Winner", temp_player.get_id);
+			return;
+		}
+		if(winner_map.containsKey("winner") && winner_map.size()==1) {
+			//winner_map.put("Runner", temp_player.get_id());
+			return;
+		}
 	}
 	
 	private void initialize_two_players() {
