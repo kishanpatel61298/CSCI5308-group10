@@ -1,4 +1,4 @@
-package dal.asdc.ludo_score_history;
+package dal.asdc.ludo_score_history.interfaces;
 
 import java.util.Map;
 
