@@ -3,6 +3,8 @@ package dal.asdc.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import dal.asdc.game_handler.Ludo_Game;
+
 @Controller
 public class Board_controller {
 

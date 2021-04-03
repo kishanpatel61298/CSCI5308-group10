@@ -34,7 +34,12 @@ public class Ludo_Game {
 		return ludo_game;
 	}
 	
-	private Ludo_Game(String game_type, Map<Integer,String> player_list) {
+	public String get_current_turn_text() {
+        String turn_text = get_current_turn().getColour()+"'s turn";
+        return turn_text;
+    }
+	
+	public Ludo_Game(String game_type, Map<Integer,String> player_list) {
 		input_parser = new Input_Parser();
 		if(game_type.equals("two_player")) {
 			initialize_two_players();

@@ -1,6 +1,8 @@
 <%@ page import="java.util.* ,dal.asdc.ludo_board_structure.Ludo_board_formation"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -138,6 +140,13 @@
     <div class="cells" style="top: 46.66%;left:0;"></div>
 
 
+</div>
+ <div>
+	<form:form modelAttribute="Token_positions" method="POST" action="/game_moves">
+		Please enter the token for moving :
+		<form:input path="dash_menu" />
+		<input type="submit" value="Submit">
+	</form:form> --%>
 </div>
 </body>
 </html>
