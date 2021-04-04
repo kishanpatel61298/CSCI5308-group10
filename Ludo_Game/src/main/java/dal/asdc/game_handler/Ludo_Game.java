@@ -142,14 +142,16 @@ public class Ludo_Game {
 				return;
 			}
 			
-			get_next_player(temp_list,current_player_temp);
+			Player next_player = get_next_player(temp_list,current_player_temp);
 			
-			set_current_turn(current_player_temp);
+			
+			//set_current_turn(next_player);
 
-			if(current_player_temp.get_is_done()) {
-				next_turn();
+			if(next_player.get_is_done()) {
+				//next_turn();
+				//do something here
 			}else {
-				set_current_turn(current_player_temp);
+				set_current_turn(next_player);
 			}
 			return;
 		}	
@@ -157,20 +159,33 @@ public class Ludo_Game {
 	
 	private Player get_next_player(List<Player> temp_list, Player current_player_temp) {
 		int index = temp_list.indexOf(current_player_temp);
+		Player next_player;
 		if(index == (temp_list.size()-1)) {
-			current_player_temp = temp_list.get(0);
+			next_player = temp_list.get(0);
 		}else {
-			current_player_temp = temp_list.get(index+1);
+			next_player = temp_list.get(index+1);
 		}
-		return current_player_temp;
+		return next_player;
 	}
 
 	public int roll_dice() {
         int number = dice.roll_dice();
         if(number <= 6 && number >= 1) {
-            dice_number = number;
-            set_dice_rolled(true);
-            return number;
+        	int all_home_count = 0;
+        	List<Token> four_tokens = get_current_turn().get_all_tokens();
+        	for(Token token : four_tokens) {
+        		if(token.is_home()) {
+        			all_home_count++;
+        		}
+        	}
+        	if(all_home_count==4 && number != 6) {
+        		System.out.println("next turn");
+        		next_turn();
+        	}else {
+        		dice_number = number;
+                set_dice_rolled(true);
+        	}
+        	return number;
         }
         return 0;
     }

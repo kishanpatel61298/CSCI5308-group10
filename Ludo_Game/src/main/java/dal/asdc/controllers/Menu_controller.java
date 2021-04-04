@@ -92,9 +92,15 @@ public class Menu_controller {
         if(user_token_input_move == "") {
         	token_positions = ludo_game.get_position_of_all_tokens();
         	model.addAttribute("token_path", token_positions);
+			/*
+			 * for(Map.Entry<String, String> entry : token_positions.entrySet()) {
+			 * System.out.println(entry.getKey() + "/" + entry.getValue()); }
+			 */
         }else {
         	model.addAttribute("error", user_token_input_move);
         }
+        String current_turn = ludo_game.get_current_turn_text();
+		model.addAttribute("turn", current_turn);
         return "ludo_board.jsp";
     }
 
