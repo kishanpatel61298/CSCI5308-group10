@@ -56,7 +56,7 @@ public class Check_Move_Test {
 		token.set_coordinate_position(token_position);
 		boolean is_movable = check_move.check_is_token_movable(token,2);
 		//change after the perfect path is provided 
-		assertEquals(false,is_movable);
+		assertEquals(true,is_movable);
 	}
 	
 	

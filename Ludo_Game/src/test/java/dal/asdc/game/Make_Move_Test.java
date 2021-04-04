@@ -62,14 +62,14 @@ public class Make_Move_Test {
 	@Test
 	void play_token_defeat() {
 		Token yellow1 = player2.get_all_tokens().get(0);
-		int[][] token_position = {{4,4}};
+		int[][] token_position = {{10,8}};
 		yellow1.set_coordinate_position(token_position);
-		List<Token> yellow_tokens = total_player_list.get(1).get_all_tokens();
+		List<Token> yellow_tokens = player2.get_all_tokens();
 		yellow_tokens.set(0, yellow1);
-		total_player_list.get(1).set_tokens(yellow_tokens);
+		player2.set_tokens(yellow_tokens);
 		
 		Token red1 = player1.get_all_tokens().get(0);
-		int[][] token_position_red = {{1,1}};
+		int[][] token_position_red = {{13,8}};
 		red1.set_coordinate_position(token_position_red);
 
 		output_list = make_move.play_move(red1, 3, total_player_list);
