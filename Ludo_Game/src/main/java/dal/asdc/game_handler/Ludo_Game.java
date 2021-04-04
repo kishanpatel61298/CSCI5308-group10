@@ -55,43 +55,57 @@ public class Ludo_Game {
 		set_dice_rolled(false);
 	}
 
-	public void user_input_receiver(String input) {
-		is_defeat_move = false;
-		Token token_from_input;
-		char[] word_tokens;
-		assert(input_parser!=null);
-		if(dice_rolled) {
-			if(input_parser.check_input(input)) {
-				word_tokens = input_parser.get_word_tokens(input);
-				token_from_input = input_parser.get_player_from_input(get_total_player_list(), word_tokens);
-			}else {
-				//return that input is not correct means not r1 or y4 type
-				return;
-			}
-		}else {
-			//return that first roll the dice then select token
-			return;
-		}
-		
-		if(check_turn(token_from_input)) {
-			if(make_move.check_moving_path(token_from_input,dice_number)) {
-				List<Token> updated_tokens = new ArrayList<>();
-				updated_tokens = make_move.play_move(token_from_input, dice_number,get_total_player_list());
-				if(updated_tokens.size()>1) {
-					is_defeat_move = true;
-				}
-				update_player(updated_tokens);
-				next_turn();
-				send_data_to_controller();
-			}else {
-				//return that cann't play this token
-				return;
-			}
-		}else {
-			//return that not selected token's turn
-			return;
-		}
-	}
+	public String user_input_receiver(String input) {
+        is_defeat_move = false;
+        Token token_from_input;
+        char[] word_tokens;
+        assert(input_parser!=null);
+        if(dice_rolled) {
+            if(input_parser.check_input(input)) {
+                word_tokens = input_parser.get_word_tokens(input);
+                token_from_input = input_parser.get_player_from_input(get_total_player_list(), word_tokens);
+            }else {
+                //return that input is not correct means not r1 or y4 type
+                return "input is not correct";
+            }
+        }else {
+            //return that first roll the dice then select token
+            return "first roll the dice then select token";
+        }
+       
+        if(check_turn(token_from_input)) {
+            if(make_move.check_moving_path(token_from_input,dice_number)) {
+                List<Token> updated_tokens = new ArrayList<>();
+                updated_tokens = make_move.play_move(token_from_input, dice_number,get_total_player_list());
+                if(updated_tokens.size()>1) {
+                    is_defeat_move = true;
+                }
+                update_player(updated_tokens);
+                next_turn();
+                send_data_to_controller();
+                return "";
+            }else {
+                //return that cann't play this token
+                return "cann't play this token";
+            }
+        }else {
+            //return that not selected token's turn
+            return "not selected token's turn";
+        }
+    }
+	
+	public Map<String,String> get_position_of_all_tokens(){
+        Map<String,String> positions = new HashMap<>();
+        for(Player player : get_total_player_list()) {
+            List<Token> four_tokens = player.get_all_tokens();
+            for(Token token : four_tokens) {
+                int[][] coordinates = token.get_coordinate_position();
+                String token_name = token.get_token_colour().substring(0, 1)+(token.get_token_number()+1);
+                positions.put("{"+ coordinates[0][0]+","+coordinates[0][1] +"}", token_name);
+            }
+        }
+        return positions;
+    }
 	
 	public void update_player(List<Token> updated_tokens) {
 		List<Player> all_players = get_total_player_list();
@@ -151,16 +165,15 @@ public class Ludo_Game {
 		return current_player_temp;
 	}
 
-	public boolean roll_dice() {
-		int number = dice.roll_dice();
-		if(number <= 6 && number >= 1) {
-			dice_number = number;
-			set_dice_rolled(true);
-			return true;
-		}else {
-			return false;
-		}
-	}
+	public int roll_dice() {
+        int number = dice.roll_dice();
+        if(number <= 6 && number >= 1) {
+            dice_number = number;
+            set_dice_rolled(true);
+            return number;
+        }
+        return 0;
+    }
 	
 	private void send_data_to_controller() {
 		//String current_turn_text = get_current_turn().getColour().concat("'s turn");

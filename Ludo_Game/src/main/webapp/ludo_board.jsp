@@ -3,10 +3,12 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="dal.asdc.model.Game_token_positions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <link rel="stylesheet" href="ludo_board.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ludo Game</title>
 </head>
@@ -16,6 +18,19 @@
 	Ludo_board_formation tkn_pos=new Ludo_board_formation();
 	token_positions_map = tkn_pos.board_attributes();
 %>
+<h1>${turn}</h1>
+<h2 style="color:red">${error}</h2>
+
+<button id="genAddress" onclick="location.href='/roll_dice'">
+                Roll Dice
+</button>
+<div>${dice_num}</div>
+<div class="get_token_choice">
+<form action="/token_select" method="POST">
+<input id="text-box" type="text" name="token" value=${token}>
+<input type="submit" value="Submit">
+</form>
+</div>
 
 <div class="game">
     <div class="house green">
@@ -141,12 +156,6 @@
 
 
 </div>
- <div>
-	<form:form modelAttribute="Token_positions" method="POST" action="/game_moves">
-		Please enter the token for moving :
-		<form:input path="dash_menu" />
-		<input type="submit" value="Submit">
-	</form:form> --%>
-</div>
+
 </body>
 </html>

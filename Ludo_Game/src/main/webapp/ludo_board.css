@@ -117,3 +117,16 @@ img {
     height: 100%; 
     object-fit: contain;
 }
+
+.get_token_choice{
+	width: 10%;
+}
+
+.form-control{
+	width:10%;
+	border: 1px black;
+}
+
+input#text-box {
+    border: 2px black solid;
+}
