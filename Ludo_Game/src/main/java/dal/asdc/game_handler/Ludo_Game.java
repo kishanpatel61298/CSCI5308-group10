@@ -149,17 +149,17 @@ public class Ludo_Game {
 		for(int player_index = 0 ; player_index < all_players.size() ; player_index++) {
 			Player temp_player = all_players.get(player_index);
 			List<Token> four_tokens = temp_player.get_all_tokens();
-			
+			int updated_token_index = 0;
+
 			for(Token token : four_tokens) {
 				Token temp_token = token;
-				int updated_token_index = 0;
 				for(Token updated_token : updated_tokens) {
 					if(temp_token.get_token_colour().equals(updated_token.get_token_colour()) &&
 							temp_token.get_token_number() == updated_token.get_token_number()) {
 						four_tokens.set(updated_token_index, updated_token);
 					}
-					updated_token_index++;
 				}
+				updated_token_index++;
 			}
 			temp_player = check_player_is_done(four_tokens,temp_player);
 			all_players.set(player_index, temp_player);
@@ -175,7 +175,7 @@ public class Ludo_Game {
 			set_current_turn(current_player_temp);
 			return;
 		}else {
-			if(dice_number == 6) {
+			if(dice_number == 6 || is_defeat_move) {
 				return;
 			}
 			
