@@ -8,6 +8,7 @@ import java.util.Map;
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.game.Dice;
 import dal.asdc.game.Make_Move;
+import dal.asdc.ludo_board_structure.Token_paths;
 import dal.asdc.player.Player;
 
 public class Ludo_Game {
@@ -25,6 +26,7 @@ public class Ludo_Game {
 	Dice dice = new Dice();
 	int dice_number;
 	boolean is_defeat_move = false;
+	Token_paths token_paths = new Token_paths();
 	Map<String,Integer> winner_map = new HashMap<>();
 	
 	public static Ludo_Game instance(String type, Map<Integer,String> player_list) {
@@ -96,13 +98,48 @@ public class Ludo_Game {
 	
 	public Map<String,String> get_position_of_all_tokens(){
         Map<String,String> positions = new HashMap<>();
-        for(Player player : get_total_player_list()) {
-            List<Token> four_tokens = player.get_all_tokens();
-            for(Token token : four_tokens) {
-                int[][] coordinates = token.get_coordinate_position();
-                String token_name = token.get_token_colour().substring(0, 1)+(token.get_token_number()+1);
-                positions.put("{"+ coordinates[0][0]+","+coordinates[0][1] +"}", token_name);
-            }
+		int[][] tokens_position = new int[get_total_player_list().size()*4][2];
+		int counter=0;
+		List<Token> all_tokens = new ArrayList<>();
+        for(Player player : get_total_player_list()) { 
+		  List<Token> four_tokens =player.get_all_tokens();
+		  for(Token token : four_tokens) { 
+			  int[][] coordinates = token.get_coordinate_position();
+			  tokens_position[counter][0]=coordinates[0][0];
+			  tokens_position[counter][1]=coordinates[0][1];
+			  counter++;
+			  all_tokens.add(token);
+			  //String token_name = token.get_token_colour().substring(0, 1)+(token.get_token_number()+1);
+			  //positions.put("{"+ coordinates[0][0]+","+coordinates[0][1] +"}", token_name);
+		  }
+		}
+		 
+        int[][] total_path = token_paths.total_path;
+        for(int i=0;i<total_path.length;i++) {
+        	int[][] temp_position = {{total_path[i][0],total_path[i][1]}};
+			/*
+			 * for(int j=0;j<tokens_position.length;j++) { if(temp_position[0][0] ==
+			 * tokens_position[j][0] && temp_position[0][1] == tokens_position[j][1]) {
+			 * String token_name = token.get_token_colour().substring(0,
+			 * 1)+(token.get_token_number()+1); positions.put("{"+
+			 * coordinates[0][0]+","+coordinates[0][1] +"}", token_name); } }
+			 */
+        	boolean is_set = false;
+        	String token_name = "";
+        	for(Token token : all_tokens) {
+        		int[][] position = token.get_coordinate_position();
+        		
+        		if(temp_position[0][0] == position[0][0] && temp_position[0][1] == position[0][1]) {
+        			token_name = token_name + token.get_token_colour().substring(0, 1)+(token.get_token_number()+1);
+      			  	is_set = true;
+      			  	break;
+        		}
+        	}
+        	if(!is_set) {
+  			  	positions.put("{"+ temp_position[0][0]+","+temp_position[0][1] +"}", " ");
+        	}else {
+  			  	positions.put("{"+ temp_position[0][0]+","+temp_position[0][1] +"}", token_name);
+        	}
         }
         return positions;
     }

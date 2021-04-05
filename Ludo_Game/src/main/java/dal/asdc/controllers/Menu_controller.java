@@ -74,6 +74,10 @@ public class Menu_controller {
 		ludo_game = new Ludo_Game(type,player_map);
 		String current_turn = ludo_game.get_current_turn_text();
 		model.addAttribute("turn", current_turn);
+		
+        Map<String,String> token_positions = new HashMap<String,String>();
+        token_positions = ludo_game.get_position_of_all_tokens();
+    	model.addAttribute("token_path", token_positions);
 		return "ludo_board.jsp";
 	}
 	
@@ -91,15 +95,15 @@ public class Menu_controller {
         String user_token_input_move = ludo_game.user_input_receiver(token);
         Map<String,String> token_positions = new HashMap<String,String>();
         if(user_token_input_move == "") {
-        	token_positions = ludo_game.get_position_of_all_tokens();
-        	model.addAttribute("token_path", token_positions);
-			
+        	
 //			  for(Map.Entry<String, String> entry : token_positions.entrySet()) {
 //			  System.out.println(entry.getKey() + "/" + entry.getValue()); }
-			  token_pos.get_game_board_attributes(token_positions);
+			  //token_pos.get_game_board_attributes(token_positions);
         }else {
         	model.addAttribute("error", user_token_input_move);
         }
+        token_positions = ludo_game.get_position_of_all_tokens();
+    	model.addAttribute("token_path", token_positions);
         String current_turn = ludo_game.get_current_turn_text();
 		model.addAttribute("turn", current_turn);
         return "ludo_board.jsp";
@@ -111,6 +115,10 @@ public class Menu_controller {
     	model.addAttribute("dice_num", dice_num);
     	String current_turn = ludo_game.get_current_turn_text();
 		model.addAttribute("turn", current_turn);
+		
+		Map<String,String> token_positions = new HashMap<String,String>();
+        token_positions = ludo_game.get_position_of_all_tokens();
+    	model.addAttribute("token_path", token_positions);
     	return "ludo_board.jsp";
     }
 }
