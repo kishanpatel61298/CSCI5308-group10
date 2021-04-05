@@ -27,6 +27,7 @@ public class Menu_controller {
 	Dashboard_menu dash_menu = new Dashboard_menu();
 	Ludo_board_formation l_board = new Ludo_board_formation();
 	Ludo_Game ludo_game;
+	Token_positions token_pos = new Token_positions();
 	
 	@Autowired
 	Main_menu m_menu;
@@ -92,10 +93,10 @@ public class Menu_controller {
         if(user_token_input_move == "") {
         	token_positions = ludo_game.get_position_of_all_tokens();
         	model.addAttribute("token_path", token_positions);
-			/*
-			 * for(Map.Entry<String, String> entry : token_positions.entrySet()) {
-			 * System.out.println(entry.getKey() + "/" + entry.getValue()); }
-			 */
+			
+//			  for(Map.Entry<String, String> entry : token_positions.entrySet()) {
+//			  System.out.println(entry.getKey() + "/" + entry.getValue()); }
+			  token_pos.get_game_board_attributes(token_positions);
         }else {
         	model.addAttribute("error", user_token_input_move);
         }

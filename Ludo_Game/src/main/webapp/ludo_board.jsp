@@ -70,89 +70,89 @@
     </div>
 
     <div class="home"></div>
-    <div class="cells" style="top: 40%;"></div>
-    <div class="cells g-start" style="top: 40%;left:6.66%;"></div>
-    <div class="cells" style="top: 40%;left:13.32%;"></div>
-    <div class="cells" style="top: 40%;left:19.98%;"></div>
-    <div class="cells" style="top: 40%;left:26.64%;"></div>
-    <div class="cells" style="top: 40%;left:33.3%;"></div>
+    <div class="cells" style="top: 40%;"><%=token_positions_map.get("{8,0}")%></div>
+    <div class="cells g-start" style="top: 40%;left:6.66%;"><%=token_positions_map.get("{8,1}")%></div>
+    <div class="cells" style="top: 40%;left:13.32%;"><%=token_positions_map.get("{8,2}")%></div>
+    <div class="cells" style="top: 40%;left:19.98%;"><%=token_positions_map.get("{8,3}")%></div>
+    <div class="cells" style="top: 40%;left:26.64%;"><%=token_positions_map.get("{8,4}")%></div>
+    <div class="cells" style="top: 40%;left:33.3%;"><%=token_positions_map.get("{8,5}")%></div>
 
-    <div class="cells" style="top: 0;left:40%;"></div>
-    <div class="cells" style="top: 6.66%;left:40%;"></div>
-    <div class="cells safe" style="top: 13.32%;left:40%;"></div>
-    <div class="cells" style="top: 19.98%;left:40%;"></div>
-    <div class="cells" style="top: 26.64%;left:40%;"></div>
-    <div class="cells" style="top: 33.3%;left:40%;"></div>
+    <div class="cells" style="top: 0;left:40%;"><%=token_positions_map.get("{14,6}")%></div>
+    <div class="cells" style="top: 6.66%;left:40%;"><%=token_positions_map.get("{13,6}")%></div>
+    <div class="cells safe" style="top: 13.32%;left:40%;"><%=token_positions_map.get("{12,6}")%></div>
+    <div class="cells" style="top: 19.98%;left:40%;"><%=token_positions_map.get("{11,6}")%></div>
+    <div class="cells" style="top: 26.64%;left:40%;"><%=token_positions_map.get("{10,6}")%></div>
+    <div class="cells" style="top: 33.3%;left:40%;"><%=token_positions_map.get("{9,6}")%></div>
 
-    <div class="cells" style="top: 0;left:46.66%;"></div>
-    <div class="cells yellow" style="top: 6.66%;left:46.66%;"></div>
-    <div class="cells yellow" style="top: 13.32%;left:46.66%;"></div>
-    <div class="cells yellow" style="top: 19.98%;left:46.66%;"></div>
-    <div class="cells yellow" style="top: 26.64%;left:46.66%;"></div>
-    <div class="cells yellow" style="top: 33.3%;left:46.66%;"></div>
+    <div class="cells" style="top: 0;left:46.66%;"><%=token_positions_map.get("{14,5}")%></div>
+    <div class="cells yellow" style="top: 6.66%;left:46.66%;"><%=token_positions_map.get("{13,5}")%></div>
+    <div class="cells yellow" style="top: 13.32%;left:46.66%;"><%=token_positions_map.get("{12,5}")%></div>
+    <div class="cells yellow" style="top: 19.98%;left:46.66%;"><%=token_positions_map.get("{11,5}")%></div>
+    <div class="cells yellow" style="top: 26.64%;left:46.66%;"><%=token_positions_map.get("{10,5}")%></div>
+    <div class="cells yellow" style="top: 33.3%;left:46.66%;"><%=token_positions_map.get("{9,5}")%></div>
 
-    <div class="cells" style="top: 0;left:53.32%;"></div>
-    <div class="cells y-start" style="top: 6.66%;left:53.32%;"></div>
-    <div class="cells" style="top: 13.32%;left:53.32%;"></div>
-    <div class="cells" style="top: 19.98%;left:53.32%;"></div>
-    <div class="cells" style="top: 26.64%;left:53.32%;"></div>
-    <div class="cells" style="top: 33.3%;left:53.32%;"></div>
+    <div class="cells" style="top: 0;left:53.32%;"><%=token_positions_map.get("{14,4}")%></div>
+    <div class="cells y-start" style="top: 6.66%;left:53.32%;"><%=token_positions_map.get("{13,4}")%></div>
+    <div class="cells" style="top: 13.32%;left:53.32%;"><%=token_positions_map.get("{12,4}")%></div>
+    <div class="cells" style="top: 19.98%;left:53.32%;"><%=token_positions_map.get("{11,4}")%></div>
+    <div class="cells" style="top: 26.64%;left:53.32%;"><%=token_positions_map.get("{10,4}")%></div>
+    <div class="cells" style="top: 33.3%;left:53.32%;"><%=token_positions_map.get("{9,4}")%></div>
 
-    <div class="cells" style="top: 40%; right: 33.3%"></div>
-    <div class="cells" style="top: 40%;right:26.64%;"></div>
-    <div class="cells" style="top: 40%;right:19.98%;"></div>
-    <div class="cells safe" style="top: 40%;right:13.32%;"></div>
-    <div class="cells" style="top: 40%;right:6.66%;"></div>
-    <div class="cells" style="top: 40%;right:0;"></div>
+    <div class="cells" style="top: 40%; right: 33.3%"><%=token_positions_map.get("{8,9}")%></div>
+    <div class="cells" style="top: 40%;right:26.64%;"><%=token_positions_map.get("{8,10}")%></div>
+    <div class="cells" style="top: 40%;right:19.98%;"><%=token_positions_map.get("{8,11}")%></div>
+    <div class="cells safe" style="top: 40%;right:13.32%;"><%=token_positions_map.get("{8,12}")%></div>
+    <div class="cells" style="top: 40%;right:6.66%;"><%=token_positions_map.get("{8,13}")%></div>
+    <div class="cells" style="top: 40%;right:0;"><%=token_positions_map.get("{8,14}")%></div>
 
-    <div class="cells blue" style="top: 46.66%; right: 33.3%"></div>
-    <div class="cells blue" style="top: 46.66%;right:26.64%;"></div>
-    <div class="cells blue" style="top: 46.66%;right:19.98%;"></div>
-    <div class="cells blue" style="top: 46.66%;right:13.32%;"></div>
-    <div class="cells blue" style="top: 46.66%;right:6.66%;"></div>
-    <div class="cells" style="top: 46.66%;right:0;"></div>
+    <div class="cells blue" style="top: 46.66%; right: 33.3%"><%=token_positions_map.get("{7,9}")%></div>
+    <div class="cells blue" style="top: 46.66%;right:26.64%;"><%=token_positions_map.get("{7,10}")%></div>
+    <div class="cells blue" style="top: 46.66%;right:19.98%;"><%=token_positions_map.get("{7,11}")%></div>
+    <div class="cells blue" style="top: 46.66%;right:13.32%;"><%=token_positions_map.get("{7,12}")%></div>
+    <div class="cells blue" style="top: 46.66%;right:6.66%;"><%=token_positions_map.get("{7,13}")%></div>
+    <div class="cells" style="top: 46.66%;right:0;"><%=token_positions_map.get("{7,14}")%></div>
 
-    <div class="cells" style="top: 53.32%; right: 33.3%"></div>
-    <div class="cells" style="top: 53.32%;right:26.64%;"></div>
-    <div class="cells" style="top: 53.32%;right:19.98%;"></div>
-    <div class="cells" style="top: 53.32%;right:13.32%;"></div>
-    <div class="cells b-start" style="top: 53.32%;right:6.66%;"></div>
-    <div class="cells" style="top: 53.32%;right:0;"></div>
+    <div class="cells" style="top: 53.32%; right: 33.3%"><%=token_positions_map.get("{6,9}")%></div>
+    <div class="cells" style="top: 53.32%;right:26.64%;"><%=token_positions_map.get("{6,10}")%></div>
+    <div class="cells" style="top: 53.32%;right:19.98%;"><%=token_positions_map.get("{6,11}")%></div>
+    <div class="cells" style="top: 53.32%;right:13.32%;"><%=token_positions_map.get("{6,12}")%></div>
+    <div class="cells b-start" style="top: 53.32%;right:6.66%;"><%=token_positions_map.get("{6,13}")%></div>
+    <div class="cells" style="top: 53.32%;right:0;"><%=token_positions_map.get("{6,14}")%></div>
 
-    <div class="cells" style="bottom: 0;left:53.32%;"></div>
-    <div class="cells" style="bottom: 6.66%;left:53.32%;"></div>
-    <div class="cells safe" style="bottom: 13.32%;left:53.32%;"></div>
-    <div class="cells" style="bottom: 19.98%;left:53.32%;"></div>
-    <div class="cells" style="bottom: 26.64%;left:53.32%;"></div>
-    <div class="cells" style="bottom: 33.3%;left:53.32%;"></div>
+    <div class="cells" style="bottom: 0;left:53.32%;"><%=token_positions_map.get("{0,8}")%></div>
+    <div class="cells" style="bottom: 6.66%;left:53.32%;"><%=token_positions_map.get("{1,8}")%></div>
+    <div class="cells safe" style="bottom: 13.32%;left:53.32%;"><%=token_positions_map.get("{2,8}")%></div>
+    <div class="cells" style="bottom: 19.98%;left:53.32%;"><%=token_positions_map.get("{3,8}")%></div>
+    <div class="cells" style="bottom: 26.64%;left:53.32%;"><%=token_positions_map.get("{4,8}")%></div>
+    <div class="cells" style="bottom: 33.3%;left:53.32%;"><%=token_positions_map.get("{5,8}")%></div>
 
-    <div class="cells" style="bottom: 0;left:46.66%;"></div>
-    <div class="cells red " style="bottom: 6.66%;left:46.66%;"></div>
-    <div class="cells red" style="bottom: 13.32%;left:46.66%;"></div>
-    <div class="cells red" style="bottom: 19.98%;left:46.66%;"></div>
-    <div class="cells red" style="bottom: 26.64%;left:46.66%;"></div>
-    <div class="cells red" style="bottom: 33.3%;left:46.66%;"></div>
+    <div class="cells" style="bottom: 0;left:46.66%;"><%=token_positions_map.get("{0,7}")%></div>
+    <div class="cells red " style="bottom: 6.66%;left:46.66%;"><%=token_positions_map.get("{1,7}")%></div>
+    <div class="cells red" style="bottom: 13.32%;left:46.66%;"><%=token_positions_map.get("{2,7}")%></div>
+    <div class="cells red" style="bottom: 19.98%;left:46.66%;"><%=token_positions_map.get("{3,7}")%></div>
+    <div class="cells red" style="bottom: 26.64%;left:46.66%;"><%=token_positions_map.get("{4,7}")%></div>
+    <div class="cells red" style="bottom: 33.3%;left:46.66%;"><%=token_positions_map.get("{5,7}")%></div>
 
-    <div class="cells" style="bottom: 0;left:40%;"></div>
-    <div class="cells r-start" style="bottom: 6.66%;left:40%;"></div>
-    <div class="cells" style="bottom: 13.32%;left:40%;"></div>
-    <div class="cells" style="bottom: 19.98%;left:40%;"></div>
-    <div class="cells" style="bottom: 26.64%;left:40%;"></div>
-    <div class="cells" style="bottom: 33.3%;left:40%;"></div>
+    <div class="cells" style="bottom: 0;left:40%;"><%=token_positions_map.get("{0,6}")%></div>
+    <div class="cells r-start" style="bottom: 6.66%;left:40%;"><%=token_positions_map.get("{1,6}")%></div>
+    <div class="cells" style="bottom: 13.32%;left:40%;"><%=token_positions_map.get("{2,6}")%></div>
+    <div class="cells" style="bottom: 19.98%;left:40%;"><%=token_positions_map.get("{3,6}")%></div>
+    <div class="cells" style="bottom: 26.64%;left:40%;"><%=token_positions_map.get("{4,6}")%></div>
+    <div class="cells" style="bottom: 33.3%;left:40%;"><%=token_positions_map.get("{5,6}")%></div>
 
-    <div class="cells" style="top: 53.32%; left: 33.3%"></div>
-    <div class="cells" style="top: 53.32%;left:26.64%;"></div>
-    <div class="cells" style="top: 53.32%;left:19.98%;"></div>
-    <div class="cells safe" style="top: 53.32%;left:13.32%;"></div>
-    <div class="cells" style="top: 53.32%;left:6.66%;"></div>
-    <div class="cells" style="top: 53.32%;left:0;"></div>
+    <div class="cells" style="top: 53.32%; left: 33.3%"><%=token_positions_map.get("{5,6}")%></div>
+    <div class="cells" style="top: 53.32%;left:26.64%;"><%=token_positions_map.get("{4,6}")%></div>
+    <div class="cells" style="top: 53.32%;left:19.98%;"><%=token_positions_map.get("{3,6}")%></div>
+    <div class="cells safe" style="top: 53.32%;left:13.32%;"><%=token_positions_map.get("{2,6}")%></div>
+    <div class="cells" style="top: 53.32%;left:6.66%;"><%=token_positions_map.get("{1,6}")%></div>
+    <div class="cells" style="top: 53.32%;left:0;"><%=token_positions_map.get("{0,6}")%></div>
 
-    <div class="cells green" style="top: 46.66%;left: 33.3%"></div>
-    <div class="cells green" style="top: 46.66%;left:26.64%;"></div>
-    <div class="cells green" style="top: 46.66%;left:19.98%;"></div>
-    <div class="cells green" style="top: 46.66%;left:13.32%;"></div>
-    <div class="cells green" style="top: 46.66%;left:6.66%;"></div>
-    <div class="cells" style="top: 46.66%;left:0;"></div>
+    <div class="cells green" style="top: 46.66%;left: 33.3%"><%=token_positions_map.get("{5,7}")%></div>
+    <div class="cells green" style="top: 46.66%;left:26.64%;"><%=token_positions_map.get("{4,7}")%></div>
+    <div class="cells green" style="top: 46.66%;left:19.98%;"><%=token_positions_map.get("{3,7}")%></div>
+    <div class="cells green" style="top: 46.66%;left:13.32%;"><%=token_positions_map.get("{2,7}")%></div>
+    <div class="cells green" style="top: 46.66%;left:6.66%;"><%=token_positions_map.get("{1,7}")%></div>
+    <div class="cells" style="top: 46.66%;left:0;"><%=token_positions_map.get("{0,7}")%></div>
 
 
 </div>
