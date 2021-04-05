@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dal.asdc.player.Player;
-import dal.asdc.playing_pieces.Green_Token;
-import dal.asdc.playing_pieces.Red_Token;
 import dal.asdc.playing_pieces.Token;
 
 public class Make_Move implements IMake_Move {
@@ -29,6 +27,45 @@ public class Make_Move implements IMake_Move {
 			System.out.print("You can't play this token");
 			return false;
 		}
+	}
+	
+	@Override
+	public List<Token> play_move(Token selected_token, int dice_number, List<Player> all_players) {
+		token_path = selected_token.get_token_path();
+		safe_box = selected_token.get_safe_boxes();
+		return_token = new ArrayList<>();
+		all_tokens = new ArrayList<>();
+		
+		if(selected_token.is_home()) {
+			if(dice_number==6) {
+				System.out.println("out of home move");
+				return move_token_out_of_home(selected_token);
+			}
+		}else{
+			token_index_on_path = -1;
+			token_position = selected_token.get_coordinate_position();
+			token_index_on_path = get_index_of_token_on_path(token_position,token_path);
+			
+			all_tokens = add_all_tokens_other_than_selected_into_list(selected_token,all_players);
+			
+			if((token_index_on_path+dice_number) < token_path.length) {
+				int[][] after_move_position = {{token_path[token_index_on_path+dice_number][0],token_path[token_index_on_path+dice_number][1]}};
+				boolean is_defeat = is_defeat_move_or_not(after_move_position,selected_token,all_tokens);
+				boolean is_safe = is_move_into_safe_box_or_not(after_move_position,safe_box);
+
+				if(is_defeat && !is_safe) {
+					System.out.println("defeat move");
+					return move_token_to_defeat_opponent(selected_token,after_move_position);
+				}else {
+					System.out.println("normal move");
+					return move_token_on_normal_path(selected_token,after_move_position);
+				}	
+			}else if(token_index_on_path+dice_number == token_path.length) {
+				System.out.println("at winning square");
+				return move_token_in_winning_square(selected_token);
+			}
+		}
+		return return_token;
 	}
 	
 	public boolean is_defeat_move_or_not(int[][] after_move_position, Token selected_token, List<Token> all_tokens) {
@@ -111,45 +148,6 @@ public class Make_Move implements IMake_Move {
 			}
 		}
 		return temp_path_index;
-	}
-
-	@Override
-	public List<Token> play_move(Token selected_token, int dice_number, List<Player> all_players) {
-		token_path = selected_token.get_token_path();
-		safe_box = selected_token.get_safe_boxes();
-		return_token = new ArrayList<>();
-		all_tokens = new ArrayList<>();
-		
-		if(selected_token.is_home()) {
-			if(dice_number==6) {
-				System.out.println("out of home move");
-				return move_token_out_of_home(selected_token);
-			}
-		}else{
-			token_index_on_path = -1;
-			token_position = selected_token.get_coordinate_position();
-			token_index_on_path = get_index_of_token_on_path(token_position,token_path);
-			
-			all_tokens = add_all_tokens_other_than_selected_into_list(selected_token,all_players);
-			
-			if((token_index_on_path+dice_number) < token_path.length) {
-				int[][] after_move_position = {{token_path[token_index_on_path+dice_number][0],token_path[token_index_on_path+dice_number][1]}};
-				boolean is_defeat = is_defeat_move_or_not(after_move_position,selected_token,all_tokens);
-				boolean is_safe = is_move_into_safe_box_or_not(after_move_position,safe_box);
-
-				if(is_defeat && !is_safe) {
-					System.out.println("defeat move");
-					return move_token_to_defeat_opponent(selected_token,after_move_position);
-				}else {
-					System.out.println("normal move");
-					return move_token_on_normal_path(selected_token,after_move_position);
-				}	
-			}else if(token_index_on_path+dice_number == token_path.length) {
-				System.out.println("at winning square");
-				return move_token_in_winning_square(selected_token);
-			}
-		}
-		return return_token;
 	}
 
 	@Override

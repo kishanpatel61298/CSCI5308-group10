@@ -1,13 +1,22 @@
 package dal.asdc.playing_pieces;
 
+import dal.asdc.ludo_board_structure.Token_paths;
+
 public class Green_Token extends Token{
 	
 	static int[][] green_home = {{11,3},{12,3},{12,2},{11,2}};
 	int[][] winning_square = {{6,6},{7,7},{8,8},{6,7},{7,6}};
-	int[][] green_token_path = {{1,1},{2,2},{3,3},{4,4},{5,5},{6,6},{7,7},{8,8},{9,9}};
+	int[][] green_token_path;
 
 	public Green_Token(int numer_of_token) {
 		super("GREEN",numer_of_token,green_home[numer_of_token][0],green_home[numer_of_token][1]);
+		create_path();
+	}
+	
+	private void create_path() {
+		Token_paths paths = new Token_paths();
+		//int[][] first_partial_path = new int();
+		green_token_path = paths.green_path;
 	}
 	
 	public boolean is_home() {
