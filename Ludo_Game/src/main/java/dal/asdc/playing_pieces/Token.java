@@ -6,8 +6,9 @@ public abstract class Token {
     private boolean is_token_at_winning_box = false;
     private String token_colour;
     private int token_number;
-    private int[][] safe_boxes = {{1,8},{2,6},{6,1},{6,12},{8,2},{8,13},{12,8},{13,6}};
-
+    //private int[][] safe_boxes = {{1,8},{2,6},{6,1},{6,13},{8,2},{8,13},{12,8},{13,6}};
+    private int[][] safe_boxes = {{1,6},{6,2},{8,1},{12,6},{13,8},{8,12},{6,13},{2,8}};
+    
     public Token(String token_colour, int token_number, int positionX, int positionY) {
         this.token_colour = token_colour;
         this.token_number = token_number;
