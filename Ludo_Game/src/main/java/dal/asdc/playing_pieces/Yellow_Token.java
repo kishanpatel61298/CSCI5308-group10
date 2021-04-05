@@ -1,13 +1,22 @@
 package dal.asdc.playing_pieces;
 
+import dal.asdc.ludo_board_structure.Token_paths;
+
 public class Yellow_Token extends Token{
 	
 	static int[][] yellow_home = {{11,12},{11,11},{12,11},{12,12}};
 	int[][] winning_square = {{6,6},{7,7},{8,8},{6,7},{7,6}};
-	int[][] yellow_token_path = {{1,1},{2,2},{3,3},{4,4},{5,5},{6,6},{7,7},{8,8},{9,9}};
+	int[][] yellow_token_path ;
 
 	public Yellow_Token(int numer_of_token) {
 		super("YELLOW",numer_of_token,yellow_home[numer_of_token][0],yellow_home[numer_of_token][1]);
+		create_path();
+	}
+	
+	private void create_path() {
+		Token_paths paths = new Token_paths();
+		//int[][] first_partial_path = new int();
+		yellow_token_path = paths.yellow_path;
 	}
 	
 	public boolean is_home() {
@@ -25,9 +34,9 @@ public class Yellow_Token extends Token{
 		for(int i=0;i<yellow_token_path.length;i++) {
 			if(yellow_token_path[i][0]==selected_token_postion[0][0] && yellow_token_path[i][1]==selected_token_postion[0][1]) {
 				if((i+dice_number)>yellow_token_path.length) {
-					return false;
-				}else {
 					return true;
+				}else {
+					return false;
 				}
 			}
 		}

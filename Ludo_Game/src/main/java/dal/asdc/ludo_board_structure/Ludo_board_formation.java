@@ -76,16 +76,22 @@ public class Ludo_board_formation {
         }
     }
     
-    public void add_game_type(int choice) {
+    public String add_game_type(int choice) {
+    	String type= "";
     	if(choice == 1) {
     		player_num = 2;
+    		type="two_player";
     	}else if(choice == 2) {
     		player_num = 3;
+    		type="three_player";
     	}else if(choice == 3) {
     		player_num = 4;
+    		type="four_player";
     	}else {
     		player_num = 5;
+    		type="computer_player";
     	}
+    	return type;
     }
     
     public Map<String,String> board_attributes(){
