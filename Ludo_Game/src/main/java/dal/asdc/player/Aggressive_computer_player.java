@@ -22,7 +22,6 @@ public class Aggressive_computer_player {
     Dice_user dice_user = Dice_user.instance();
 
     List<Token> token_list= new ArrayList<>();
-    List<Token> return_token = new ArrayList<>();
     List<Token> all_tokens = new ArrayList<>();
     List<Player> all_players = new ArrayList<>();
 
@@ -43,6 +42,8 @@ public class Aggressive_computer_player {
                 token_index_on_path = -1;
                 token_position = token_list.get(i).get_coordinate_position();
                 token_index_on_path = iMake_move.get_index_of_token_on_path(token_position,token_path);
+
+                all_tokens = iMake_move.add_all_tokens_other_than_selected_into_list(token_list.get(i),all_players);
 
                 if((token_index_on_path+roll) < token_path.length){
                     int[][] after_move_position = {{token_path[token_index_on_path+roll][0],token_path[token_index_on_path+roll][1]}};
