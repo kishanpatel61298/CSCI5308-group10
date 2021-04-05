@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import dal.asdc.dao.Game_player_score_dao;
-import dal.asdc.dao.IGame_player_score_dao;
-import dal.asdc.dao.IPlayer_dao;
 import dal.asdc.dao.Player_dao;
+import dal.asdc.dao.interfaces.IGame_player_score_dao;
+import dal.asdc.dao.interfaces.IPlayer_dao;
 import dal.asdc.model.Game_player_score;
 import dal.asdc.model.Player;
 
