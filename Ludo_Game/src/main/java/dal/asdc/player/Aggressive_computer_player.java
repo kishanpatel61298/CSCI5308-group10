@@ -25,13 +25,15 @@ public class Aggressive_computer_player {
     List<Token> all_tokens = new ArrayList<>();
     List<Player> all_players = new ArrayList<>();
 
-    public void play(){
+    public List<Token> play(List<Token> token_list){
         iMake_move = new Make_Move();
         roll = dice_user.roll_dice();
         for ( int i=0 ; i < 4 ; i++){
             if(token_list.get(i).is_home() && 6 == roll ){
                 token=check_if_home(iMake_move ,token_list.get(i));
+                iMake_move.move_token_out_of_home(token);
                 token_list.set(i,token);
+                return token_list;
             }
         }
 
@@ -51,16 +53,16 @@ public class Aggressive_computer_player {
                     boolean is_safe = iMake_move.is_move_into_safe_box_or_not(after_move_position,safe_box);
 
                     if(token_index_on_path+roll == token_path.length){
-                        iMake_move.move_token_in_winning_square(token_list.get(i));
-                        break;
+                        token_list=iMake_move.move_token_in_winning_square(token_list.get(i));
+                        return token_list;
                     }
                     else if(is_defeat && !is_safe){
-                        iMake_move.move_token_to_defeat_opponent(token_list.get(i),after_move_position);
-                        break;
+                        token_list = iMake_move.move_token_to_defeat_opponent(token_list.get(i),after_move_position);
+                        return token_list;
                     }
                     else {
-                        iMake_move.move_token_on_normal_path(token_list.get(i),after_move_position);
-                        break;
+                        token_list = iMake_move.move_token_on_normal_path(token_list.get(i),after_move_position);
+                        return token_list;
                     }
 
                 }
@@ -68,7 +70,7 @@ public class Aggressive_computer_player {
 
             }
         }
-
+        return null;
     }
 
     private Boolean is_move_possible(Token token,int roll,IMake_Move iMake_move){

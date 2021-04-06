@@ -23,6 +23,9 @@ public class Player_intialiser {
         for (int i = 0; i < number_of_players; i++) {
             player_list.put(String.valueOf(i),new Player());
         }
+
+        randomise();
+        assign_colour_home_position();
     }
 
     private void randomise(){
