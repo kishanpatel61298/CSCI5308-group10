@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dal.asdc.dao.interfaces.IGame_dao;
+import dal.asdc.dao.interfaces.IJDBC_Connection;
 import dal.asdc.model.Game;
 import dal.asdc.model.Player;
 

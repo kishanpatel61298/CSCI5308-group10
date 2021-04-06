@@ -2,6 +2,8 @@ package dal.asdc.ludo_score_history;
 
 import java.util.Map;
 
+import dal.asdc.ludo_score_history.interfaces.IScore_history;
+
 /**
  * @author Reshma Unnikrishnan**/
 

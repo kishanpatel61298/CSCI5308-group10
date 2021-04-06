@@ -1,4 +1,4 @@
-package dal.asdc.dao;
+package dal.asdc.dao.interfaces;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package dal.asdc.dao;
+package dal.asdc.dao.interfaces;
 
 import java.util.List;
 import dal.asdc.model.Game_player_score;
