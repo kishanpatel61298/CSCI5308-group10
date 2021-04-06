@@ -1,6 +1,5 @@
 package dal.asdc.player;
 
-import dal.asdc.playing_pieces.Red_Token;
 import dal.asdc.playing_pieces.*;
 
 public class Yellow_token_command extends Player_command {

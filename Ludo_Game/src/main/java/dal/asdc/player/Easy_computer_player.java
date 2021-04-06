@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Easy_computer_player {
+public class Easy_computer_player extends Player_abstract{
 
     private String colour;
     private Token token;

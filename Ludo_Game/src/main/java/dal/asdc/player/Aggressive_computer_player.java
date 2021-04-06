@@ -9,7 +9,7 @@ import dal.asdc.game.Dice_user;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Aggressive_computer_player {
+public class Aggressive_computer_player extends Player_abstract{
 
     private String colour;
     private Token token;

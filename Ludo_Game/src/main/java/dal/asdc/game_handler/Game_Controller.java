@@ -3,9 +3,9 @@ package dal.asdc.game_handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.game.Make_Move;
-import dal.asdc.player.Player;
 
 public class Game_Controller {
 	

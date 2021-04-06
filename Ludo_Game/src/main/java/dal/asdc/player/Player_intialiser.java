@@ -1,4 +1,6 @@
 package dal.asdc.player;
+import dal.asdc.playing_pieces.Token;
+
 import java.util.*;
 
 public class Player_intialiser {
@@ -11,7 +13,7 @@ public class Player_intialiser {
     }
 
 
-    private Map<String,Player> player_list= new HashMap<>();
+    private Map<String, Player> player_list= new HashMap<>();
     private Map<String,Player_command> input_commands= new HashMap<>();
 
     private Player red_player=player_list.get("RED");
@@ -56,5 +58,7 @@ public class Player_intialiser {
         }
     }
 
-
+    public Map<String, Player> getPlayer_list() {
+        return player_list;
+    }
 }

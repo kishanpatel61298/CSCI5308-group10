@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dal.asdc.player.Player;
-import dal.asdc.playing_pieces.Green_Token;
-import dal.asdc.playing_pieces.Red_Token;
 import dal.asdc.playing_pieces.Token;
 
 public class Make_Move implements IMake_Move {

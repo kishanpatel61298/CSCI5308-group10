@@ -42,7 +42,7 @@ public class Input_Parser_Test {
 	@Test
 	void get_token_test_one() {
 		Input_Parser input_parser = new Input_Parser();
-		List<Player> total_player_list = new ArrayList<>(); 
+		List<Player> total_player_list = new ArrayList<>();
 		Player player1 = new Player("RED");
 		Player player2 = new Player("YELLOW");
 		char[] char_array = input_parser.get_word_tokens("R1");
@@ -56,7 +56,7 @@ public class Input_Parser_Test {
 	@Test
 	void get_token_test_four() {
 		Input_Parser input_parser = new Input_Parser();
-		List<Player> total_player_list = new ArrayList<>(); 
+		List<Player> total_player_list = new ArrayList<>();
 		Player player1 = new Player("RED");
 		Player player2 = new Player("YELLOW");
 		char[] char_array = input_parser.get_word_tokens("y4");
