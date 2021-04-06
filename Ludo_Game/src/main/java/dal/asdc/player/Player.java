@@ -26,7 +26,12 @@ public class Player extends Player_abstract{
     Player_intialiser intialiser;
     Map<String, Player> player_list= new HashMap<>();
 
+    public Player(){
 
+    }
+    public Player(String colour){
+        this.colour=colour;
+    }
     public int roll(){
         roll= dice_user.roll_dice();
         return roll;
