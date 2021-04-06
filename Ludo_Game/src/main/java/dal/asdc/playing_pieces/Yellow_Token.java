@@ -5,7 +5,7 @@ import dal.asdc.ludo_board_structure.Token_paths;
 public class Yellow_Token extends Token{
 	
 	static int[][] yellow_home = {{11,12},{11,11},{12,11},{12,12}};
-	int[][] winning_square = {{6,6},{7,7},{8,8},{6,7},{7,6}};
+	int[][] winning_square = {{7,7}};
 	int[][] yellow_token_path ;
 
 	public Yellow_Token(int numer_of_token) {
