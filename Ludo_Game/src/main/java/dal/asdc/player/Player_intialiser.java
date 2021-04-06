@@ -1,9 +1,12 @@
 package dal.asdc.player;
-import dal.asdc.playing_pieces.Token;
+import dal.asdc.player.Command_classes.Blue_token_command;
+import dal.asdc.player.Command_classes.Green_token_command;
+import dal.asdc.player.Command_classes.Red_token_command;
+import dal.asdc.player.Command_classes.Yellow_token_command;
 
 import java.util.*;
 
-public class Player_intialiser {
+public class Player_intialiser implements IPlayer_intialiser {
 
     enum Colour {
         RED,

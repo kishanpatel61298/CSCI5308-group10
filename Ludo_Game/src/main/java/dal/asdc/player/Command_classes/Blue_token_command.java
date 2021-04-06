@@ -1,5 +1,7 @@
-package dal.asdc.player;
+package dal.asdc.player.Command_classes;
 
+import dal.asdc.player.Player;
+import dal.asdc.player.Player_command;
 import dal.asdc.playing_pieces.*;
 
 public class Blue_token_command extends Player_command {
