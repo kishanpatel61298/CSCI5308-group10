@@ -25,5 +25,6 @@
 	</form:form>
 	<h3><a href="/register">Register</a></h3>
 	<h3><a href="/login">Login</a></h3>
+	<h3><a href="/start_tournament">Start Tournament</a></h3>
 </body>
 </html>

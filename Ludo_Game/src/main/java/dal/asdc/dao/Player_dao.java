@@ -109,10 +109,10 @@ public class Player_dao implements IPlayer_dao {
 	@Override
 	public Player filter_by_emailid(String player_email) {
 		IJDBC_Connection jdbc = new JDBC_Connection();
-		String filter_by_id_query = "SELECT * from Player where player_email = ?";
+		String filter_by_emailid_query = "SELECT * from Player where player_email = ?";
 		 try{
 			 Connection conn = jdbc.createDBConnection();
-	         PreparedStatement preparedStatement = conn.prepareStatement(filter_by_id_query);
+	         PreparedStatement preparedStatement = conn.prepareStatement(filter_by_emailid_query);
 	         preparedStatement.setString(1, player_email);
 	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
 	        	 Player player = null;
@@ -124,6 +124,27 @@ public class Player_dao implements IPlayer_dao {
 	             		player.setAcc_created_date(resultSet.getString("acc_created_date"));
 	                }
 	                return player;
+	            }
+	        } catch (SQLException sqlException) {
+	            throw new RuntimeException(sqlException);
+	        }
+	}
+	
+	//This method is used to get n number of rows from player table
+	@Override
+	public List<Integer> select_n_players(int n) {
+		IJDBC_Connection jdbc = new JDBC_Connection();
+		 List<Integer> player_list = new ArrayList<>();
+		String player_list_query = "SELECT * FROM Player LIMIT ?";		
+		 try{
+			 Connection conn = jdbc.createDBConnection();
+	         PreparedStatement preparedStatement = conn.prepareStatement(player_list_query);
+	         preparedStatement.setInt(1, n);
+	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	                while (resultSet.next()) {
+	                    player_list.add(resultSet.getInt("player_id"));
+	                }
+	                return player_list;
 	            }
 	        } catch (SQLException sqlException) {
 	            throw new RuntimeException(sqlException);

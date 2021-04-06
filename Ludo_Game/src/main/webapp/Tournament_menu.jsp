@@ -13,5 +13,10 @@
   		<li>JOIN TOURNAMENT</li>
   		<li>DASHBOARD MENU<li>
 	</ol> 
+	<form:form modelAttribute="Main_menu" method="POST" action="/d_menu">
+		Please enter your menu selection:
+		<form:input path="sel_menu" />
+		<input type="submit" value="Submit">
+	</form:form>
 </body>
 </html>

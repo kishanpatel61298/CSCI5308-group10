@@ -21,11 +21,12 @@ public class Dashboard_menu {
 		    entry(3, "Four_player.jsp"),
 		    entry(4, "Computer_vs_player.jsp")
 		);
-	
+	 
 	final Map<Integer, String> tournament_menu_map = Map.ofEntries(
 		    entry(1, "Start_tournament.jsp"),
 		    entry(2, "Join_tournament.jsp")
 		);
+	
 	
 	public String decide_dashboard_menu_page(int choice) {
 		String display_choice = null;
@@ -56,5 +57,5 @@ public class Dashboard_menu {
 		}
 		return display_choice;
 	}
-
+    
 }
