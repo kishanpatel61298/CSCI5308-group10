@@ -6,8 +6,9 @@ public abstract class Token {
     private boolean is_token_at_winning_box = false;
     private String token_colour;
     private int token_number;
-    //private int[][] safe_boxes = {{1,8},{2,6},{6,1},{6,13},{8,2},{8,13},{12,8},{13,6}};
     private int[][] safe_boxes = {{1,6},{6,2},{8,1},{12,6},{13,8},{8,12},{6,13},{2,8}};
+	int[][] winning_square = {{7,7}};
+
     
     public Token(String token_colour, int token_number, int positionX, int positionY) {
         this.token_colour = token_colour;
@@ -16,6 +17,47 @@ public abstract class Token {
         int positionY_temp = positionY;
         position = new int[][]{{positionX_temp,positionY_temp}};
     }
+    
+    public boolean is_home_in_token(int[][] token_home_coordinates) {
+		int[][] selected_token_postion = get_coordinate_position();
+		for(int i=0;i<4;i++) {
+			if(token_home_coordinates[i][0]==selected_token_postion[0][0] && token_home_coordinates[i][1]==selected_token_postion[0][1]) {
+				return true;
+			}
+		}
+		return false;
+	}
+    
+    public boolean check_move_towards_winning_square_in_token(int dice_number, int[][] token_path) {
+		int[][] selected_token_postion = get_coordinate_position();
+		for(int i=0;i<token_path.length;i++) {
+			if(token_path[i][0]==selected_token_postion[0][0] && token_path[i][1]==selected_token_postion[0][1]) {
+				if((i+dice_number)>token_path.length) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+    
+    public boolean is_at_winning_square() {
+		int[][] selected_token_postion = get_coordinate_position();
+		for(int i=0;i<5;i++) {
+			if(winning_square[i][0]==selected_token_postion[0][0] && winning_square[i][1]==selected_token_postion[0][1]) {
+				return true;
+			}
+		}
+		return false;
+	}
+    
+    public void token_set_at_home(int[][] token_home) {
+		int token_number = get_token_number();
+		int[][] perfect_home_cordinates = {{token_home[token_number][0],token_home[token_number][1]}};
+		set_coordinate_position(perfect_home_cordinates);
+		set_is_token_at_home(true);
+	}
 
     public String get_token_colour() {
         return token_colour;
@@ -59,7 +101,6 @@ public abstract class Token {
 	
     public abstract boolean is_home();
     public abstract boolean check_move_towards_winning_square(int dice_number);
-    public abstract boolean is_at_winning_square();
     public abstract int[][] get_token_path();
     public abstract int[][] get_winning_square();
     public abstract void set_at_home();
