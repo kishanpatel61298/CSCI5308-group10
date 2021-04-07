@@ -45,7 +45,7 @@ public class Green_Token_Test {
 	@Test
 	void is_at_winning_square_test() {
 		Token token = new Green_Token(0);
-		int[][] winning_position = {{6,6}};
+		int[][] winning_position = {{7,7}};
 		token.set_coordinate_position(winning_position);
 		assertEquals(true,token.is_at_winning_square());
 	}

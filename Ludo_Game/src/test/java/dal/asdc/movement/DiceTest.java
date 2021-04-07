@@ -1,8 +1,10 @@
-package dal.asdc.game;
+package dal.asdc.movement;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import dal.asdc.movement.Dice;
 
 public class DiceTest {
 

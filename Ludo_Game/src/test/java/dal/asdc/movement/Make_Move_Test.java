@@ -1,18 +1,24 @@
-package dal.asdc.game;
+package dal.asdc.movement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import dal.asdc.movement.IMake_Move;
+import dal.asdc.movement.Make_Move;
+import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
+import dal.asdc.player.Player_factory;
+import dal.asdc.player.Player_factory_normal;
 import dal.asdc.playing_pieces.Token;
 
 public class Make_Move_Test {
-	 Make_Move make_move;
+	IMake_Move make_move;
 	List<Player> total_player_list;
 	Player player1;
 	Player player2;
@@ -22,17 +28,23 @@ public class Make_Move_Test {
 	void initialize() {
 		make_move = new Make_Move();
 		total_player_list = new ArrayList<>(); 
-		player1 = new Player("RED");
-		player2 = new Player("YELLOW");
+		
 		List<Token> output_list = new ArrayList<>();
-		total_player_list.add(player1);
-		total_player_list.add(player2);
+		
+		Player_factory factory = new Player_factory_normal();
+		IPlayer_intialiser initialiser = factory.create_player_intialiser();
+		initialiser.intialise(2);
+		Map<String,Player> map = initialiser.getPlayer_list();
+		for(Map.Entry<String,Player> iterate : map.entrySet()) {
+			total_player_list.add(iterate.getValue());
+		}
+		player1 = total_player_list.get(0);
+		player2 = total_player_list.get(1);
 	}
 	
 	
 	@Test
 	void get_token_path_index_test() {
-		Make_Move make_move = new Make_Move();
 		int[][] token_position = {{3,4}};
 		int[][] token_path = {{2,3},{3,4},{4,5}};
 		

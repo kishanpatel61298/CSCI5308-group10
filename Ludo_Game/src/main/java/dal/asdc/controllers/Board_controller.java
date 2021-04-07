@@ -45,8 +45,7 @@ public class Board_controller {
 		}};
 		ludo_game = new Ludo_Game(type,player_map);
 		String current_turn = ludo_game.get_current_turn_text();
-		model.addAttribute("turn", current_turn);
-		
+		model.addAttribute("turn", current_turn);		
         Map<String,String> token_positions = new HashMap<String,String>();
         token_positions = ludo_game.get_position_of_all_tokens();
     	model.addAttribute("token_path", token_positions);
@@ -64,17 +63,13 @@ public class Board_controller {
     @RequestMapping(value = "/token_select", method = RequestMethod.POST)
     public String token_select(@RequestParam String token, Model model) {
         model.addAttribute("token", token);
-        String user_token_input_move = ludo_game.user_input_receiver(token);
-        Map<String,String> token_positions = new HashMap<String,String>();
-        if(user_token_input_move == "") {
-        	
-//		for(Map.Entry<String, String> entry : token_positions.entrySet()) {
-//		System.out.println(entry.getKey() + "/" + entry.getValue()); }
-//  	token_pos.get_game_board_attributes(token_positions);
-        	
-        }else {
-        	model.addAttribute("error", user_token_input_move);
+        boolean is_succeed = ludo_game.user_input_receiver(token);
+        String error_message = "";
+        if(!is_succeed) {
+        	error_message = ludo_game.get_error_message();
+        	model.addAttribute("error", error_message);
         }
+        Map<String,String> token_positions = new HashMap<String,String>();
         token_positions = ludo_game.get_position_of_all_tokens();
     	model.addAttribute("token_path", token_positions);
         String current_turn = ludo_game.get_current_turn_text();
@@ -84,14 +79,21 @@ public class Board_controller {
 
     @RequestMapping(value = "/roll_dice", method = RequestMethod.GET)
     public String roll_dice(Model model) {
-    	int dice_num = ludo_game.roll_dice();
-    	model.addAttribute("dice_num", dice_num);
+    	boolean is_rolled = ludo_game.roll_dice();
+    	if(is_rolled) {
+        	model.addAttribute("dice_num", ludo_game.get_dice_number());
+    	}else {
+    		String error_message = ludo_game.get_error_message();
+        	model.addAttribute("error", error_message);
+        	model.addAttribute("dice_num", ludo_game.get_dice_number());
+    	}
     	String current_turn = ludo_game.get_current_turn_text();
 		model.addAttribute("turn", current_turn);
 		
 		Map<String,String> token_positions = new HashMap<String,String>();
         token_positions = ludo_game.get_position_of_all_tokens();
     	model.addAttribute("token_path", token_positions);
+    	
     	return "ludo_board.jsp";
     }
 	

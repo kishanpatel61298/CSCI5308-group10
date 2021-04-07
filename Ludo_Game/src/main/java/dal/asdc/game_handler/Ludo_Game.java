@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import dal.asdc.playing_pieces.Token;
-import dal.asdc.game.Dice;
-import dal.asdc.game.Make_Move;
 import dal.asdc.ludo_board_structure.Token_paths;
+import dal.asdc.movement.Dice;
+import dal.asdc.movement.Make_Move;
+import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
+import dal.asdc.player.Player_factory;
+import dal.asdc.player.Player_factory_normal;
 
 public class Ludo_Game {
 	
@@ -21,6 +24,7 @@ public class Ludo_Game {
 	private List<Player> total_player_list = new ArrayList<>();
 	private static Ludo_Game ludo_game = null;
 	private boolean dice_rolled = false;
+	private String error_message = "";
 	Input_Parser input_parser = null;
 	Make_Move make_move = null;
 	Dice dice = new Dice();
@@ -42,22 +46,29 @@ public class Ludo_Game {
     }
 	
 	public Ludo_Game(String game_type, Map<Integer,String> player_list) {
+		Player_factory factory = new Player_factory_normal();
+		IPlayer_intialiser initialiser = factory.create_player_intialiser();
+		
 		input_parser = new Input_Parser();
 		if(game_type.equals("two_player")) {
-			initialize_two_players();
+			initialiser.intialise(2);
 		}else if(game_type.equals("three_player")) {
-			initialize_three_players();
+			initialiser.intialise(3);
 		}else if(game_type.equals("four_player")) {
-			initialize_four_players();
+			initialiser.intialise(4);
 		}else if(game_type.equals("computer_player")) {
-			initialize_computer_players();
+			//initialize_computer_players();
+		}
+		Map<String,Player> map = initialiser.getPlayer_list();
+		for(Map.Entry<String,Player> iterate : map.entrySet()) {
+			total_player_list.add(iterate.getValue());
 		}
 		next_turn();
 		make_move = new Make_Move();
 		set_dice_rolled(false);
 	}
 
-	public String user_input_receiver(String input) {
+	public boolean user_input_receiver(String input) {
         is_defeat_move = false;
         Token token_from_input;
         char[] word_tokens;
@@ -67,12 +78,12 @@ public class Ludo_Game {
                 word_tokens = input_parser.get_word_tokens(input);
                 token_from_input = input_parser.get_player_from_input(get_total_player_list(), word_tokens);
             }else {
-                //return that input is not correct means not r1 or y4 type
-                return "input is not correct";
+            	set_error_message("Input is not correct");
+                return false;
             }
         }else {
-            //return that first roll the dice then select token
-            return "first roll the dice then select token";
+        	set_error_message("First roll the dice then select token");
+            return false;
         }
        
         if(check_turn(token_from_input)) {
@@ -85,14 +96,15 @@ public class Ludo_Game {
                 update_player(updated_tokens);
                 next_turn();
                 send_data_to_controller();
-                return "";
+                set_dice_rolled(false);
+                return true;
             }else {
-                //return that cann't play this token
-                return "cann't play this token";
+            	set_error_message("You cann't play this token");
+                return false;
             }
         }else {
-            //return that not selected token's turn
-            return "not selected token's turn";
+        	set_error_message("It's not selected token's turn");
+            return false;
         }
     }
 	
@@ -180,10 +192,6 @@ public class Ludo_Game {
 			}
 			
 			Player next_player = get_next_player(temp_list,current_player_temp);
-			
-			
-			//set_current_turn(next_player);
-
 			if(next_player.get_is_done()) {
 				//next_turn();
 				//do something here
@@ -194,18 +202,11 @@ public class Ludo_Game {
 		}	
 	}
 	
-	private Player get_next_player(List<Player> temp_list, Player current_player_temp) {
-		int index = temp_list.indexOf(current_player_temp);
-		Player next_player;
-		if(index == (temp_list.size()-1)) {
-			next_player = temp_list.get(0);
-		}else {
-			next_player = temp_list.get(index+1);
+	public boolean roll_dice() {
+		if(get_dice_rolled()) {
+			set_error_message("Play a token first");
+            return false;
 		}
-		return next_player;
-	}
-
-	public int roll_dice() {
         int number = dice.roll_dice();
         if(number <= 6 && number >= 1) {
         	int all_home_count = 0;
@@ -218,14 +219,27 @@ public class Ludo_Game {
         	if(all_home_count==4 && number != 6) {
         		System.out.println("next turn");
         		next_turn();
+        		dice_number = number;
         	}else {
         		dice_number = number;
                 set_dice_rolled(true);
         	}
-        	return number;
+        	return true;
         }
-        return 0;
+        return false;
+		
     }
+	
+	private Player get_next_player(List<Player> temp_list, Player current_player_temp) {
+		int index = temp_list.indexOf(current_player_temp);
+		Player next_player;
+		if(index == (temp_list.size()-1)) {
+			next_player = temp_list.get(0);
+		}else {
+			next_player = temp_list.get(index+1);
+		}
+		return next_player;
+	}
 	
 	private void send_data_to_controller() {
 		//String current_turn_text = get_current_turn().getColour().concat("'s turn");
@@ -268,45 +282,6 @@ public class Ludo_Game {
 		}
 	}
 	
-	private void initialize_two_players() {
-		player1 = new Player("RED");
-		player2 = new Player("YELLOW");
-		
-		total_player_list.add(player1);
-		total_player_list.add(player2);
-	}
-	
-	private void initialize_three_players() {
-		player1 = new Player("RED");
-		player2 = new Player("GREEN");
-		player3 = new Player("YELLOW");
-		
-		total_player_list.add(player1);
-		total_player_list.add(player2);
-		total_player_list.add(player3);
-	}
-	
-	private void initialize_four_players() {
-		player1 = new Player("RED");
-		player2 = new Player("GREEN");
-		player3 = new Player("YELLOW");
-		player4 = new Player("FOUR");
-		
-		total_player_list.add(player1);
-		total_player_list.add(player2);
-		total_player_list.add(player3);
-		total_player_list.add(player4);
-	}
-	
-	private void initialize_computer_players() {
-		player1 = new Player("RED");
-		player2 = new Player("YELLOW");
-		
-		total_player_list.add(player1);
-		total_player_list.add(player2);
-	}
-		
-
 	public Player get_current_turn() {
 		return current_turn;
 	}
@@ -329,5 +304,21 @@ public class Ludo_Game {
 
 	public void set_dice_rolled(boolean dice_rolled) {
 		this.dice_rolled = dice_rolled;
+	}
+	
+	public void set_error_message(String error_message) {
+		this.error_message = error_message;
+	}
+	
+	public String get_error_message() {
+		return error_message;
+	}
+	
+	public void set_dice_number(int number) {
+		dice_number = number;
+	}
+	
+	public int get_dice_number() {
+		return dice_number;
 	}
 }
