@@ -86,4 +86,7 @@ public class Player extends Player_abstract{
         this.is_done = is_done;
     }
 
+    public int[][] getPosition() {
+        return position;
+    }
 }

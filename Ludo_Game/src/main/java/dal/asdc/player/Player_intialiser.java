@@ -19,35 +19,38 @@ public class Player_intialiser implements IPlayer_intialiser {
     private Map<String, Player> player_list= new HashMap<>();
     private Map<String,Player_command> input_commands= new HashMap<>();
 
-    private Player red_player=player_list.get("RED");
-    private Player blue_player=player_list.get("BLUE");
-    private Player yellow_player=player_list.get("YELLOW");
-    private Player green_player=player_list.get("GREEN");
+
 
     public void intialise(int number_of_players){
         for (int i = 0; i < number_of_players; i++) {
             player_list.put(String.valueOf(i),new Player());
         }
 
-        randomise();
-        assign_colour_home_position();
+        player_list=  randomise(player_list);
+        assign_colour_home_position(player_list);
     }
 
-    private void randomise(){
+    private Map<String, Player> randomise(Map<String, Player> player_list){
         List<String> colour_list = new ArrayList<String>();
         for(Colour colour: Colour.values()){
             colour_list.add(colour.toString());
         }
 
-        Collections.shuffle(colour_list);
 
         for (int i=0;i<player_list.size();i++){
             player_list.get(String.valueOf(i)).setColour(colour_list.get(i));
         }
 
+        return player_list;
     }
 
-    private void assign_colour_home_position(){
+    private void assign_colour_home_position(Map<String, Player> player_list){
+
+        Player red_player=player_list.get("0");
+        Player blue_player=player_list.get("3");
+        Player yellow_player=player_list.get("2");
+        Player green_player=player_list.get("1");
+
 
         input_commands.put("RED", new Red_token_command(red_player));
         input_commands.put("YELLOW", new Yellow_token_command(yellow_player));
