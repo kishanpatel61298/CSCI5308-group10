@@ -36,7 +36,7 @@ class Player_score_historyTest {
 
 	@Test
 	void testForm_save_score() {
-		player_score_his.form_save_score("2|1", 2, 1, 20);
+		player_score_his.form_save_score("|1", 2, 1, 20);
 		player_score_his.form_save_score("3|1", 3, 1, 50);
 	}
 

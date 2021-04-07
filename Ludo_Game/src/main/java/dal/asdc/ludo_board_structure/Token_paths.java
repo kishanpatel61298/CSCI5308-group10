@@ -1,9 +1,11 @@
 package dal.asdc.ludo_board_structure;
 
+import dal.asdc.ludo_board_structure.interfaces.IToken_paths;
+
 /**
  * @author Reshma Unnikrishnan**/
 
-public class Token_paths {
+public class Token_paths implements IToken_paths{
 	int[][] red_path_1 = {{1,6},{2,6},{3,6},{4,6},{5,6}};
 	int[][] red_path_2 = {{6,5},{6,4},{6,3},{6,2},{6,1},{6,0},{7,0},{8,0}};
 	int[][] red_win_path = {{1,7},{2,7},{3,7},{4,7},{5,7}};
@@ -38,4 +40,24 @@ public class Token_paths {
 			{13,8},{12,8},{11,8},{10,8},{9,8},{8,9},{8,10},{8,11},{8,12},{8,13},{8,14},{7,14},{6,14},{13,7},{12,7},{11,7},{10,7},{9,7},
 			{6,13},{6,12},{6,11},{6,10},{6,9},{5,8},{4,8},{3,8},{2,8},{1,8},{0,8},{0,7},{0,6},{7,13},{7,12},{7,11},{7,10},{7,9},{2,3},{3,3},
 			{3,2},{2,2},{11,3},{12,3},{12,2},{11,2},{11,12},{11,11},{12,11},{12,12},{2,12},{2,11},{3,12},{3,11}};
+	
+	public int[][] get_red_path(){
+		return red_path;
+	}
+	
+	public int[][] get_green_path(){
+		return red_path;
+	}
+	
+	public int[][] get_yellow_path(){
+		return red_path;
+	}
+	
+	public int[][] get_blue_path(){
+		return red_path;
+	}
+	
+	public int[][] get_total_path(){
+		return red_path;
+	}
 }

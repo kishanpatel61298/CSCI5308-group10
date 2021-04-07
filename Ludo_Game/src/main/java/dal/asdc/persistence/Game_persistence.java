@@ -1,4 +1,4 @@
-package dal.asdc.dao;
+package dal.asdc.persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,18 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dal.asdc.dao.interfaces.IGame_dao;
-import dal.asdc.dao.interfaces.IJDBC_Connection;
 import dal.asdc.model.Game;
-import dal.asdc.model.Player;
+import dal.asdc.persistence.interfaces.IGame_persistence;
+import dal.asdc.persistence.interfaces.IJdbc_connection;
 
 /**
  * @author Reshma Unnikrishnan **/
 
-public class Game_dao implements IGame_dao{
+public class Game_persistence implements IGame_persistence{
 	
 	public void execute_statement() {
-		IJDBC_Connection jdbc = new JDBC_Connection();
+		IJdbc_connection jdbc = new Jdbc_connection();
 		try {
 		Connection conn = jdbc.createDBConnection();
 		}catch(Exception e) {
@@ -28,7 +27,7 @@ public class Game_dao implements IGame_dao{
 	
 	@Override
 	public void create_record(Game game) {
-		IJDBC_Connection jdbc = new JDBC_Connection();
+		IJdbc_connection jdbc = new Jdbc_connection();
 		String create_query = "INSERT into Game (game_id, game_time, player_id, game_winner_id, game_runner_id, game_status) "
 				+ "values(?,?,?,?,?)";
 		try {
@@ -49,7 +48,7 @@ public class Game_dao implements IGame_dao{
 	@Override
 	public List<Game> select_all_record() {
 	        List<Game> game_list = new ArrayList<>();
-	        IJDBC_Connection jdbc = new JDBC_Connection();
+	        IJdbc_connection jdbc = new Jdbc_connection();
 	        String select_all_query = "SELECT * from Game";
 	        try {
 				Connection conn = jdbc.createDBConnection();
@@ -74,7 +73,7 @@ public class Game_dao implements IGame_dao{
 
 	@Override
 	public void update_record(Integer game_id, Game game) {
-		 JDBC_Connection jdbc = new JDBC_Connection();
+		IJdbc_connection jdbc = new Jdbc_connection();
 		 String player_update_query = "UPDATE Game SET player_id = ?, game_winner_id = ?, game_runner_id = ?," +
                  " game_status = ? WHERE game_id = ?";
 		 try {

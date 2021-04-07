@@ -3,13 +3,15 @@ package dal.asdc.ludo_board_structure;
 import java.util.HashMap;
 import java.util.Map;
 
+import dal.asdc.ludo_board_structure.interfaces.IToken_positions;
+
 /**
  * @author Reshma Unnikrishnan**/
 
-public class Token_positions {
+public class Token_positions implements IToken_positions {
 	
-	 static Map<String,String> two_player_positions_map = new HashMap<String,String>();
-	 static Map<String,String> three_player_positions_map = new HashMap<String,String>();
+	static Map<String,String> two_player_positions_map = new HashMap<String,String>();
+	static Map<String,String> three_player_positions_map = new HashMap<String,String>();
 	 static Map<String,String> four_player_positions_map = new HashMap<String,String>();
 	
 	 static Map<String,String> red_token_positions_map = new HashMap<String,String>() {{
@@ -66,11 +68,11 @@ public class Token_positions {
 	 public Map<String,String> get_blue_token_positions() {
 			return blue_token_positions_map;
 		}
+	 
 	 public Map<String,String> get_empty_blue_token_positions() {
 			return empty_blue_token_positions_map;
 		}
 	 
-
 	 public Map<String,String> get_two_player_positions(){
 		two_player_positions_map.putAll(red_token_positions_map);
 		two_player_positions_map.putAll(yellow_token_positions_map);
@@ -108,11 +110,6 @@ public class Token_positions {
 		 return board_attributes_map;
 	 }
 	 
-	 public Map<String,String> get_game_empty_board_attributes(){
-		 Map<String,String> game_empty_board_attributes = new HashMap<String,String>();
-		 return null;
-	 }
-	 
 	 public Map<String,String> get_game_board_attributes(Map<String,String> token_position_from_game){
 		if(!two_player_positions_map.isEmpty()) {
 			two_player_positions_map.putAll(token_position_from_game);
@@ -126,8 +123,6 @@ public class Token_positions {
 		else if(!four_player_positions_map.isEmpty()) {
 			System.out.println("inside 4 player");
 		}
-	
 		return token_position_from_game;
-		
 	 }
 }

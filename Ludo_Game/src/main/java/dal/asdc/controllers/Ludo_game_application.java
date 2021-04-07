@@ -9,7 +9,6 @@ public class Ludo_game_application {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Ludo_game_application.class, args);
-		//pl_his.get_all_player_history();
 	}
 
 }

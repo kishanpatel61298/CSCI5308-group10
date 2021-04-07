@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dal.asdc.dao.Game_dao;
-import dal.asdc.dao.Game_player_score_dao;
-import dal.asdc.dao.Player_dao;
-import dal.asdc.dao.interfaces.IGame_dao;
-import dal.asdc.dao.interfaces.IGame_player_score_dao;
-import dal.asdc.dao.interfaces.IPlayer_dao;
+import dal.asdc.persistence.Game_persistence;
+import dal.asdc.persistence.Game_player_score_persistence;
+import dal.asdc.persistence.Player_persistence;
+import dal.asdc.persistence.interfaces.IGame_persistence;
+import dal.asdc.persistence.interfaces.IGame_player_score_persistence;
+import dal.asdc.persistence.interfaces.IPlayer_persistence;
 import dal.asdc.ludo_score_history.interfaces.IScore_history;
 import dal.asdc.model.Game;
 import dal.asdc.model.Game_player_score;
@@ -21,12 +21,12 @@ import dal.asdc.model.Player;
 
 public class Game_score_history implements IScore_history{
 	
-	IGame_player_score_dao gm_ply_sc = new Game_player_score_dao();
+	IGame_player_score_persistence gm_ply_sc = new Game_player_score_persistence();
 	private Game_player_score model_gm_ply = new Game_player_score();
 	private List<Game_player_score> model_gm_ply_list = new ArrayList<>();
-	IGame_dao game_dao = new Game_dao();
+	IGame_persistence game_persistence = new Game_persistence();
 	Game game = new Game();
-	IPlayer_dao plyr_dao = new Player_dao();
+	IPlayer_persistence plyr_persistence = new Player_persistence();
 	Player plyr = new Player();
 	
 	@Override
@@ -45,7 +45,7 @@ public class Game_score_history implements IScore_history{
 		Map<String,String> player_score_map = new HashMap<String,String>();
 		for(Game_player_score model : model_gm_ply_list) {
             player_id = model.getPlayer_id();
-            plyr = plyr_dao.filter_by_id(player_id);
+            plyr = plyr_persistence.filter_by_id(player_id);
     		String player_name = plyr.getPlayer_name();
     		String player_score = String.valueOf(model.getScore());
     		player_score_map.put("player_name", player_name);

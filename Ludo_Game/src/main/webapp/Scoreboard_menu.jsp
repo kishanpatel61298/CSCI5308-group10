@@ -14,5 +14,6 @@
   		<li>TOURNAMENT SCOREBOARD</li>
   		<li>DASHBOARD MENU<li>
 	</ol> 
+	<div id=Player_scoreboard></div>
 </body>
 </html>

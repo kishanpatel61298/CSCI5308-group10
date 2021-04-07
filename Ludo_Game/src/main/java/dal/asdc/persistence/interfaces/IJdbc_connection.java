@@ -1,4 +1,4 @@
-package dal.asdc.dao.interfaces;
+package dal.asdc.persistence.interfaces;
 
 import java.sql.Connection;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @author Reshma Unnikrishnan**/
 
-public interface IJDBC_Connection {
+public interface IJdbc_connection {
 	
 	public Map<String,String> read_db_property_file();
 	public Connection createDBConnection();

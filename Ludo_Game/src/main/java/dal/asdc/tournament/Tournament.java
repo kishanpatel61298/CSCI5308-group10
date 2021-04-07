@@ -4,67 +4,65 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
-import dal.asdc.dao.Player_dao;
-import dal.asdc.dao.interfaces.IPlayer_dao;
 import dal.asdc.model.Player;
+import dal.asdc.persistence.Player_persistence;
+import dal.asdc.persistence.interfaces.IPlayer_persistence;
 
-public class Tournament {
-	
-	public void game() {}
-	public void form_groups() {}
-	
-	IPlayer_dao player_dao = new Player_dao();
+public class Tournament implements ITournament{
+
+	IPlayer_persistence player_dao = new Player_persistence();
 	
 	public ArrayList<Player> tournament_players_list = new ArrayList();
+	public Map<String,Integer> tournament_winners = new HashMap<String,Integer>();
 	
 	int rounds = 0;
 	
-	static List<Integer> plyr1 = new ArrayList<Integer>() {{
+	static List<Integer> group1 = new ArrayList<Integer>() {{
 		add(1);
 		add(2);
 		add(3);
 	}};
 	
-	static List<Integer> plyr2 = new ArrayList<Integer>() {{
+	static List<Integer> group2 = new ArrayList<Integer>() {{
 		add(4);
 		add(5);
 		add(6);
 	}};
 	
-	static List<Integer> plyr3 = new ArrayList<Integer>() {{
+	static List<Integer> group3 = new ArrayList<Integer>() {{
 		add(7);
 		add(8);
 		add(9);
 	}};
 	
-	static List<Integer> plyr4 = new ArrayList<Integer>() {{
+	static List<Integer> group4 = new ArrayList<Integer>() {{
 		add(10);
 		add(11);
 		add(12);
 	}};
 	
 	 static Map<Integer, List<Integer>> group_map = new HashMap<Integer, List<Integer>>() {{
-		 put(1,plyr1);
-		 put(2,plyr2);
-		 put(3,plyr3);
-		 put(4,plyr4);
+		 put(1,group1);
+		 put(2,group2);
+		 put(3,group3);
+		 put(4,group4);
 		}};;
 	
-	
 	public ArrayList<Player> get_tournament_players(Map<Integer, List<Integer>> group_map){
-		group_map.forEach((k,v)->{
+		group_map.forEach((k,v) -> {
 			for(int i=0;i<v.size();i++) {
 				Player player = new Player();
 				player = player_dao.filter_by_id(v.get(i));
 				tournament_players_list.add(player);
 			}
 		});
+		System.out.println("tournament_players_list"+tournament_players_list);
 		return tournament_players_list;
 	}
 	
 	public ArrayList<Player> form_next_round_players(List<Integer> winners_list){
+		System.out.println("winners list : "+winners_list);
 		ArrayList<Player> next_round_players_list = new ArrayList();
 		for(int i =0;i<winners_list.size();i++) {
 			Player player = new Player();
@@ -101,7 +99,7 @@ public class Tournament {
 				Map<String,Integer> winner_map = new HashMap<String,Integer>();
 				winner_map = game(v);
 				winner_map.forEach((w,id) -> {
-					System.out.println(w+" --- "+id);
+					tournament_winners.put(w, id);
 				}); 
 			});
 		}
@@ -177,8 +175,9 @@ public class Tournament {
 	}
 	
 	public static void main(String args[]) {
-		Tournament tr = new Tournament();
-		tr.schedule_games(group_map);
+		Tournament tournament = new Tournament();
+		tournament.get_tournament_players(group_map);
+		tournament.schedule_games(group_map);
 	}
 	
 }

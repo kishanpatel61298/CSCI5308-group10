@@ -1,4 +1,4 @@
-package dal.asdc.dao;
+package dal.asdc.persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,18 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dal.asdc.dao.interfaces.IJDBC_Connection;
-import dal.asdc.dao.interfaces.ITournament_dao;
-import dal.asdc.model.Player;
 import dal.asdc.model.Tournaments;
+import dal.asdc.model.interfaces.ITournaments;
+import dal.asdc.persistence.interfaces.IJdbc_connection;
+import dal.asdc.persistence.interfaces.ITournament_persistence;
+import dal.asdc.tournament.ITournament;
 
 /**
  * @author Reshma Unnikrishnan**/
 
-public class Tournament_dao implements ITournament_dao{
+public class Tournament_persistence implements ITournament_persistence{
 
 	public void execute_statement() {
-		IJDBC_Connection jdbc = new JDBC_Connection();
+		IJdbc_connection jdbc = new Jdbc_connection();
 		try {
 		Connection conn = jdbc.createDBConnection();
 		}catch(Exception e) {
@@ -27,8 +28,8 @@ public class Tournament_dao implements ITournament_dao{
 	}
 	
 	@Override
-	public void create_record(Tournaments tournaments) {
-		JDBC_Connection jdbc = new JDBC_Connection();
+	public void create_record(ITournaments tournaments) {
+		IJdbc_connection jdbc = new Jdbc_connection();
 		String create_query = "INSERT into Tournaments (tournament_id, tournament_time, num_of_participants, tournament_winner_id, tournament_runner_id, tournament_status) "
 				+ "values(?,?,?,?,?,?)";
 		try {
@@ -47,16 +48,16 @@ public class Tournament_dao implements ITournament_dao{
 	}
 
 	@Override
-	public List<Tournaments> select_all_record() {
-        List<Tournaments> tournament_list = new ArrayList<>();
-        IJDBC_Connection jdbc = new JDBC_Connection();
+	public List<ITournaments> select_all_record() {
+        List<ITournaments> tournament_list = new ArrayList<>();
+        IJdbc_connection jdbc = new Jdbc_connection();
         String select_all_query = "";
         try {
 			Connection conn = jdbc.createDBConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(select_all_query);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                	Tournaments tournaments = new Tournaments();
+                	ITournaments tournaments = new Tournaments();
                 	tournaments.setTournament_id(resultSet.getInt("tournament_id"));
                 	tournaments.setTournament_time(resultSet.getString("tournament_time"));
                 	tournaments.setNum_of_participants(resultSet.getInt("num_of_participants"));
@@ -73,8 +74,8 @@ public class Tournament_dao implements ITournament_dao{
 	}
 
 	@Override
-	public void update_record(Integer tournament_id, Tournaments tournaments) {
-		 IJDBC_Connection jdbc = new JDBC_Connection();
+	public void update_record(Integer tournament_id, ITournaments tournaments) {
+		IJdbc_connection jdbc = new Jdbc_connection();
 		 String tournament_update_query = "UPDATE Tournaments SET tournament_winner_id = ?, tournament_runner_id = ?, tournament_status = ? WHERE tournament_id = ?";
 		 try {
 			 Connection conn = jdbc.createDBConnection();
@@ -93,11 +94,6 @@ public class Tournament_dao implements ITournament_dao{
 		
 	}
 
-	@Override
-	public void filter_by_id() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 }
