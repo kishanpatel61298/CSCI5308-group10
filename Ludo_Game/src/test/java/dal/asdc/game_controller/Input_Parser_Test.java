@@ -67,7 +67,7 @@ public class Input_Parser_Test {
 		Input_Parser input_parser = new Input_Parser();
 		List<Player> total_player_list = new ArrayList<>();
 		
-		char[] char_array = input_parser.get_word_tokens("y4");
+		char[] char_array = input_parser.get_word_tokens("r4");
 		Player_factory factory = new Player_factory_normal();
 		IPlayer_intialiser initialiser = factory.create_player_intialiser();
 		initialiser.intialise(2);
@@ -77,7 +77,6 @@ public class Input_Parser_Test {
 		}
 		
 		Token token = input_parser.get_player_from_input(total_player_list, char_array);
-		
 		assertEquals(3,token.get_token_number());
 	}
 }
