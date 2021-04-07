@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import dal.asdc.dao.IPlayer_dao;
 import dal.asdc.dao.Player_dao;
+import dal.asdc.dao.interfaces.IPlayer_dao;
 import dal.asdc.model.Player;
 
 /**

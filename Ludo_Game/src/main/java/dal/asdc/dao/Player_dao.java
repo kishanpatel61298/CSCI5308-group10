@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dal.asdc.dao.interfaces.IJDBC_Connection;
+import dal.asdc.dao.interfaces.IPlayer_dao;
 import dal.asdc.model.Player;
 
 /**
@@ -89,10 +91,12 @@ public class Player_dao implements IPlayer_dao {
 			 Connection conn = jdbc.createDBConnection();
 	         PreparedStatement preparedStatement = conn.prepareStatement(filter_by_id_query);
 	         preparedStatement.setInt(1, player_id);
+	         System.out.println("Filter by id query : "+preparedStatement);
 	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
 	        	 Player player = null;
 	             	if (resultSet.next()) {
 	             		player = new Player();
+	             		player.setPlayer_id(resultSet.getInt("player_id"));
 	             		player.setPlayer_name(resultSet.getString("player_name"));
 	             		player.setPlayer_email(resultSet.getString("player_email"));
 	             		player.setPlayer_password(resultSet.getString("player_password"));
