@@ -1,9 +1,11 @@
-package dal.asdc.player;
+package dal.asdc.player.Command_classes;
 
 
+import dal.asdc.player.Player;
+import dal.asdc.player.Player_command;
 import dal.asdc.playing_pieces.*;
 
-public class Green_token_command extends Player_command{
+public class Green_token_command extends Player_command {
     private Player player;
     private final int[][] GREEN_HOME_POSITION={{11,3},{12,3},{12,2},{11,2}};
 

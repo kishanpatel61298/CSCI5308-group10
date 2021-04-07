@@ -1,7 +1,12 @@
 package dal.asdc.player;
+import dal.asdc.player.Command_classes.Blue_token_command;
+import dal.asdc.player.Command_classes.Green_token_command;
+import dal.asdc.player.Command_classes.Red_token_command;
+import dal.asdc.player.Command_classes.Yellow_token_command;
+
 import java.util.*;
 
-public class Player_intialiser {
+public class Player_intialiser implements IPlayer_intialiser {
 
     enum Colour {
         RED,
@@ -11,7 +16,7 @@ public class Player_intialiser {
     }
 
 
-    private Map<String,Player> player_list= new HashMap<>();
+    private Map<String, Player> player_list= new HashMap<>();
     private Map<String,Player_command> input_commands= new HashMap<>();
 
     private Player red_player=player_list.get("RED");
@@ -23,6 +28,9 @@ public class Player_intialiser {
         for (int i = 0; i < number_of_players; i++) {
             player_list.put(String.valueOf(i),new Player());
         }
+
+        randomise();
+        assign_colour_home_position();
     }
 
     private void randomise(){
@@ -53,5 +61,7 @@ public class Player_intialiser {
         }
     }
 
-
+    public Map<String, Player> getPlayer_list() {
+        return player_list;
+    }
 }
