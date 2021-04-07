@@ -15,7 +15,7 @@
 <body>
 	<div class="container text-center">
 		<div>
-			<h1>Error in login . Please check email id or password</h1>
+			<h1>Error occurred !!</h1>
 		</div>		
 	</div>
 </body>

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dal.asdc.dao.Player_dao;
+import dal.asdc.login_register.Login;
+import dal.asdc.login_register.Register;
 import dal.asdc.ludo_board_structure.Ludo_board_formation;
 import dal.asdc.ludo_menu.Dashboard_menu;
 import dal.asdc.model.Main_menu;
@@ -31,6 +33,8 @@ public class Menu_controller {
 	Ludo_board_formation l_board = new Ludo_board_formation();
 	private Player_dao plyr_dao = new Player_dao();
 	private Groups grps = new Groups();
+	private Login login = new Login();
+	private Register register = new Register();
 
 	@Autowired
 	Main_menu m_menu;
@@ -85,15 +89,19 @@ public class Menu_controller {
 
 	@PostMapping("/process_register")
 	public String processRegister(@ModelAttribute("user") Player player) {
-		plyr_dao.save_record(player);
-		return "login_form.jsp";
+		boolean is_registerd = register.Register(player);
+		if(is_registerd) {
+			return "login_form.jsp";
+		}
+		else {
+			return "error_page.jsp";
+		}
 	}
 
 	@PostMapping("/process_login")
 	public String process_login(@ModelAttribute("user") Player player, Model model) {
-		Player fatched_player = new Player();
-		fatched_player = plyr_dao.filter_by_emailid(player.getPlayer_email());
-		if (fatched_player != null && fatched_player.getPlayer_password().equals(player.getPlayer_password())) {
+		Player fatched_player = login.login(player);
+		if (fatched_player != null) {
 			model.addAttribute("Main_menu", m_menu);
 			return "Menu_display.jsp";
 		} else {
@@ -107,7 +115,8 @@ public class Menu_controller {
 		model.addAttribute("no_of_players", no_of_players);
 		Map<Integer, Collection<List<Player>>> players_map = grps.form_tournaments_group();
 		if(players_map != null) {
-			return "error_page.jsp";
+			model.addAttribute("Main_menu", m_menu);
+			return "Menu_display.jsp";			
 		}
 		else {
 			return "error_page.jsp";
