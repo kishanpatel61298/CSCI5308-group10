@@ -44,7 +44,7 @@ public abstract class Token {
     
     public boolean is_at_winning_square() {
 		int[][] selected_token_postion = get_coordinate_position();
-		for(int i=0;i<5;i++) {
+		for(int i=0;i<1;i++) {
 			if(winning_square[i][0]==selected_token_postion[0][0] && winning_square[i][1]==selected_token_postion[0][1]) {
 				return true;
 			}

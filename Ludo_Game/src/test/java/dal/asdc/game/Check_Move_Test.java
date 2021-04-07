@@ -29,7 +29,7 @@ public class Check_Move_Test {
 	public void check_is_red_token_in_winning_square_movable_test() {
 		Check_Move check_move = new Check_Move();
 		Token token = new Red_Token(0);
-		int[][] new_position = new int[][]{{6,6}};
+		int[][] new_position = new int[][]{{7,7}};
 		token.set_coordinate_position(new_position);
 		int[][] checking = token.get_coordinate_position();
 		boolean is_movable = check_move.check_is_token_movable(token,6);
