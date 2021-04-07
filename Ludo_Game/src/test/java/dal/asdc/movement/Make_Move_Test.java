@@ -1,4 +1,4 @@
-package dal.asdc.game;
+package dal.asdc.movement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,6 +9,8 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import dal.asdc.movement.IMake_Move;
+import dal.asdc.movement.Make_Move;
 import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
 import dal.asdc.player.Player_factory;
@@ -16,7 +18,7 @@ import dal.asdc.player.Player_factory_normal;
 import dal.asdc.playing_pieces.Token;
 
 public class Make_Move_Test {
-	 Make_Move make_move;
+	IMake_Move make_move;
 	List<Player> total_player_list;
 	Player player1;
 	Player player2;
@@ -43,7 +45,6 @@ public class Make_Move_Test {
 	
 	@Test
 	void get_token_path_index_test() {
-		Make_Move make_move = new Make_Move();
 		int[][] token_position = {{3,4}};
 		int[][] token_path = {{2,3},{3,4},{4,5}};
 		

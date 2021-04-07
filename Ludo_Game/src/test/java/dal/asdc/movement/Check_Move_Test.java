@@ -1,9 +1,10 @@
-package dal.asdc.game;
+package dal.asdc.movement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import dal.asdc.movement.Check_Move;
 import dal.asdc.playing_pieces.Red_Token;
 import dal.asdc.playing_pieces.Token;
 

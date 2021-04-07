@@ -1,4 +1,4 @@
-package dal.asdc.game;
+package dal.asdc.movement;
 
 import java.util.List;
 

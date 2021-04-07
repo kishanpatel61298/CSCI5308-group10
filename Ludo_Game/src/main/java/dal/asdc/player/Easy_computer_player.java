@@ -1,8 +1,8 @@
 package dal.asdc.player;
 
-import dal.asdc.game.Dice_user;
-import dal.asdc.game.IMake_Move;
-import dal.asdc.game.Make_Move;
+import dal.asdc.movement.Dice_user;
+import dal.asdc.movement.IMake_Move;
+import dal.asdc.movement.Make_Move;
 import dal.asdc.playing_pieces.Token;
 
 import java.util.ArrayList;

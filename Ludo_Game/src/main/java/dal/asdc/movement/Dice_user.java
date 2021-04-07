@@ -1,4 +1,4 @@
-package dal.asdc.game;
+package dal.asdc.movement;
 
 public abstract class Dice_user {
     private static Dice_user unique_instace = null;
