@@ -9,6 +9,9 @@ import dal.asdc.model.interfaces.IPlayer;
 import dal.asdc.persistence.Player_persistence;
 import dal.asdc.persistence.interfaces.IPlayer_persistence;
 
+/**
+ * @author Heli Bhavsar**/
+
 public class Register implements IRegister{
  public boolean register(IPlayer player) {
 	 IPlayer_persistence plyr_dao = new Player_persistence();    

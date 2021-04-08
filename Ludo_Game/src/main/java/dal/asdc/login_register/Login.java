@@ -3,10 +3,12 @@ package dal.asdc.login_register;
 import org.mindrot.jbcrypt.BCrypt;
 
 import dal.asdc.login_register.interfaces.ILogin;
-import dal.asdc.model.Player;
 import dal.asdc.model.interfaces.IPlayer;
 import dal.asdc.persistence.Player_persistence;
 import dal.asdc.persistence.interfaces.IPlayer_persistence;
+
+/**
+ * @author Heli Bhavsar**/
 
 public class Login implements ILogin {
 
