@@ -10,11 +10,11 @@ public class Player_intialiser implements IPlayer_intialiser {
 
     enum Colour {
         RED,
-        GREEN,
         YELLOW,
+        GREEN,
         BLUE
     }
-    private final int[][] GREEN_HOME_POSITION={{11,3},{12,3},{12,2},{11,2}};
+    private final int[][] YELLOW_HOME_POSITION={{11,12},{11,11},{12,11},{12,12}};
 
 
     private Map<String, Player> player_list= new HashMap<>();
@@ -24,7 +24,7 @@ public class Player_intialiser implements IPlayer_intialiser {
 
     public void intialise(int number_of_players){
         for (int i = 0; i < number_of_players; i++) {
-            player_list.put(String.valueOf(i),new Player());
+            player_list.put(String.valueOf(i),new Human_player());
         }
 
         player_list=  randomise(player_list);
@@ -49,8 +49,8 @@ public class Player_intialiser implements IPlayer_intialiser {
 
         Player red_player=player_list.get("0");
         Player blue_player=player_list.get("3");
-        Player yellow_player=player_list.get("2");
-        Player green_player=player_list.get("1");
+        Player yellow_player=player_list.get("1");
+        Player green_player=player_list.get("2");
 
 
         input_commands.put("RED", new Red_token_command(red_player));
@@ -67,20 +67,20 @@ public class Player_intialiser implements IPlayer_intialiser {
 
     public void intialise_aggressive_computer_player(){
         intialise(1);
-        Aggressive_computer_player aggressive_computer_player = new Aggressive_computer_player();
-        Colour colour = Colour.GREEN;
+        Player aggressive_computer_player = new Aggressive_computer_player();
+        Colour colour = Colour.YELLOW;
         aggressive_computer_player.setColour(colour.toString());
-        aggressive_computer_player.setHome_position(GREEN_HOME_POSITION);
-
+        aggressive_computer_player.setHome_position(YELLOW_HOME_POSITION);
+        player_list.put("1",aggressive_computer_player);
     }
 
     public void intialise_easy_computer_player(){
         intialise(1);
-        Easy_computer_player easy_computer_player = new Easy_computer_player();
-        Colour colour = Colour.GREEN;
+        Player easy_computer_player = new Easy_computer_player();
+        Colour colour = Colour.YELLOW;
         easy_computer_player.setColour(colour.toString());
-        easy_computer_player.setHome_position(GREEN_HOME_POSITION);
-
+        easy_computer_player.setHome_position(YELLOW_HOME_POSITION);
+        player_list.put("1",easy_computer_player);
     }
 
     public Map<String, Player> getPlayer_list() {

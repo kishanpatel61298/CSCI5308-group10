@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import dal.asdc.player.Factory_classes.Player_factory_normal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import dal.asdc.movement.IMake_Move;
-import dal.asdc.movement.Make_Move;
 import dal.asdc.movement.factory_method.Move_factory;
+import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
-import dal.asdc.player.Player_factory;
-import dal.asdc.player.Player_factory_normal;
+import dal.asdc.player.Human_player;
+import dal.asdc.player.Factory_classes.Player_factory;
 import dal.asdc.playing_pieces.Token;
 
 public class Make_Move_Test {
@@ -27,7 +27,7 @@ public class Make_Move_Test {
 	
 	@BeforeEach
 	void initialize() {
-		Move_factory move_factory = new Move_factory();
+		Move_factory move_factory = new Simple_move_factory();
 		make_move = move_factory.create_make_move();
 		total_player_list = new ArrayList<>(); 
 		
@@ -36,8 +36,8 @@ public class Make_Move_Test {
 		Player_factory factory = new Player_factory_normal();
 		IPlayer_intialiser initialiser = factory.create_player_intialiser();
 		initialiser.intialise(2);
-		Map<String,Player> map = initialiser.getPlayer_list();
-		for(Map.Entry<String,Player> iterate : map.entrySet()) {
+		Map<String, Player> map = initialiser.getPlayer_list();
+		for(Map.Entry<String, Player> iterate : map.entrySet()) {
 			total_player_list.add(iterate.getValue());
 		}
 		player1 = total_player_list.get(0);
