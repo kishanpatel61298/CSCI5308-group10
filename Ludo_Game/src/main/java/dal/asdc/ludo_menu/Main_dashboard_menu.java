@@ -16,7 +16,7 @@ public class Main_dashboard_menu {
 		Player_register
 	}
 	
-	public class Main_menu {
+	public static class Main_menu {
 		public menu_options menu;
 		public redirect_class redir = null;
 		

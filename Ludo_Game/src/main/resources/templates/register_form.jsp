@@ -27,7 +27,7 @@
 					<br />
 
 					<form:label path="player_password">Password:</form:label>
-					<form:input path="player_password" />
+					<form:password path="player_password" />
 					<br />
 
 					<form:label path="player_name">Full Name:</form:label>

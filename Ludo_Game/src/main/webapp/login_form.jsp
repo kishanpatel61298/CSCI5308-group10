@@ -27,7 +27,7 @@
 				</div>
 				<div class="form-group row">
 					<form:label path="player_password">Password:</form:label>
-					<form:input path="player_password" />
+					<form:password path="player_password" />
 					<br />
 				</div>
 				<div>

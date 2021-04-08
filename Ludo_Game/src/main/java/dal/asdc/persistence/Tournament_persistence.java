@@ -17,15 +17,6 @@ import dal.asdc.tournament.interfaces.ITournament;
  * @author Reshma Unnikrishnan**/
 
 public class Tournament_persistence implements ITournament_persistence{
-
-	public void execute_statement() {
-		IJdbc_connection jdbc = new Jdbc_connection();
-		try {
-		Connection conn = jdbc.createDBConnection();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	@Override
 	public void create_record(ITournaments tournaments) {
