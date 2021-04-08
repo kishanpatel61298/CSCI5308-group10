@@ -1,8 +1,10 @@
 package dal.asdc.player.Command_classes;
-import dal.asdc.player.Human_player;
+
 import dal.asdc.player.Player;
 import dal.asdc.player.Player_command;
-import dal.asdc.playing_pieces.*;
+import dal.asdc.playing_pieces.Token;
+import dal.asdc.playing_pieces.factoy_method.Four_colour_token_factory;
+import dal.asdc.playing_pieces.factoy_method.Token_Factory;
 
 public class Red_token_command extends Player_command {
 
@@ -14,9 +16,9 @@ public class Red_token_command extends Player_command {
 
     public void execute() {
         player.setPosition(RED_HOME_POSITION);
-
+        Token_Factory token_factory = new Four_colour_token_factory();
         for(int i=0;i<4;i++){
-            Token token = new Red_Token(i);
+            Token token = token_factory.crete_red_token(i);
             player.set_selected_token(token);
         }
     }

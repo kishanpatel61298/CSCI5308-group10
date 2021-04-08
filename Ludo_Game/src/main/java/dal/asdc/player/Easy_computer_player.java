@@ -2,7 +2,8 @@ package dal.asdc.player;
 
 import dal.asdc.movement.Dice_user;
 import dal.asdc.movement.IMake_Move;
-import dal.asdc.movement.Make_Move;
+import dal.asdc.movement.factory_method.Move_factory;
+import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.playing_pieces.Token;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Easy_computer_player extends Player {
     private int[][] home_position;
     private boolean is_done = false;
     IMake_Move iMake_move;
+    Move_factory move_factory = new Simple_move_factory();
     Dice_user dice_user = Dice_user.instance();
 
     List<Token> token_list= new ArrayList<>();
@@ -29,7 +31,7 @@ public class Easy_computer_player extends Player {
     List<Player> all_players = new ArrayList<>();
 
     public List<Token> play(List<Token> token_list){
-        iMake_move = new Make_Move();
+        iMake_move = move_factory.create_make_move();
         roll = dice_user.roll_dice();
         Random random = new Random();
 
@@ -147,5 +149,10 @@ public class Easy_computer_player extends Player {
 
     public void set_tokens(List<Token> four_tokens) {
     	token_list = four_tokens;
+    }
+
+    @Override
+    public int[][] getHome_position() {
+        return home_position;
     }
 }

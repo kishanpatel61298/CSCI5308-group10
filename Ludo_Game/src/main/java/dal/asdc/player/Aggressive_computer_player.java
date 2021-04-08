@@ -138,4 +138,7 @@ public class Aggressive_computer_player extends Player {
     	token_list = four_tokens;
     }
 
+    public int[][] getHome_position() {
+        return home_position;
+    }
 }

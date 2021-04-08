@@ -14,7 +14,7 @@ public class Player_intialiser implements IPlayer_intialiser {
         GREEN,
         BLUE
     }
-    private final int[][] GREEN_HOME_POSITION={{11,3},{12,3},{12,2},{11,2}};
+    private final int[][] YELLOW_HOME_POSITION={{11,12},{11,11},{12,11},{12,12}};
 
 
     private Map<String, Player> player_list= new HashMap<>();
@@ -70,7 +70,7 @@ public class Player_intialiser implements IPlayer_intialiser {
         Player aggressive_computer_player = new Aggressive_computer_player();
         Colour colour = Colour.YELLOW;
         aggressive_computer_player.setColour(colour.toString());
-        aggressive_computer_player.setHome_position(GREEN_HOME_POSITION);
+        aggressive_computer_player.setHome_position(YELLOW_HOME_POSITION);
         player_list.put("1",aggressive_computer_player);
     }
 
@@ -79,7 +79,7 @@ public class Player_intialiser implements IPlayer_intialiser {
         Player easy_computer_player = new Easy_computer_player();
         Colour colour = Colour.YELLOW;
         easy_computer_player.setColour(colour.toString());
-        easy_computer_player.setHome_position(GREEN_HOME_POSITION);
+        easy_computer_player.setHome_position(YELLOW_HOME_POSITION);
         player_list.put("1",easy_computer_player);
     }
 
