@@ -14,17 +14,19 @@ public class Easy_computer_player extends Player {
     private String colour;
     private Token token;
     private int roll;
+    private int[][] position;
     private int[][] token_path;
     private int[][] safe_box;
     private int[][] token_position;
     private int  token_index_on_path;
     private int[][] home_position;
+    private boolean is_done = false;
     IMake_Move iMake_move;
     Dice_user dice_user = Dice_user.instance();
 
     List<Token> token_list= new ArrayList<>();
     List<Token> all_tokens = new ArrayList<>();
-    List<Human_player> all_players = new ArrayList<>();
+    List<Player> all_players = new ArrayList<>();
 
     public List<Token> play(List<Token> token_list){
         iMake_move = new Make_Move();
@@ -105,5 +107,45 @@ public class Easy_computer_player extends Player {
 
     public void setHome_position(int[][] home_position) {
         this.home_position = home_position;
+    }
+
+	@Override
+	public List<Token> get_all_tokens() {
+		return token_list;
+	}
+
+	public Token get_selected_token(int token_number){
+        return token_list.get(token_number);
+    }
+
+	@Override
+	public void setPosition(int[][] position) {
+        this.position = position;
+	}
+	
+	public int[][] getPosition() {
+        return position;
+    }
+
+	@Override
+	public void set_selected_token(Token token) {
+        token_list.add(token);
+	}
+
+	@Override
+	public String getColour() {
+        return colour;
+	}
+
+	public boolean get_is_done(){
+        return is_done;
+    }
+
+    public void set_is_done(boolean is_done) {
+        this.is_done = is_done;
+    }
+
+    public void set_tokens(List<Token> four_tokens) {
+    	token_list = four_tokens;
     }
 }

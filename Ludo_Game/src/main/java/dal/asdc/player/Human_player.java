@@ -20,9 +20,9 @@ public class Human_player extends Player {
     private int roll;
     IMake_Move make_move = new Make_Move();
     Dice_user dice_user = Dice_user.instance();
-    List<Human_player> all_player_list = new ArrayList<>();
+    List<Player> all_player_list = new ArrayList<>();
     Player_intialiser intialiser;
-    Map<String, Human_player> player_list= new HashMap<>();
+    Map<String, Player> player_list= new HashMap<>();
 
     public Human_player(){
 

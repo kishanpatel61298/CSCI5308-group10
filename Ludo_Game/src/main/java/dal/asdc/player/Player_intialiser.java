@@ -17,7 +17,7 @@ public class Player_intialiser implements IPlayer_intialiser {
     private final int[][] GREEN_HOME_POSITION={{11,3},{12,3},{12,2},{11,2}};
 
 
-    private Map<String, Human_player> player_list= new HashMap<>();
+    private Map<String, Player> player_list= new HashMap<>();
     private Map<String,Player_command> input_commands= new HashMap<>();
 
 
@@ -31,7 +31,7 @@ public class Player_intialiser implements IPlayer_intialiser {
         assign_colour_home_position(player_list);
     }
 
-    private Map<String, Human_player> randomise(Map<String, Human_player> player_list){
+    private Map<String, Player> randomise(Map<String, Player> player_list){
         List<String> colour_list = new ArrayList<String>();
         for(Colour colour: Colour.values()){
             colour_list.add(colour.toString());
@@ -45,12 +45,12 @@ public class Player_intialiser implements IPlayer_intialiser {
         return player_list;
     }
 
-    private void assign_colour_home_position(Map<String, Human_player> player_list){
+    private void assign_colour_home_position(Map<String, Player> player_list){
 
-        Human_player red_player=player_list.get("0");
-        Human_player blue_player=player_list.get("3");
-        Human_player yellow_player=player_list.get("1");
-        Human_player green_player=player_list.get("2");
+        Player red_player=player_list.get("0");
+        Player blue_player=player_list.get("3");
+        Player yellow_player=player_list.get("1");
+        Player green_player=player_list.get("2");
 
 
         input_commands.put("RED", new Red_token_command(red_player));
@@ -83,7 +83,7 @@ public class Player_intialiser implements IPlayer_intialiser {
 
     }
 
-    public Map<String, Human_player> getPlayer_list() {
+    public Map<String, Player> getPlayer_list() {
         return player_list;
     }
 }
