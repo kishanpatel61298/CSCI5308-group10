@@ -20,6 +20,7 @@ import dal.asdc.game_handler.Ludo_Game;
 import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
 import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.player.Player;
+import dal.asdc.playing_pieces.Token;
 
 public class Ludo_game_Test {
 	
@@ -105,5 +106,33 @@ public class Ludo_game_Test {
 	@Test
 	void current_player_text_test() {
 		assertEquals("RED's turn",game_controller.get_current_turn_text());
+	}
+	
+	@Test
+	void update_player_list_test() {
+		Player player = game_controller.get_total_player_list().get(0);
+		Token token = player.get_all_tokens().get(0);
+		token.set_at_home();
+		List<Token> tokens = new ArrayList();
+		tokens.add(token);
+		game_controller.update_player(tokens);
+		Player player_latest = game_controller.get_total_player_list().get(0);
+		Token token_latest = player_latest.get_all_tokens().get(0);
+		assertEquals(true,token_latest.get_is_token_at_home());
+	}
+	
+	@Test
+	void next_turn_if_6_test() {
+		game_controller.set_dice_number(6);
+		assertEquals("RED",game_controller.get_current_turn().getColour());
+	}
+	
+	@Test
+	void game_over_test() {
+		List<Player> player = game_controller.get_total_player_list();
+		player.get(1).set_is_done(true);
+		game_controller.set_total_player_list(player);
+		game_controller.next_turn();
+		assertEquals(true,game_controller.get_is_game_over());
 	}
 }

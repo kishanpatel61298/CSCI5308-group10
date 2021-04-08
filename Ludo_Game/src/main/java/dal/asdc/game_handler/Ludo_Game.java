@@ -28,7 +28,6 @@ import dal.asdc.player.Human_player;
 import dal.asdc.player.Factory_classes.Player_factory;
 
 public class Ludo_Game implements ILudo_game{
-	
 
 	private static final int TWO_DIMENSIONS = 2;
 	private static final int NUMBER_OF_TOKENS_PER_PLAYER = 4;
@@ -102,7 +101,6 @@ public class Ludo_Game implements ILudo_game{
         	set_error_message("First roll the dice then select token");
             return false;
         }
-       
         if(check_turn(token_from_input)) {
             if(make_move.check_moving_path(token_from_input,dice_number)) {
                 List<Token> updated_tokens = new ArrayList<>();
@@ -152,7 +150,6 @@ public class Ludo_Game implements ILudo_game{
         	String token_name = "";
         	for(Token token : all_tokens) {
         		int[][] position = token.get_coordinate_position();
-        		
         		if(temp_position[0][0] == position[0][0] && temp_position[0][1] == position[0][1]) {
         			token_name = token_name + token.get_token_colour().substring(0, 1)+(token.get_token_number()+1);
       			  	is_set = true;
@@ -202,7 +199,6 @@ public class Ludo_Game implements ILudo_game{
 			if(dice_number == 6 || is_defeat_move) {
 				return;
 			}
-			
 			Player next_player = get_next_player(temp_list,current_player_temp);
 			if(next_player.get_is_done()) {
 				if(get_total_player_list().size()==2) {
