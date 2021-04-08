@@ -2,6 +2,8 @@ package dal.asdc.movement;
 /**
  * @author Kishan Rakeshbhai Patel **/
 import java.util.ArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 
 import dal.asdc.player.Player;
@@ -9,6 +11,8 @@ import dal.asdc.playing_pieces.Token;
 
 public class Make_Move implements IMake_Move {
 	
+	private static final int INITIAL_VALUE_OF_TOKEN_INDEX = -1;
+	private static final int HIGHEST_NUMBER_ON_DICE = 6;
 	ICheck_Move check_move = new Check_Move();
 	List<Token> return_token = null;
 	List<Token> all_tokens = null;
@@ -16,16 +20,16 @@ public class Make_Move implements IMake_Move {
 	int[][] safe_box;
 	int[][] token_position;
 	int token_index_on_path;
+	private static final Logger LOGGER = LoggerFactory.getLogger(Make_Move.class);
 	
 	public Make_Move() {
-		
 	}
 	
 	public boolean check_moving_path(Token token, int dice_number) {
 		if(check_move.check_is_token_movable(token, dice_number)){
 			return true;
 		}else {
-			System.out.print("You can't play this token");
+			LOGGER.info("You can't play this token");
 			return false;
 		}
 	}
@@ -38,31 +42,29 @@ public class Make_Move implements IMake_Move {
 		all_tokens = new ArrayList<>();
 		
 		if(selected_token.is_home()) {
-			if(dice_number==6) {
-				System.out.println("out of home move");
+			if(dice_number==HIGHEST_NUMBER_ON_DICE) {
+				LOGGER.info("out of home move");
 				return move_token_out_of_home(selected_token);
 			}
 		}else{
-			token_index_on_path = -1;
+			token_index_on_path = INITIAL_VALUE_OF_TOKEN_INDEX;
 			token_position = selected_token.get_coordinate_position();
 			token_index_on_path = get_index_of_token_on_path(token_position,token_path);
-			
 			all_tokens = add_all_tokens_other_than_selected_into_list(selected_token,all_players);
-			
 			if((token_index_on_path+dice_number) < token_path.length) {
 				int[][] after_move_position = {{token_path[token_index_on_path+dice_number][0],token_path[token_index_on_path+dice_number][1]}};
 				boolean is_defeat = is_defeat_move_or_not(after_move_position,selected_token,all_tokens);
 				boolean is_safe = is_move_into_safe_box_or_not(after_move_position,safe_box);
 
 				if(is_defeat && !is_safe) {
-					System.out.println("defeat move");
+					LOGGER.info("defeat move");
 					return move_token_to_defeat_opponent(selected_token,after_move_position);
 				}else {
-					System.out.println("normal move");
+					LOGGER.info("normal move");
 					return move_token_on_normal_path(selected_token,after_move_position);
 				}	
 			}else if(token_index_on_path+dice_number == token_path.length) {
-				System.out.println("at winning square");
+				LOGGER.info("at winning square");
 				return move_token_in_winning_square(selected_token);
 			}
 		}
@@ -91,7 +93,7 @@ public class Make_Move implements IMake_Move {
 		for(int safe_box_index = 0 ; safe_box_index < safe_box.length ; safe_box_index++) {
 			if(safe_box[safe_box_index][0] == after_move_position[0][0] && safe_box[safe_box_index][1] == after_move_position[0][1]) {
 				is_safe = true;
-				System.out.println("in safe box move");
+				LOGGER.info("in safe box move");
 				break;
 			}
 		}

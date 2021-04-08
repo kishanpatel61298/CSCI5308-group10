@@ -5,12 +5,13 @@ import dal.asdc.ludo_board_structure.Token_paths;
 
 public class Red_Token extends Token{
 	
+	private static final String RED_COLOUR = "RED";
 	static int[][] red_home = {{2,3},{3,3},{3,2},{2,2}};
 	int[][] winning_square = {{7,7}};
 	int[][] red_token_path;
 
 	public Red_Token(int numer_of_token) {
-		super("RED",numer_of_token,red_home[numer_of_token][0],red_home[numer_of_token][1]);
+		super(RED_COLOUR,numer_of_token,red_home[numer_of_token][0],red_home[numer_of_token][1]);
 		create_path();
 	}
 	

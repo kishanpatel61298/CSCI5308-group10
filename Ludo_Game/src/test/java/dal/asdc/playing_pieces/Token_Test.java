@@ -1,38 +1,37 @@
 package dal.asdc.playing_pieces;
+/**
+ * @author Kishan Rakeshbhai Patel **/
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
 
+import dal.asdc.playing_pieces.factoy_method.Four_colour_token_factory;
+import dal.asdc.playing_pieces.factoy_method.Token_Factory;
+
 public abstract class Token_Test {
 
-	/*@Test
-	void constructor_test() {
-		Token token = new Red()
+
+	Token token;
+	
+	@BeforeEach
+	void initialize() {
+		Token_Factory factory = new Four_colour_token_factory();
+		token = factory.crete_yellow_token(0);
 	}
 	
-    @Test
-    void get_token_colour_test() {
-        Token token = new Token("blue");
-        Assertions.assertEquals(token.get_token_colour(),"blue");
-    }
-
-    @Test
-    void move_token_x_coordinate_test() {
-        Dice_mock dice_mock = new Dice_mock();
-        int roll= dice_mock.roll_dice();
-        Token token = new Token("green");
-        token.setX_coordinate_position(4);
-        Assertions.assertEquals(token.move_token_x_coordinate(roll),6);
-
-    }
-
-    @Test
-    void move_token_y_coordinate_test() {
-        Dice_mock dice_mock = new Dice_mock();
-        int roll= dice_mock.roll_dice();
-        Token token = new Token("green");
-        token.setY_coordinate_position(4);
-        Assertions.assertEquals(token.move_token_y_coordinate(roll),6);
-    }*/
+	@Test
+	void is_at_winning_square_test() {
+		int[][] winning_position = {{7,7}};
+		token.set_coordinate_position(winning_position);
+		assertEquals(true,token.is_at_winning_square());
+	}
+	
+	@Test
+	void is_home_test() {
+		assertEquals(true,token.is_home());
+	}
 }

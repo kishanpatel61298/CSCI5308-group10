@@ -1,9 +1,9 @@
 package dal.asdc.player;
-
+/**
+ * @author Prabhnoor Singh **/
 import dal.asdc.game_handler.IDice;
 import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
 import dal.asdc.game_handler.factory_method.Ludo_game_factory;
-import dal.asdc.movement.Dice_user;
 import dal.asdc.movement.IMake_Move;
 import dal.asdc.movement.factory_method.Move_factory;
 import dal.asdc.movement.factory_method.Simple_move_factory;
@@ -27,7 +27,6 @@ public class Easy_computer_player extends Player {
     private boolean is_done = false;
     IMake_Move iMake_move;
     Move_factory move_factory = new Simple_move_factory();
-    Dice_user dice_user = Dice_user.instance();
 
     List<Token> token_list= new ArrayList<>();
     List<Token> all_tokens = new ArrayList<>();

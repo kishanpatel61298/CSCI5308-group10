@@ -14,16 +14,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dal.asdc.game_handler.IInput_parser;
-import dal.asdc.game_handler.Input_Parser;
 import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
 import dal.asdc.game_handler.factory_method.Ludo_game_factory;
-import dal.asdc.movement.factory_method.Move_factory;
-import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
 import dal.asdc.player.Factory_classes.Player_factory;
 import dal.asdc.playing_pieces.Token;
-import dal.asdc.playing_pieces.factoy_method.Four_colour_token_factory;
 
 public class Input_Parser_Test {
 	

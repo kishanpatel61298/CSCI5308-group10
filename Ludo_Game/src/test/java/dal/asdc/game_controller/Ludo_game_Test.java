@@ -15,10 +15,7 @@ import org.mockito.Mock;
 
 import dal.asdc.game_handler.Dice;
 import dal.asdc.game_handler.IDice;
-import dal.asdc.game_handler.IInput_parser;
 import dal.asdc.game_handler.Ludo_Game;
-import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
-import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 

@@ -2,11 +2,9 @@ package dal.asdc.game_handler.command;
 /**
  * @author Kishan Rakeshbhai Patel **/
 
-
 import java.util.Map;
 
 import dal.asdc.player.IPlayer_intialiser;
-import dal.asdc.playing_pieces.Token;
 
 public class Four_player_command extends Board_creation_command{
 

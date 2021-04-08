@@ -1,10 +1,9 @@
 package dal.asdc.game_handler.command;
+/**
+ * @author Kishan Rakeshbhai Patel **/
 
 import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
-
-/**
- * @author Kishan Rakeshbhai Patel **/
 
 public class Blue_Command extends Colour_command{
 
