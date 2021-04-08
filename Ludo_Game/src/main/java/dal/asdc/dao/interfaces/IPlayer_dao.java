@@ -13,5 +13,7 @@ public interface IPlayer_dao {
 	public List<Player> select_all_record();
 	public void update_record(int player_id, Player player);
 	public Player filter_by_id(int player_id);
+	public Player filter_by_emailid(String player_email);
+	public List<Integer> select_n_players(int n);
 }
 
