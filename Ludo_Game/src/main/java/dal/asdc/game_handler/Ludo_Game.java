@@ -144,7 +144,7 @@ public class Ludo_Game implements ILudo_game{
         return positions;
     }
 	
-	public Map<String,String> set_token_names_on_actual_spots(int[][] total_path, List<Token> all_tokens){
+	private Map<String,String> set_token_names_on_actual_spots(int[][] total_path, List<Token> all_tokens){
         Map<String,String> positions_temp = new HashMap<>();
 		for(int i=0;i<total_path.length;i++) {
         	int[][] temp_position = {{total_path[i][0],total_path[i][1]}};
@@ -242,7 +242,7 @@ public class Ludo_Game implements ILudo_game{
 		
     }
 	
-	private Player get_next_player(List<Player> temp_list, Player current_player_temp) {
+	public Player get_next_player(List<Player> temp_list, Player current_player_temp) {
 		int index = temp_list.indexOf(current_player_temp);
 		Player next_player;
 		if(index == (temp_list.size()-1)) {
