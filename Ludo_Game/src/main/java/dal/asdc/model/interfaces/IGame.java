@@ -1,5 +1,7 @@
 package dal.asdc.model.interfaces;
 
+/**
+ * @author Reshma Unnikrishnan**/
 public interface IGame {
 	public int getGame_id();
 	public void setGame_id(int game_id);

@@ -1,5 +1,7 @@
 package dal.asdc.model.interfaces;
 
+/**
+ * @author Reshma Unnikrishnan**/
 public interface IPlayer {
 	public int getPlayer_id();
 	public void setPlayer_id(int player_id);

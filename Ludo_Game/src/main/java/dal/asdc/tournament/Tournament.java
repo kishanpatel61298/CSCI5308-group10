@@ -30,17 +30,17 @@ public class Tournament implements ITournament{
 				tournament_players_list.add(v.get(i));
 			}
 		});
-		System.out.println("tournament_players_list"+tournament_players_list);
+		LOGGER.info("Tournament player list : "+tournament_players_list);
 		return tournament_players_list;
 	}
 	
 	public ArrayList<Integer> form_next_round_players(List<Integer> winners_list){
-		System.out.println("winners list : "+winners_list);
+		LOGGER.info("Winners list : "+ winners_list);
 		ArrayList<Integer> next_round_players_list = new ArrayList();
 		for(int i =0;i<winners_list.size();i++) {
 			next_round_players_list.add(winners_list.get(i));
 		};
-		System.out.println("next_round_players_list inisde func : "+next_round_players_list.size());
+		LOGGER.info("Next round players list size : "+next_round_players_list.size());
 		return next_round_players_list;
 	}
 	
@@ -76,7 +76,7 @@ public class Tournament implements ITournament{
 	
 	public Map<Integer, List<Integer>> form_further_round_groups(ArrayList<Integer> next_round_players_list){
 		List<Integer> player_id_list = new ArrayList<Integer>();
-		System.out.println("next_round_players_list.size() : "+next_round_players_list.size());
+		LOGGER.info("Next round players list size : "+next_round_players_list.size());
 		for(int i =0;i<next_round_players_list.size();i++) {
 			player_id_list.add(next_round_players_list.get(i));
 		}
@@ -92,38 +92,36 @@ public class Tournament implements ITournament{
 					try {
 					group_list.add(player_id_list.get(j));
 					}catch(ArrayIndexOutOfBoundsException e) {
-						System.out.println("Reached the end of the list");
+						LOGGER.info("Reached the end of the list");
 					} 
 				}
 				next_group.put(i, group_list);
 				start+=4;
 			}
-			System.out.println("Next group list");
+			LOGGER.info("Next group list");
 			next_group.forEach((k,v) -> {
 				System.out.println(k+" -- "+v);
 			});
 		}else {
 			int num_of_groups = (player_id_list.size()+3)/4;
-			System.out.println("group size : "+num_of_groups);
+			LOGGER.info("Group size : "+num_of_groups);
 			int start = 0;
 			for(int i = 0;i<num_of_groups;i++) {
 				List<Integer> group_list = new ArrayList<Integer>();
-				System.out.println("start+(player_id_list.size()/2) : "+start+(player_id_list.size()/2));
+				LOGGER.info("start+(player_id_list.size()/2) : "+start+(player_id_list.size()/2));
 				for(int j = start; j<start+(player_id_list.size()/2);j++) {
-					System.out.println("Start value 1 : "+start);
+					LOGGER.info("Start value 1 : "+start);
 					try {
-						System.out.println("J value : "+j);
 					group_list.add(player_id_list.get(j));
-					
 					}catch(ArrayIndexOutOfBoundsException e) {
-						System.out.println("Reached the end of the list");
+						LOGGER.info("Reached the end of the list");
 					} 
 				}
 				next_group.put(i, group_list);
 				start = start+(player_id_list.size()/2);
-				System.out.println("Start value 2 : "+start);
+				LOGGER.info("Start value 2 : "+start);
 			}
-			System.out.println("Next group list");
+			LOGGER.info("Next group list");
 			next_group.forEach((k,v) -> {
 				System.out.println(k+" -- "+v);
 			});
@@ -133,17 +131,11 @@ public class Tournament implements ITournament{
 	}
 	
 	public Map<String,Integer> game (List<Integer> players_id){
-		System.out.println("Game started");
+		LOGGER.info("Game started ... ");
 		Map<String,Integer> winner_map = new HashMap<String,Integer>();
 		winner_map.put("Winner",players_id.get(1));
 		winner_map.put("Runner",players_id.get(2));
 		return winner_map;
 	}
 	
-	 public void set_player_persistence_obj(IPlayer_persistence iPlayer_persistence_obj) {
-		 System.out.println("setting persistence obj : "+iPlayer_persistence_obj);
-	        this.iPlayer_persistence_obj = iPlayer_persistence_obj;
-	 }
-	
-
 }
