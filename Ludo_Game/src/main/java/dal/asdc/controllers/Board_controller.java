@@ -18,6 +18,8 @@ import dal.asdc.ludo_board_structure.Ludo_board_formation;
 import dal.asdc.ludo_board_structure.Token_positions;
 import dal.asdc.model.Game_token_positions;
 
+/**
+ * @author Reshma Unnikrishnan **/
 @Controller
 public class Board_controller {
 	
@@ -43,7 +45,7 @@ public class Board_controller {
 	@RequestMapping(value="/game_menu", method=RequestMethod.POST)
 	public String decide_game_menu(@RequestParam("game_menu") int gmenu, Model model) {
 		model.addAttribute("gamemenu", gmenu);
-		String type = l_board.add_game_type(gmenu);
+		type = l_board.add_game_type(gmenu);
 		System.out.println();
 		Map<Integer,String> player_map = new HashMap<Integer,String>(){{
 			put(4, "Jay");

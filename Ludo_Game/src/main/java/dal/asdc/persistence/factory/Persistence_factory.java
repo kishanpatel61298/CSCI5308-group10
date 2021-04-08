@@ -11,7 +11,10 @@ import dal.asdc.persistence.interfaces.IJdbc_connection;
 import dal.asdc.persistence.interfaces.IPlayer_persistence;
 import dal.asdc.persistence.interfaces.ITournament_persistence;
 
-public class Persistence_factory {
+/**
+ * @author Reshma Unnikrishnan**/
+
+public class Persistence_factory extends Persistence_factory_abstract{
 	
 	public IGame_persistence create_game_persistence() {
 		return new Game_persistence();

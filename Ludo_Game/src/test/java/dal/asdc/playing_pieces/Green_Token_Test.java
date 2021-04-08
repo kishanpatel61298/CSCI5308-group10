@@ -1,13 +1,27 @@
 package dal.asdc.playing_pieces;
+/**
+ * @author Kishan Rakeshbhai Patel **/
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import dal.asdc.playing_pieces.factoy_method.Four_colour_token_factory;
+import dal.asdc.playing_pieces.factoy_method.Token_Factory;
+
 public class Green_Token_Test {
+	
+	Token token;
+	
+	@BeforeEach
+	void initialize() {
+		Token_Factory factory = new Four_colour_token_factory();
+		token = factory.crete_green_token(0);
+	}
+	
 	@Test
 	void constructor_test() {
-		Token token = new Green_Token(0);
 		int[][] position = token.get_coordinate_position();
 
 		assertEquals("GREEN",token.get_token_colour());
@@ -19,14 +33,7 @@ public class Green_Token_Test {
 	}
 	
 	@Test
-	void is_home_test() {
-		Token token = new Green_Token(0);
-		assertEquals(true,token.is_home());
-	}
-	
-	@Test
 	void check_move_towards_winning_square_test_less_than_last_box() {
-		Token token = new Green_Token(0);
 		int[][] token_path = token.get_token_path();
 		int[][] token_position = {{token_path[(token_path.length - 3)][0],token_path[(token_path.length - 3)][1]}};
 		token.set_coordinate_position(token_position);
@@ -35,7 +42,6 @@ public class Green_Token_Test {
 	
 	@Test
 	void check_move_towards_winning_square_test_grater_than_last_box() {
-		Token token = new Green_Token(0);
 		int[][] token_path = token.get_token_path();
 		int[][] token_position = {{token_path[(token_path.length - 3)][0],token_path[(token_path.length - 3)][1]}};
 		token.set_coordinate_position(token_position);
@@ -43,16 +49,7 @@ public class Green_Token_Test {
 	}
 	
 	@Test
-	void is_at_winning_square_test() {
-		Token token = new Green_Token(0);
-		int[][] winning_position = {{7,7}};
-		token.set_coordinate_position(winning_position);
-		assertEquals(true,token.is_at_winning_square());
-	}
-	
-	@Test
 	void set_at_home_test() {
-		Token token = new Green_Token(0);
 		int[][] position = {{6,6}};
 		token.set_coordinate_position(position);
 		assertEquals(false,token.is_home());	

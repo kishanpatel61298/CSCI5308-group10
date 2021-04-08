@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import dal.asdc.model.Player;
 import dal.asdc.model.interfaces.IPlayer;
 import dal.asdc.persistence.factory.Persistence_factory;
+import dal.asdc.persistence.factory.Persistence_factory_abstract;
 import dal.asdc.persistence.interfaces.IPlayer_persistence;
 
 /**
@@ -14,7 +15,7 @@ import dal.asdc.persistence.interfaces.IPlayer_persistence;
 
 public class Player_history{
 
-	Persistence_factory persistence_factory = new Persistence_factory();
+	Persistence_factory_abstract persistence_factory = new Persistence_factory();
 	IPlayer_persistence player_persistence = persistence_factory.create_player_persistence();
 
     @Autowired

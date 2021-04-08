@@ -1,4 +1,6 @@
 package dal.asdc.movement;
+/**
+ * @author Kishan Rakeshbhai Patel **/
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,7 +16,6 @@ import dal.asdc.movement.factory_method.Move_factory;
 import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
-import dal.asdc.player.Human_player;
 import dal.asdc.player.Factory_classes.Player_factory;
 import dal.asdc.playing_pieces.Token;
 

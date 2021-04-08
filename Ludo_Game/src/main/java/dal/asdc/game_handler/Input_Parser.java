@@ -7,27 +7,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import dal.asdc.player.Human_player;
 import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.game_handler.command.*;
 
 public class Input_Parser implements IInput_parser{
 	
+	private static final char LETTER_B = 'b';
+	private static final char LETTER_Y = 'y';
+	private static final char LETTER_G = 'g';
+	private static final char LETTER_R = 'r';
+	private static final String REGULAR_EXPRESSION_TO_CHECK_INPUT = "[rgby]{1}[1-4]{1}";
 	Map<Character,Colour_command> input_commands = new HashMap<>();
-	
 	String input_text = "";
+	
 	public Input_Parser(){
-		input_commands.put('r', new Red_Command());
-		input_commands.put('g', new Green_Command());
-		input_commands.put('y', new Yellow_Command());
-		input_commands.put('b', new Blue_Command());
+		input_commands.put(LETTER_R, new Red_Command());
+		input_commands.put(LETTER_G, new Green_Command());
+		input_commands.put(LETTER_Y, new Yellow_Command());
+		input_commands.put(LETTER_B, new Blue_Command());
 	}
 	
 	public boolean check_input(String input) {
 		input_text = input.trim().toLowerCase();
-		String regular_expression = "[rgby]{1}[1-4]{1}";
+		String regular_expression = REGULAR_EXPRESSION_TO_CHECK_INPUT;
 		boolean result = Pattern.matches(regular_expression, input_text);
 		return result;
 	}

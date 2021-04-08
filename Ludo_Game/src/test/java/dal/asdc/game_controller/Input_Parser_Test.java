@@ -1,4 +1,6 @@
 package dal.asdc.game_controller;
+/**
+ * @author Kishan Rakeshbhai Patel **/
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,10 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 import dal.asdc.player.Factory_classes.Player_factory_normal;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dal.asdc.game_handler.IInput_parser;
-import dal.asdc.game_handler.Input_Parser;
+import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
+import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
 import dal.asdc.player.Factory_classes.Player_factory;
@@ -18,27 +23,31 @@ import dal.asdc.playing_pieces.Token;
 
 public class Input_Parser_Test {
 	
+	IInput_parser input_parser;
+	
+	@BeforeEach
+	void initialize() {
+		Ludo_game_factory game_factory = new Four_player_ludo_game_factory();
+		input_parser = game_factory.create_input_parser();
+	}
+	
 	@Test
 	void check_input_test_true() {
-		Input_Parser input_parser = new Input_Parser();
 		assertEquals(true,input_parser.check_input("R1"));
 	}
 	
 	@Test
 	void check_input_test_false_type1() {
-		Input_Parser input_parser = new Input_Parser();
 		assertEquals(false,input_parser.check_input("  r54e"));
 	}
 	
 	@Test
 	void check_input_test_false_type2() {
-		Input_Parser input_parser = new Input_Parser();
 		assertEquals(true,input_parser.check_input("  y1       "));
 	}
 	
 	@Test
 	void get_word_tokens_test() {
-		Input_Parser input_parser = new Input_Parser();
 		char[] tokens = input_parser.get_word_tokens("r1");
 		assertEquals('r',tokens[0]);
 		assertEquals('1',tokens[1]);
@@ -46,7 +55,6 @@ public class Input_Parser_Test {
 	
 	@Test
 	void get_token_test_one() {
-		Input_Parser input_parser = new Input_Parser();
 		List<Player> total_player_list = new ArrayList<>();
 		char[] char_array = input_parser.get_word_tokens("R1");
 		
@@ -65,7 +73,6 @@ public class Input_Parser_Test {
 	
 	@Test
 	void get_token_test_four() {
-		IInput_parser input_parser = new Input_Parser();
 		List<Player> total_player_list = new ArrayList<>();
 		
 		char[] char_array = input_parser.get_word_tokens("r4");
