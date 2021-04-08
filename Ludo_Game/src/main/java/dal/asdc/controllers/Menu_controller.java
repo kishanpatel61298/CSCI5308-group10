@@ -53,8 +53,7 @@ public class Menu_controller {
 	
 	@RequestMapping(value = "/")
 	public String menu(Model model) {
-		model.addAttribute("Main_menu", m_menu);
-		return "Menu_display.jsp";
+		return "start_page.jsp";
 	}
 
 	@RequestMapping(value="/d_menu", method=RequestMethod.POST)
