@@ -11,21 +11,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dal.asdc.movement.factory_method.Move_factory;
+import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.player.IPlayer_intialiser;
+import dal.asdc.player.Player;
 import dal.asdc.player.Human_player;
 import dal.asdc.player.Factory_classes.Player_factory;
 import dal.asdc.playing_pieces.Token;
 
 public class Make_Move_Test {
 	IMake_Move make_move;
-	List<Human_player> total_player_list;
-	Human_player player1;
-	Human_player player2;
+	List<Player> total_player_list;
+	Player player1;
+	Player player2;
 	List<Token> output_list;
 	
 	@BeforeEach
 	void initialize() {
-		Move_factory move_factory = new Move_factory();
+		Move_factory move_factory = new Simple_move_factory();
 		make_move = move_factory.create_make_move();
 		total_player_list = new ArrayList<>(); 
 		
@@ -34,8 +36,8 @@ public class Make_Move_Test {
 		Player_factory factory = new Player_factory_normal();
 		IPlayer_intialiser initialiser = factory.create_player_intialiser();
 		initialiser.intialise(2);
-		Map<String, Human_player> map = initialiser.getPlayer_list();
-		for(Map.Entry<String, Human_player> iterate : map.entrySet()) {
+		Map<String, Player> map = initialiser.getPlayer_list();
+		for(Map.Entry<String, Player> iterate : map.entrySet()) {
 			total_player_list.add(iterate.getValue());
 		}
 		player1 = total_player_list.get(0);

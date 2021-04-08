@@ -17,7 +17,7 @@ public class Player_intialiser implements IPlayer_intialiser {
     private final int[][] GREEN_HOME_POSITION={{11,3},{12,3},{12,2},{11,2}};
 
 
-    private Map<String, Human_player> player_list= new HashMap<>();
+    private Map<String, Player> player_list= new HashMap<>();
     private Map<String,Player_command> input_commands= new HashMap<>();
 
 
@@ -31,7 +31,7 @@ public class Player_intialiser implements IPlayer_intialiser {
         assign_colour_home_position(player_list);
     }
 
-    private Map<String, Human_player> randomise(Map<String, Human_player> player_list){
+    private Map<String, Player> randomise(Map<String, Player> player_list){
         List<String> colour_list = new ArrayList<String>();
         for(Colour colour: Colour.values()){
             colour_list.add(colour.toString());
@@ -45,12 +45,12 @@ public class Player_intialiser implements IPlayer_intialiser {
         return player_list;
     }
 
-    private void assign_colour_home_position(Map<String, Human_player> player_list){
+    private void assign_colour_home_position(Map<String, Player> player_list){
 
-        Human_player red_player=player_list.get("0");
-        Human_player blue_player=player_list.get("3");
-        Human_player yellow_player=player_list.get("1");
-        Human_player green_player=player_list.get("2");
+        Player red_player=player_list.get("0");
+        Player blue_player=player_list.get("3");
+        Player yellow_player=player_list.get("1");
+        Player green_player=player_list.get("2");
 
 
         input_commands.put("RED", new Red_token_command(red_player));
@@ -67,23 +67,23 @@ public class Player_intialiser implements IPlayer_intialiser {
 
     public void intialise_aggressive_computer_player(){
         intialise(1);
-        Aggressive_computer_player aggressive_computer_player = new Aggressive_computer_player();
+        Player aggressive_computer_player = new Aggressive_computer_player();
         Colour colour = Colour.YELLOW;
         aggressive_computer_player.setColour(colour.toString());
         aggressive_computer_player.setHome_position(GREEN_HOME_POSITION);
-
+        player_list.put("1",aggressive_computer_player);
     }
 
     public void intialise_easy_computer_player(){
         intialise(1);
-        Easy_computer_player easy_computer_player = new Easy_computer_player();
+        Player easy_computer_player = new Easy_computer_player();
         Colour colour = Colour.YELLOW;
         easy_computer_player.setColour(colour.toString());
         easy_computer_player.setHome_position(GREEN_HOME_POSITION);
-
+        player_list.put("1",easy_computer_player);
     }
 
-    public Map<String, Human_player> getPlayer_list() {
+    public Map<String, Player> getPlayer_list() {
         return player_list;
     }
 }

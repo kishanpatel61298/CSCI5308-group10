@@ -72,7 +72,7 @@ public class Menu_controller {
 		return decide_dash;
 	}
 	
-@GetMapping("/register")
+	@GetMapping("/register")
 	public String show_registration_form(Model model) {
 		IPlayer user = new Player();
 		model.addAttribute("user", user);

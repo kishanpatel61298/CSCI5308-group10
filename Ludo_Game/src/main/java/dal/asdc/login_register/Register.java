@@ -2,6 +2,7 @@ package dal.asdc.login_register;
 
 
 
+
 import dal.asdc.login_register.interfaces.IRegister;
 import dal.asdc.model.Player;
 import dal.asdc.model.interfaces.IPlayer;
@@ -25,6 +26,7 @@ public class Register implements IRegister{
  
  //To encrypt password
  private String generate_hash_password(String plain_password){
-		return BCrypt.hashpw(plain_password, BCrypt.gensalt());
+	 return null;
+		//return BCrypt.hashpw(plain_password, BCrypt.gensalt());
 	}
 }

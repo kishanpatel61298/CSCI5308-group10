@@ -1,15 +1,16 @@
 package dal.asdc.player.Command_classes;
 
 import dal.asdc.player.Human_player;
+import dal.asdc.player.Player;
 import dal.asdc.player.Player_command;
 import dal.asdc.playing_pieces.*;
 
 public class Yellow_token_command extends Player_command {
 
-    private Human_player player;
+    private Player player;
     private final int[][] YELLOW_HOME_POSITION={{11,12},{11,11},{12,11},{12,12}};
 
-    public Yellow_token_command(Human_player player) {
+    public Yellow_token_command(Player player) {
         this.player = player;
     }
 

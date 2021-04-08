@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dal.asdc.game_handler.ILudo_game;
 import dal.asdc.game_handler.Ludo_Game;
+import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
+import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.ludo_board_structure.Ludo_board_formation;
 import dal.asdc.ludo_board_structure.Token_positions;
 import dal.asdc.model.Game_token_positions;
@@ -19,8 +22,10 @@ import dal.asdc.model.Game_token_positions;
 public class Board_controller {
 	
 	Ludo_board_formation l_board = new Ludo_board_formation();
-	Ludo_Game ludo_game;
+	ILudo_game ludo_game;
 	Token_positions token_pos = new Token_positions();
+	String type;
+	Map<Integer,String> player_map;
 	
 	@Autowired
 	Game_token_positions gm_tk_pos;
@@ -44,7 +49,8 @@ public class Board_controller {
 			put(4, "Jay");
 			put(5, "Rahul");
 		}};
-		ludo_game = new Ludo_Game(type,player_map);
+		Ludo_game_factory ludo_factory = new Four_player_ludo_game_factory();
+		ludo_game = ludo_factory.create_ludo_game(type,player_map);
 		String current_turn = ludo_game.get_current_turn_text();
 		model.addAttribute("turn", current_turn);		
         Map<String,String> token_positions = new HashMap<String,String>();
@@ -97,5 +103,23 @@ public class Board_controller {
     	
     	return "ludo_board.jsp";
     }
+    
+    @RequestMapping(value = "/reset_board", method = RequestMethod.GET)
+    public String reset_board(Model model) {
+    	ludo_game = null;
+    	Ludo_game_factory ludo_factory = new Four_player_ludo_game_factory();
+		ludo_game = ludo_factory.create_ludo_game(type,player_map);
+		String current_turn = ludo_game.get_current_turn_text();
+		model.addAttribute("turn", current_turn);		
+        Map<String,String> token_positions = new HashMap<String,String>();
+        token_positions = ludo_game.get_position_of_all_tokens();
+    	model.addAttribute("token_path", token_positions);
+    	return "ludo_board.jsp";
+    }
 	
+    @RequestMapping(value = "/back_to_menu", method = RequestMethod.GET)
+    public String back_to_menu(Model model) {
+    	ludo_game = null;
+    	return "Dashboard_menu.jsp";
+    }
 }

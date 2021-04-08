@@ -10,7 +10,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import dal.asdc.game_handler.Ludo_Game;
-import dal.asdc.player.Human_player;
+import dal.asdc.player.Player;
 
 public class Game_Controller_Test {
 	
@@ -20,10 +20,10 @@ public class Game_Controller_Test {
 		Ludo_Game game_controller = Ludo_Game.instance("two_player",player_id_list);
 		
 		assertEquals(false,game_controller.get_dice_rolled());
-		Human_player current_player = game_controller.get_current_turn();
+		Player current_player = game_controller.get_current_turn();
 		assertEquals("RED",current_player.getColour());
 		
-		List<Human_player> player_list = new ArrayList<>();
+		List<Player> player_list = new ArrayList<>();
 		player_list = game_controller.get_total_player_list();
 		assertEquals(2,player_list.size());
 	}
