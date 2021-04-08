@@ -2,13 +2,15 @@ package dal.asdc.model;
 
 import org.springframework.stereotype.Component;
 
+import dal.asdc.model.interfaces.IGame;
+
 /**
  * @author Reshma Unnikrishnan
  * */
 
 @Component
 
-public class Game {
+public class Game implements IGame{
 	private int game_id;
 	private String game_time;
 	private int player_id;

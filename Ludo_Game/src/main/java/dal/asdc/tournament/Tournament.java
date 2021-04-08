@@ -8,6 +8,7 @@ import java.util.Map;
 import dal.asdc.model.Player;
 import dal.asdc.persistence.Player_persistence;
 import dal.asdc.persistence.interfaces.IPlayer_persistence;
+import dal.asdc.tournament.interfaces.ITournament;
 
 public class Tournament implements ITournament{
 
@@ -17,7 +18,7 @@ public class Tournament implements ITournament{
 	public Map<String,Integer> tournament_winners = new HashMap<String,Integer>();
 	
 	int rounds = 0;
-	
+	 
 	static List<Integer> group1 = new ArrayList<Integer>() {{
 		add(1);
 		add(2);

@@ -11,7 +11,7 @@ import dal.asdc.model.Tournaments;
 import dal.asdc.model.interfaces.ITournaments;
 import dal.asdc.persistence.interfaces.IJdbc_connection;
 import dal.asdc.persistence.interfaces.ITournament_persistence;
-import dal.asdc.tournament.ITournament;
+import dal.asdc.tournament.interfaces.ITournament;
 
 /**
  * @author Reshma Unnikrishnan**/

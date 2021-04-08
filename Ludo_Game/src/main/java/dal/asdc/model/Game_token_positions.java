@@ -2,11 +2,13 @@ package dal.asdc.model;
 
 import org.springframework.stereotype.Component;
 
+import dal.asdc.model.interfaces.IGame_token_positions;
+
 /**
  * @author Reshma Unnikrishnan**/
 
 @Component
-public class Game_token_positions {
+public class Game_token_positions implements IGame_token_positions{
 	public String move_token;
 	public String turn;
 
@@ -24,8 +26,5 @@ public class Game_token_positions {
 
 	public void setMove_token(String move_token) {
 		this.move_token = move_token;
-	}
-
-	
-	
+	}	
 }

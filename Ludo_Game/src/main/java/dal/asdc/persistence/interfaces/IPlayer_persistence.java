@@ -11,7 +11,7 @@ import dal.asdc.model.interfaces.IPlayer;
 
 public interface IPlayer_persistence {
 	public void save_record(IPlayer player);
-	public List<Player> select_all_record();
+	public List<IPlayer> select_all_record();
 	public void update_record(int player_id, IPlayer player);
 	public Player filter_by_id(int player_id);
 }

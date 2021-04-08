@@ -1,4 +1,4 @@
-package dal.asdc.tournament;
+package dal.asdc.tournament.interfaces;
 
 import java.util.ArrayList;
 import java.util.List;

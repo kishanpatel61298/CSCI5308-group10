@@ -5,61 +5,64 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dal.asdc.persistence.Game_player_score_persistence;
-import dal.asdc.persistence.Player_persistence;
+import dal.asdc.ludo_score_history.interfaces.IScore_history;
+import dal.asdc.model.factory.Model_factory;
+import dal.asdc.model.interfaces.IGame_player_score;
+import dal.asdc.model.interfaces.IPlayer;
+import dal.asdc.persistence.factory.Persistence_factory;
 import dal.asdc.persistence.interfaces.IGame_player_score_persistence;
 import dal.asdc.persistence.interfaces.IPlayer_persistence;
-import dal.asdc.ludo_score_history.interfaces.IScore_history;
-import dal.asdc.model.Game_player_score;
-import dal.asdc.model.Player;
-import dal.asdc.model.interfaces.ITournaments;
 
 /**
  * @author Reshma Unnikrishnan**/
 
 public class Player_score_history implements IScore_history {
 	
-	IGame_player_score_persistence gm_ply_sc = new Game_player_score_persistence();
-	private Game_player_score model_gm_ply = new Game_player_score();
-	private List<Game_player_score> model_gm_ply_list = new ArrayList<>();
-	IPlayer_persistence plyr_persistence = new Player_persistence();
-	Player plyr = new Player();
+	Persistence_factory persistence_factory = new Persistence_factory();
+	Model_factory model_factory = new Model_factory();
+	
+	IGame_player_score_persistence game_player_score_persistence = persistence_factory.create_game_player_score_persistence();
+	IPlayer_persistence player_persistence = persistence_factory.create_player_persistence();
+	
+	IGame_player_score game_player_score = model_factory.create_game_player_score();
+	IPlayer player = model_factory.create_player();
+	
+	List<IGame_player_score> game_player_score_list = new ArrayList<>();
 	
 	@Override
 	public void save_history() {
-		gm_ply_sc.insert_score(model_gm_ply);
+		game_player_score_persistence.insert_score(game_player_score);
 	}
 
 	@Override
 	public void load_history(int player_id) {
-		model_gm_ply_list = gm_ply_sc.get_player_score(player_id);
+		game_player_score_list = game_player_score_persistence.get_player_score(player_id);
 	}
 
 	@Override
 	public Map<String,String> form_score_board() {
-		int plyr_total_score = 0;
+		int player_total_score = 0;
 		int player_id=0;
 		Map<String,String> player_score_map = new HashMap<String,String>();
-		for(Game_player_score model : model_gm_ply_list) {
+		for(IGame_player_score model : game_player_score_list) {
             System.out.println(model.getScore());
-            plyr_total_score = plyr_total_score + model.getScore();
+            player_total_score = player_total_score + model.getScore();
             player_id = model.getPlayer_id();
         }
-		plyr = plyr_persistence.filter_by_id(player_id);
-		String player_name = plyr.getPlayer_name();
-		String player_email = plyr.getPlayer_email();
+		player = player_persistence.filter_by_id(player_id);
+		String player_name = player.getPlayer_name();
+		String player_email = player.getPlayer_email();
 		player_score_map.put("player_name", player_name);
 		player_score_map.put("player_email", player_email);
-		player_score_map.put("total_score", String.valueOf(plyr_total_score));
+		player_score_map.put("total_score", String.valueOf(player_total_score));
 		return player_score_map;
 	}
 
 	public void form_save_score(String score_id,int game_id,int player_id,int score) {
-		model_gm_ply.setScore_id(score_id);
-		model_gm_ply.setGame_id(game_id);
-		model_gm_ply.setPlayer_id(player_id);
-		model_gm_ply.setScore(score);
-		
+		game_player_score.setScore_id(score_id);
+		game_player_score.setGame_id(game_id);
+		game_player_score.setPlayer_id(player_id);
+		game_player_score.setScore(score);
 		save_history();
 	}
 

@@ -37,8 +37,8 @@ public class Player_persistence implements IPlayer_persistence {
 	}
 
 	@Override
-	public List<Player> select_all_record() {
-	        List<Player> player_list = new ArrayList<>();
+	public List<IPlayer> select_all_record() {
+	        List<IPlayer> player_list = new ArrayList<>();
 	        IJdbc_connection jdbc = new Jdbc_connection();
 	        String select_all_query = "SELECT * from Players";
 	        try {
@@ -46,7 +46,7 @@ public class Player_persistence implements IPlayer_persistence {
 				PreparedStatement preparedStatement = conn.prepareStatement(select_all_query);
 	            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 	                while (resultSet.next()) {
-	                    Player player = new Player();
+	                    IPlayer player = new Player();
 	                    player.setPlayer_id(resultSet.getInt("player_id"));
 	                    player.setPlayer_name(resultSet.getString("player_name"));
 	                    player.setPlayer_email(resultSet.getString("player_email"));

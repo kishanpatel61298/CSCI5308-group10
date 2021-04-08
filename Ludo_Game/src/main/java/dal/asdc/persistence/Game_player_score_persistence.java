@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dal.asdc.model.Game_player_score;
+import dal.asdc.model.interfaces.IGame_player_score;
 import dal.asdc.persistence.interfaces.IGame_player_score_persistence;
 import dal.asdc.persistence.interfaces.IJdbc_connection;
 
@@ -17,7 +18,7 @@ import dal.asdc.persistence.interfaces.IJdbc_connection;
 public class Game_player_score_persistence implements IGame_player_score_persistence{
 	
 	@Override
-	public void insert_score(Game_player_score game_player_score) {
+	public void insert_score(IGame_player_score game_player_score) {
 		IJdbc_connection jdbc = new Jdbc_connection();
 		String create_query = "INSERT into game_player_score (score_id, game_id, player_id, score) "
 				+ "values(?,?,?,?)";
@@ -35,8 +36,8 @@ public class Game_player_score_persistence implements IGame_player_score_persist
 	}
 
 	@Override
-	public List<Game_player_score> get_player_score(int player_id) {
-		List<Game_player_score> game_player_scr_list = new ArrayList<>();
+	public List<IGame_player_score> get_player_score(int player_id) {
+		List<IGame_player_score> game_player_scr_list = new ArrayList<>();
 		IJdbc_connection jdbc = new Jdbc_connection();
 		String filter_by_id_query = "SELECT * from game_player_score where player_id = ?";
 		 try{
@@ -61,8 +62,8 @@ public class Game_player_score_persistence implements IGame_player_score_persist
 	}
 
 	@Override
-	public List<Game_player_score> get_game_score(int game_id) {
-		List<Game_player_score> game_player_scr_list = new ArrayList<>();
+	public List<IGame_player_score> get_game_score(int game_id) {
+		List<IGame_player_score> game_player_scr_list = new ArrayList<>();
 		IJdbc_connection jdbc = new Jdbc_connection();
 		String filter_by_id_query = "SELECT * from game_player_score where game_id = ?";
 		 try{
@@ -71,7 +72,7 @@ public class Game_player_score_persistence implements IGame_player_score_persist
 	         preparedStatement.setInt(1, game_id);
 	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
 	        	 while (resultSet.next()) {
-	             		Game_player_score game_player_score = null;
+	             		IGame_player_score game_player_score = null;
 	             		game_player_score = new Game_player_score();
 	             		game_player_score.setScore_id(resultSet.getString("score_id"));
 	             		game_player_score.setGame_id(resultSet.getInt("game_id"));
