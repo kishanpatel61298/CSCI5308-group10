@@ -76,4 +76,9 @@ class Token_positionsTest {
 		assertEquals(empty_blue_map,tp.get_empty_blue_token_positions());
 	}
 	
+	@Test
+	void get_game_board_attributes() {
+		
+	}
+	
 }

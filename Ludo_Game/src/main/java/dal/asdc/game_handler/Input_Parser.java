@@ -1,14 +1,29 @@
 package dal.asdc.game_handler;
 
+/**
+ * @author Kishan Rakeshbhai Patel **/
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
+import dal.asdc.game_handler.command.*;
 
 public class Input_Parser {
 	
+	Map<Character,Command> input_commands = new HashMap<>();
+	
 	String input_text = "";
+	public Input_Parser(){
+		input_commands.put('r', new Red_Command());
+		input_commands.put('g', new Green_Command());
+		input_commands.put('y', new Yellow_Command());
+		input_commands.put('b', new Blue_Command());
+
+	}
 	
 	public boolean check_input(String input) {
 		input_text = input.trim().toLowerCase();
@@ -28,52 +43,8 @@ public class Input_Parser {
 	public Token get_player_from_input(List<Player> player_list_temp, char[] input_tokens) {
 		char first_letter = input_tokens[0];
 		first_letter = Character.toLowerCase(first_letter);
-		List<Player> player_list = player_list_temp;
-		switch(first_letter) {
-			case 'r':
-				for(int player = 0 ; player < player_list.size() ; player++) {
-					Player temp_player = player_list.get(player);
-					if(temp_player.getColour().equals("RED")) {
-						Token red_token = get_token(player_list.get(player),input_tokens[1]);
-						System.out.print(red_token.get_token_number());
-						return red_token;
-					}
-				}
-				break;
-			case 'g':
-				for(int player = 0 ; player < player_list.size() ; player++) {
-					Player temp_player = player_list.get(player);
-					if(temp_player.getColour().equals("RED")) {
-						Token green_token = get_token(player_list.get(player),input_tokens[1]);
-						return green_token;
-					}
-				}
-				break;
-			case 'b':
-				for(int player = 0 ; player < player_list.size() ; player++) {
-					Player temp_player = player_list.get(player);
-					if(temp_player.getColour().equals("RED")) {
-						Token blue_token = get_token(player_list.get(player),input_tokens[1]);
-						return blue_token;
-					}
-				}
-				break;
-			case 'y':
-				for(int player = 0 ; player < player_list.size() ; player++) {
-					Player temp_player = player_list.get(player);
-					if(temp_player.getColour().equals("RED")) {
-						Token yellow_token = get_token(player_list.get(player),input_tokens[1]);
-						return yellow_token;
-					}
-				}
-				break;
-		}
-		return null;
-	}
-
-	private Token get_token(Player player, char token_number) {
-		int token_number_int = Character.getNumericValue(token_number);
-		Token token = player.get_selected_token(token_number_int-1);
-		return token;
+		Command command = input_commands.get(first_letter);
+		command.set_parameters(player_list_temp, input_tokens);
+		return command.execute();
 	}
 }

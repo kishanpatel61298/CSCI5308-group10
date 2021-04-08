@@ -1,17 +1,14 @@
 package dal.asdc.player;
 
-import dal.asdc.playing_pieces.Blue_Token;
-import dal.asdc.playing_pieces.Green_Token;
-import dal.asdc.playing_pieces.Red_Token;
+import dal.asdc.movement.*;
 import dal.asdc.playing_pieces.Token;
-import dal.asdc.playing_pieces.Yellow_Token;
-import dal.asdc.game.*;
-
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class Player {
+public class Player extends Player_abstract{
 
     private String colour;
     private int[][] position;
@@ -22,42 +19,35 @@ public class Player {
     private boolean is_done = false;
     private int roll;
     IMake_Move make_move = new Make_Move();
-    Dice dice = new Dice();
+    Dice_user dice_user = Dice_user.instance();
+    List<Player> all_player_list = new ArrayList<>();
+    Player_intialiser intialiser;
+    Map<String, Player> player_list= new HashMap<>();
 
-    public Player() {
-    	
+    public Player(){
+
     }
-    
-    public Player(String token_colour) {
-    	colour = token_colour;
-		if(colour.equals("RED")) {
-	    	for(int token_number = 0 ; token_number < 4 ; token_number++) {
-	    		Token token = new Red_Token(token_number);
-	    		token_list.add(token);
-	    	}
-		}else if(colour.equals("GREEN")) {
-			for(int token_number = 0 ; token_number < 4 ; token_number++) {
-	    		Token token = new Green_Token(token_number);
-	    		token_list.add(token);
-	    	}
-    	}else if(colour.equals("BLUE")) {
-    		for(int token_number = 0 ; token_number < 4 ; token_number++) {
-	    		Token token = new Blue_Token(token_number);
-	    		token_list.add(token);
-	    	}
-    	}else if(colour.equals("YELLOW")) {
-    		for(int token_number = 0 ; token_number < 4 ; token_number++) {
-	    		Token token = new Yellow_Token(token_number);
-	    		token_list.add(token);
-	    	}
-    	}
+    public Player(String colour){
+        this.colour=colour;
     }
-    
     public int roll(){
-        roll= dice.roll_dice();
+        roll= dice_user.roll_dice();
         return roll;
     }
-    
+    public List<Token> play(List<Token> token_list){
+
+        player_list = intialiser.getPlayer_list();
+
+        for (int i = 0; i < 4; i++) {
+            all_player_list.add(player_list.get(i));
+        }
+
+        for (int i = 0; i < 4; i++) {
+            make_move.play_move(token_list.get(i), roll() ,all_player_list);
+        }
+
+        return token_list;
+    }
     public List<Token> get_all_tokens(){
     	return token_list;
     }
@@ -94,4 +84,7 @@ public class Player {
         this.is_done = is_done;
     }
 
+    public int[][] getPosition() {
+        return position;
+    }
 }

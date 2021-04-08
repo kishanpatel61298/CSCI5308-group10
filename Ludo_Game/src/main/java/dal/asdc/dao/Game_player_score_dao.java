@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dal.asdc.dao.interfaces.IGame_player_score_dao;
+import dal.asdc.dao.interfaces.IJDBC_Connection;
 import dal.asdc.model.Game_player_score;
 import dal.asdc.model.Player;
 
