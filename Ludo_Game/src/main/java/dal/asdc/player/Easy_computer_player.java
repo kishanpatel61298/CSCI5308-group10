@@ -18,6 +18,7 @@ public class Easy_computer_player extends Player_abstract{
     private int[][] safe_box;
     private int[][] token_position;
     private int  token_index_on_path;
+    private int[][] home_position;
     IMake_Move iMake_move;
     Dice_user dice_user = Dice_user.instance();
 
@@ -98,4 +99,11 @@ public class Easy_computer_player extends Player_abstract{
 
     }
 
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public void setHome_position(int[][] home_position) {
+        this.home_position = home_position;
+    }
 }
