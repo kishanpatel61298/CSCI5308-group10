@@ -1,12 +1,16 @@
 package dal.asdc.controllers;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,7 +72,7 @@ public class Menu_controller {
 		return decide_dash;
 	}
 	
-@GetMapping("/register")
+	@GetMapping("/register")
 	public String show_registration_form(Model model) {
 		IPlayer user = new Player();
 		model.addAttribute("user", user);
