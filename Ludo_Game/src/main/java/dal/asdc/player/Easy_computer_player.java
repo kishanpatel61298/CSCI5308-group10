@@ -1,8 +1,12 @@
 package dal.asdc.player;
 
+import dal.asdc.game_handler.IDice;
+import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
+import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.movement.Dice_user;
 import dal.asdc.movement.IMake_Move;
-import dal.asdc.movement.Make_Move;
+import dal.asdc.movement.factory_method.Move_factory;
+import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.playing_pieces.Token;
 
 import java.util.ArrayList;
@@ -22,15 +26,19 @@ public class Easy_computer_player extends Player {
     private int[][] home_position;
     private boolean is_done = false;
     IMake_Move iMake_move;
+    Move_factory move_factory = new Simple_move_factory();
     Dice_user dice_user = Dice_user.instance();
 
     List<Token> token_list= new ArrayList<>();
     List<Token> all_tokens = new ArrayList<>();
     List<Player> all_players = new ArrayList<>();
 
+    Ludo_game_factory ludo_game_factory = new Four_player_ludo_game_factory();
+    IDice iDice = ludo_game_factory.create_dice();
+
     public List<Token> play(List<Token> token_list){
-        iMake_move = new Make_Move();
-        roll = dice_user.roll_dice();
+        iMake_move = move_factory.create_make_move();
+        roll = iDice.roll_dice();
         Random random = new Random();
 
         int number = random.nextInt(4)+1;
@@ -147,5 +155,10 @@ public class Easy_computer_player extends Player {
 
     public void set_tokens(List<Token> four_tokens) {
     	token_list = four_tokens;
+    }
+
+    @Override
+    public int[][] getHome_position() {
+        return home_position;
     }
 }
