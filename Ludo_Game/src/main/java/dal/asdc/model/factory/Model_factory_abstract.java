@@ -20,37 +20,21 @@ import dal.asdc.model.interfaces.ITournaments;
 /**
  * @author Reshma Unnikrishnan**/
 
-public class Model_factory extends Model_factory_abstract {
+public abstract class Model_factory_abstract {
 	
-	public IDash_menu create_dash_menu() {
-		return new Dash_menu();
-	}
+	public abstract IDash_menu create_dash_menu();
 	
-	public IGame_menu create_game_menu() {
-		return new Game_menu();
-	}
+	public abstract IGame_menu create_game_menu();
 	
-	public IMain_menu create_main_menu() {
-		return new Main_menu();
-	}
+	public abstract IMain_menu create_main_menu(); 
 	
-	public IGame_player_score create_game_player_score() {
-		return new Game_player_score();
-	}
+	public abstract IGame_player_score create_game_player_score();
 
-	public IGame_token_positions create_game_token_positions() {
-		return new Game_token_positions();
-	}
+	public abstract IGame_token_positions create_game_token_positions();
 	
-	public IGame create_game() {
-		return new Game();
-	}
+	public abstract IGame create_game();
 	
-	public IPlayer create_player() {
-		return new Player();
-	}
+	public abstract IPlayer create_player();
 	
-	public ITournaments create_tournaments() {
-		return new Tournaments();
-	}
+	public abstract ITournaments create_tournaments();
 }

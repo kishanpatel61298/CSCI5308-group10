@@ -7,6 +7,8 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * @author Reshma Unnikrishnan **/
 class Ludo_board_formationTest {
 	
 	private Ludo_board_formation lbf;

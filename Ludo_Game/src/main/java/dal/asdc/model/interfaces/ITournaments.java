@@ -1,5 +1,7 @@
 package dal.asdc.model.interfaces;
 
+/**
+ * @author Reshma Unnikrishnan**/
 public interface ITournaments {
 	
 	public int getTournament_id();

@@ -7,17 +7,17 @@ import dal.asdc.ludo_score_history.interfaces.IScore_history;
 
 /**
  * @author Reshma Unnikrishnan**/
-public class Score_factory {
+public class Score_factory extends Score_factory_abstract {
 
-	public static IScore_history create_player_score_history() {
+	public IScore_history create_player_score_history() {
 		return new Player_score_history();
 	}
 	
-	public static IScore_history create_game_score_history() {
+	public IScore_history create_game_score_history() {
 		return new Game_score_history();
 	}
 	
-	public static IScore_history create_tournament_score_history() {
+	public IScore_history create_tournament_score_history() {
 		return new Tournaments_score_history();
 	}
 
