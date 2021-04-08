@@ -53,5 +53,5 @@ deploy-production:
       - gem install dpl
       - dpl --provider=heroku --app=$HEROKU_APP_NAME_PROD --api-key=$HEROKU_API_KEY
     only:
-      - master
+      - prod_release1.0
         
