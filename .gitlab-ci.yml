@@ -19,6 +19,13 @@ test:
     script:
       - cd ./Ludo_Game
       - mvn clean test
+    artifacts:
+      when: always
+      reports:
+        junit:
+          - ./Ludo_Game/target/surefire-reports/TEST-*.xml
+
+
 
 deploy-test:
     stage: deploy
