@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import dal.asdc.game_handler.Ludo_Game;
 import dal.asdc.login_register.Login;
 import dal.asdc.login_register.Register;
+import dal.asdc.login_register.interfaces.ILogin;
+import dal.asdc.login_register.interfaces.IRegister;
 import dal.asdc.ludo_board_structure.Ludo_board_formation;
 import dal.asdc.ludo_board_structure.Token_positions;
 import dal.asdc.ludo_menu.Dashboard_menu;
@@ -26,6 +28,7 @@ import dal.asdc.model.Main_menu;
 import dal.asdc.model.Player;
 import dal.asdc.model.interfaces.IPlayer;
 import dal.asdc.tournament.Groups;
+import dal.asdc.tournament.interfaces.IGroups;
 import dal.asdc.model.Dash_menu;
 import dal.asdc.model.Game_menu;
 import dal.asdc.model.Game_token_positions;
@@ -34,9 +37,9 @@ import dal.asdc.model.Game_token_positions;
 public class Menu_controller {
 	
 	Dashboard_menu dash_menu = new Dashboard_menu();
-	private Groups grps = new Groups();
-	private Login login = new Login();
-	private Register register = new Register();
+	private IGroups groups = new Groups();
+	private ILogin login = new Login();
+	private IRegister register = new Register();
 
 	
 	@Autowired
@@ -86,7 +89,7 @@ public class Menu_controller {
 
 	@PostMapping("/process_register")
 	public String processRegister(@ModelAttribute("user") Player player) {
-		boolean is_registerd = register.Register(player);
+		boolean is_registerd = register.register(player);
 		if(is_registerd) {
 			return "login_form.jsp";
 		}
@@ -109,8 +112,7 @@ public class Menu_controller {
 	@GetMapping("/start_tournament")
 	public String start_tournament(Model model) {
 		int no_of_players = 0;
-		model.addAttribute("no_of_players", no_of_players);
-		Map<Integer, Collection<List<Player>>> players_map = grps.form_tournaments_group();
+		Map<Integer, Collection<List<IPlayer>>> players_map = groups.form_tournaments_group();
 		if(players_map != null) {
 			model.addAttribute("Main_menu", m_menu);
 			return "Menu_display.jsp";			
@@ -119,12 +121,5 @@ public class Menu_controller {
 			return "error_page.jsp";
 		}
 	}
-
-	@PostMapping("/show_player_list")
-	public String show_player_list(@RequestParam("no_of_players") int no_of_players, Model model) {
-		System.out.println(no_of_players);
-		return "player_list.jsp";
-	}
-
 	
 }
