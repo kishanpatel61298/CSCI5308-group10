@@ -20,10 +20,10 @@ test:
       - cd ./Ludo_Game
       - mvn clean test
     artifacts:
-        when: always
-        reports:
-        junit:
-          - ./Ludo_Game/target/surefire-reports/TEST-*.xml
+      when: always
+      reports:
+      junit:
+        - ./Ludo_Game/target/surefire-reports/TEST-*.xml
       
       
 
