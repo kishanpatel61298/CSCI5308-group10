@@ -1,26 +1,35 @@
 package dal.asdc.player;
 
-import dal.asdc.movement.Dice_user;
+import dal.asdc.game_handler.IDice;
+import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
+import dal.asdc.game_handler.factory_method.Ludo_game_factory;
+
 import dal.asdc.movement.IMake_Move;
 import dal.asdc.movement.Make_Move;
+
 import dal.asdc.playing_pieces.Token;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Aggressive_computer_player extends Player_abstract{
+public class Aggressive_computer_player extends Player {
 
     private String colour;
     private Token token;
     private int roll;
+    private int[][] position;
     private int[][] token_path;
     private int[][] safe_box;
     private int[][] token_position;
     private int  token_index_on_path;
     private int[][] home_position;
+    private boolean is_done = false;
 
     IMake_Move iMake_move;
-    Dice_user dice_user = Dice_user.instance();
+
+
+    Ludo_game_factory ludo_game_factory = new Four_player_ludo_game_factory();
+    IDice iDice = ludo_game_factory.create_dice();
 
     List<Token> token_list= new ArrayList<>();
     List<Token> all_tokens = new ArrayList<>();
@@ -28,7 +37,7 @@ public class Aggressive_computer_player extends Player_abstract{
 
     public List<Token> play(List<Token> token_list){
         iMake_move = new Make_Move();
-        roll = dice_user.roll_dice();
+        roll = iDice.roll_dice();
         for ( int i=0 ; i < 4 ; i++){
             if(token_list.get(i).is_home() && 6 == roll ){
                 token=check_if_home(iMake_move ,token_list.get(i));
@@ -93,5 +102,49 @@ public class Aggressive_computer_player extends Player_abstract{
 
     public void setHome_position(int[][] home_position) {
         this.home_position = home_position;
+    }
+
+    public Token get_selected_token(int token_number){
+        return token_list.get(token_number);
+    }
+
+	@Override
+	public List<Token> get_all_tokens() {
+		return token_list;
+	}
+
+	@Override
+	public void setPosition(int[][] position) {
+        this.position = position;
+	}
+	
+	public int[][] getPosition() {
+        return position;
+    }
+
+	@Override
+	public void set_selected_token(Token token) {
+        token_list.add(token);
+	}
+
+	@Override
+	public String getColour() {
+        return colour;
+	}
+
+	public boolean get_is_done(){
+        return is_done;
+    }
+
+    public void set_is_done(boolean is_done) {
+        this.is_done = is_done;
+    }
+
+    public void set_tokens(List<Token> four_tokens) {
+    	token_list = four_tokens;
+    }
+
+    public int[][] getHome_position() {
+        return home_position;
     }
 }

@@ -85,8 +85,11 @@ public class Menu_controller {
 		return decide_dash;
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * @author Heli Bhavsar**/
+=======
+>>>>>>> 4c5c7e2fc77edbbb2cb06826e7fc2869e39e3d3e
 	@GetMapping("/register")
 	public String show_registration_form(Model model) {
 		IPlayer user = new Player();

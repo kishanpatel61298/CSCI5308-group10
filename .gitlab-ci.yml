@@ -33,4 +33,18 @@ deploy-test:
       - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
     only:
       - develop
+
+deploy-production:
+    stage: deploy
+    tags:
+      - dalfcs_gitlab_docker_ci
+    image: ruby:latest
+    script:
+      - cd ./Ludo_Game
+      - apt-get update -qy
+      - apt-get install -y ruby-dev
+      - gem install dpl
+      - dpl --provider=heroku --app=$HEROKU_APP_NAME_PROD --api-key=$HEROKU_API_KEY
+    only:
+      - master
         

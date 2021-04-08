@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import dal.asdc.player.Factory_classes.Player_factory_normal;
 import org.junit.jupiter.api.Test;
 
+import dal.asdc.game_handler.IInput_parser;
 import dal.asdc.game_handler.Input_Parser;
 import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
-import dal.asdc.player.Player_factory;
-import dal.asdc.player.Player_factory_normal;
+import dal.asdc.player.Factory_classes.Player_factory;
 import dal.asdc.playing_pieces.Token;
 
 public class Input_Parser_Test {
@@ -64,7 +65,7 @@ public class Input_Parser_Test {
 	
 	@Test
 	void get_token_test_four() {
-		Input_Parser input_parser = new Input_Parser();
+		IInput_parser input_parser = new Input_Parser();
 		List<Player> total_player_list = new ArrayList<>();
 		
 		char[] char_array = input_parser.get_word_tokens("r4");
