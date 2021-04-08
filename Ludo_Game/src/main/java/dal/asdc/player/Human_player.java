@@ -12,6 +12,7 @@ public class Human_player extends Player {
 
     private String colour;
     private int[][] position;
+    private int[][] home_position;
     private boolean is_turn;
     List<Token> token_list= new ArrayList<>();
     private String name;
@@ -87,4 +88,8 @@ public class Human_player extends Player {
     public int[][] getPosition() {
         return position;
     }
+	@Override
+	public void setHome_position(int[][] gREEN_HOME_POSITION) {
+        this.home_position = home_position;		
+	}
 }

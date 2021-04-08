@@ -43,6 +43,7 @@ public class Ludo_Game implements ILudo_game{
 	int dice_number;
 	String type_of_game = null;
 	boolean is_defeat_move = false;
+	boolean is_game_over = false;
 	Token_paths token_paths = new Token_paths();
 	Map<String,String> winner_map = new HashMap<>();
 	IInput_parser input_parser = null;
@@ -204,8 +205,9 @@ public class Ludo_Game implements ILudo_game{
 			
 			Player next_player = get_next_player(temp_list,current_player_temp);
 			if(next_player.get_is_done()) {
-				//next_turn();
-				//do something here
+				if(get_total_player_list().size()==2) {
+					set_is_game_over(true);
+				}
 			}else {
 				set_current_turn(next_player);
 			}
@@ -331,5 +333,13 @@ public class Ludo_Game implements ILudo_game{
 	
 	public int get_dice_number() {
 		return dice_number;
+	}
+	
+	public boolean get_is_game_over() {
+		return is_game_over;
+	}
+	
+	public void set_is_game_over(boolean is_game_over) {
+		this.is_game_over = is_game_over;
 	}
 }

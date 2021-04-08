@@ -67,20 +67,20 @@ public class Player_intialiser implements IPlayer_intialiser {
 
     public void intialise_aggressive_computer_player(){
         intialise(1);
-        Aggressive_computer_player aggressive_computer_player = new Aggressive_computer_player();
+        Player aggressive_computer_player = new Aggressive_computer_player();
         Colour colour = Colour.YELLOW;
         aggressive_computer_player.setColour(colour.toString());
         aggressive_computer_player.setHome_position(GREEN_HOME_POSITION);
-
+        player_list.put("1",aggressive_computer_player);
     }
 
     public void intialise_easy_computer_player(){
         intialise(1);
-        Easy_computer_player easy_computer_player = new Easy_computer_player();
+        Player easy_computer_player = new Easy_computer_player();
         Colour colour = Colour.YELLOW;
         easy_computer_player.setColour(colour.toString());
         easy_computer_player.setHome_position(GREEN_HOME_POSITION);
-
+        player_list.put("1",easy_computer_player);
     }
 
     public Map<String, Player> getPlayer_list() {

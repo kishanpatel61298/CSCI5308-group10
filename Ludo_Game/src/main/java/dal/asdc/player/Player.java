@@ -16,4 +16,5 @@ public abstract class Player {
 	public abstract void set_is_done(boolean b);
 	public abstract void set_tokens(List<Token> four_tokens);
 	public abstract int[][] getPosition();
+	public abstract void setHome_position(int[][] gREEN_HOME_POSITION);
 }

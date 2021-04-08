@@ -13,7 +13,7 @@ public class Computer_player_command extends Board_creation_command{
 	@Override
 	public IPlayer_intialiser execute(Map<Integer, String> player_list,IPlayer_intialiser initialiser) {
 		IPlayer_intialiser initialiser_temp = initialiser;
-		initialiser_temp.intialise(2);
+		initialiser_temp.intialise_aggressive_computer_player();
 		return initialiser_temp;
 	}
 
