@@ -2,15 +2,15 @@ package dal.asdc.login_register;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import dal.asdc.login_register.interfaces.IRegister;
 import dal.asdc.model.Player;
 import dal.asdc.model.interfaces.IPlayer;
 import dal.asdc.persistence.Player_persistence;
 import dal.asdc.persistence.interfaces.IPlayer_persistence;
 
-public class Register {
- public boolean Register(IPlayer player) {
-	 IPlayer_persistence plyr_dao = new Player_persistence();
-    
+public class Register implements IRegister{
+ public boolean register(IPlayer player) {
+	 IPlayer_persistence plyr_dao = new Player_persistence();    
     //To fetch plain password and set encrypted password
     player.setPlayer_password(generate_hash_password(player.getPlayer_password()));    
     IPlayer fatched_player = plyr_dao.filter_by_emailid(player.getPlayer_email());
