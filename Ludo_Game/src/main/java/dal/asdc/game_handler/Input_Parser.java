@@ -14,7 +14,7 @@ import dal.asdc.game_handler.command.*;
 
 public class Input_Parser implements IInput_parser{
 	
-	Map<Character,Command> input_commands = new HashMap<>();
+	Map<Character,Colour_command> input_commands = new HashMap<>();
 	
 	String input_text = "";
 	public Input_Parser(){
@@ -42,7 +42,7 @@ public class Input_Parser implements IInput_parser{
 	public Token get_player_from_input(List<Player> player_list_temp, char[] input_tokens) {
 		char first_letter = input_tokens[0];
 		first_letter = Character.toLowerCase(first_letter);
-		Command command = input_commands.get(first_letter);
+		Colour_command command = input_commands.get(first_letter);
 		command.set_parameters(player_list_temp, input_tokens);
 		return command.execute();
 	}

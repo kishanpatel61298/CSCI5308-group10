@@ -1,11 +1,11 @@
 package dal.asdc.game_handler.command;
 /**
  * @author Kishan Rakeshbhai Patel **/
-import dal.asdc.game_handler.command.Command.Token_Colour;
+import dal.asdc.game_handler.command.Colour_command.Token_Colour;
 import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 
-public class Blue_Command extends Command{
+public class Blue_Command extends Colour_command{
 
 	@Override
 	public Token execute() {
@@ -18,5 +18,4 @@ public class Blue_Command extends Command{
 		}
 		return null;		
 	}
-
 }

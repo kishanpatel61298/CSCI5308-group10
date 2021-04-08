@@ -1,12 +1,20 @@
 package dal.asdc.game_handler;
 /**
  * @author Kishan Rakeshbhai Patel **/
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import dal.asdc.playing_pieces.Token;
+import dal.asdc.game_handler.command.Board_creation_command;
+import dal.asdc.game_handler.command.Colour_command;
+import dal.asdc.game_handler.command.Computer_player_command;
+import dal.asdc.game_handler.command.Four_player_command;
+import dal.asdc.game_handler.command.Red_Command;
+import dal.asdc.game_handler.command.Three_player_command;
+import dal.asdc.game_handler.command.Two_player_command;
 import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
 import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.ludo_board_structure.Token_paths;
@@ -20,6 +28,8 @@ import dal.asdc.player.Player_factory_normal;
 
 public class Ludo_Game implements ILudo_game{
 	
+	private static final int TWO_DIMENSIONS = 2;
+	private static final int NUMBER_OF_TOKENS_PER_PLAYER = 4;
 	Player player1 = null;
 	Player player2 = null;
 	Player player3 = null;
@@ -32,10 +42,11 @@ public class Ludo_Game implements ILudo_game{
 	String type_of_game = null;
 	boolean is_defeat_move = false;
 	Token_paths token_paths = new Token_paths();
-	Map<String,Integer> winner_map = new HashMap<>();
+	Map<String,String> winner_map = new HashMap<>();
 	IInput_parser input_parser = null;
 	IMake_Move make_move = null;
 	IDice dice = null;
+	Map<String,Board_creation_command> input_commands = new HashMap<>();
 	private static Ludo_Game ludo_game = null;
 	
 	public static Ludo_Game instance(String type, Map<Integer,String> player_list) {
@@ -49,15 +60,14 @@ public class Ludo_Game implements ILudo_game{
 		type_of_game = game_type;
 		Player_factory factory = new Player_factory_normal();
 		IPlayer_intialiser initialiser = factory.create_player_intialiser();
-		if(game_type.equals("two_player")) {
-			initialiser.intialise(2);
-		}else if(game_type.equals("three_player")) {
-			initialiser.intialise(3);
-		}else if(game_type.equals("four_player")) {
-			initialiser.intialise(4);
-		}else if(game_type.equals("computer_player")) {
-			//initialize_computer_players();
-		}
+		
+		input_commands.put("two_player", new Two_player_command());
+		input_commands.put("three_player", new Three_player_command());
+		input_commands.put("four_player", new Four_player_command());
+		input_commands.put("computer_player", new Computer_player_command());
+
+		Board_creation_command command = input_commands.get(game_type);
+		initialiser = command.execute(player_list,initialiser);
 		Map<String,Player> map = initialiser.getPlayer_list();
 		for(Map.Entry<String,Player> iterate : map.entrySet()) {
 			total_player_list.add(iterate.getValue());
@@ -113,7 +123,7 @@ public class Ludo_Game implements ILudo_game{
 	
 	public Map<String,String> get_position_of_all_tokens(){
         Map<String,String> positions = new HashMap<>();
-		int[][] tokens_position = new int[get_total_player_list().size()*4][2];
+		int[][] tokens_position = new int[get_total_player_list().size()*NUMBER_OF_TOKENS_PER_PLAYER][TWO_DIMENSIONS];
 		int counter=0;
 		List<Token> all_tokens = new ArrayList<>();
         for(Player player : get_total_player_list()) { 
@@ -127,7 +137,13 @@ public class Ludo_Game implements ILudo_game{
 		  }
 		}
         int[][] total_path = token_paths.total_path;
-        for(int i=0;i<total_path.length;i++) {
+        positions = set_token_names_on_actual_spots(total_path,all_tokens);
+        return positions;
+    }
+	
+	public Map<String,String> set_token_names_on_actual_spots(int[][] total_path, List<Token> all_tokens){
+        Map<String,String> positions_temp = new HashMap<>();
+		for(int i=0;i<total_path.length;i++) {
         	int[][] temp_position = {{total_path[i][0],total_path[i][1]}};
         	boolean is_set = false;
         	String token_name = "";
@@ -141,13 +157,13 @@ public class Ludo_Game implements ILudo_game{
         		}
         	}
         	if(!is_set) {
-  			  	positions.put("{"+ temp_position[0][0]+","+temp_position[0][1] +"}", " ");
+        		positions_temp.put("{"+ temp_position[0][0]+","+temp_position[0][1] +"}", " ");
         	}else {
-  			  	positions.put("{"+ temp_position[0][0]+","+temp_position[0][1] +"}", token_name);
+        		positions_temp.put("{"+ temp_position[0][0]+","+temp_position[0][1] +"}", token_name);
         	}
         }
-        return positions;
-    }
+		return positions_temp;
+	}
 	
 	public void update_player(List<Token> updated_tokens) {
 		List<Player> all_players = get_total_player_list();
@@ -210,7 +226,6 @@ public class Ludo_Game implements ILudo_game{
         		}
         	}
         	if(all_home_count==4 && number != 6) {
-        		System.out.println("next turn");
         		next_turn();
         		dice_number = number;
         	}else {
@@ -266,11 +281,11 @@ public class Ludo_Game implements ILudo_game{
 	
 	private void set_winner_in_map(Player temp_player) {
 		if(winner_map.isEmpty()) {
-			//winner_map.put("Winner", temp_player.get_id);
+			winner_map.put("Winner", temp_player.getColour());
 			return;
 		}
 		if(winner_map.containsKey("winner") && winner_map.size()==1) {
-			//winner_map.put("Runner", temp_player.get_id());
+			winner_map.put("Runner", temp_player.getColour());
 			return;
 		}
 	}

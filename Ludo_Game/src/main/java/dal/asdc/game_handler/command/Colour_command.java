@@ -7,7 +7,7 @@ import java.util.List;
 import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 
-public abstract class Command {
+public abstract class Colour_command {
 	
 	public char second_letter;
 	List<Player> player_list = new ArrayList<>();
