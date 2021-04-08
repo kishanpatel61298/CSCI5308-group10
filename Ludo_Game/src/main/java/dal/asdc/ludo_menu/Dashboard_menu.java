@@ -1,12 +1,15 @@
 package dal.asdc.ludo_menu;
 
 import java.util.Map;
+
+import dal.asdc.ludo_menu.interfaces.IDashboard_menu;
+
 import static java.util.Map.entry;
 
 /**
  * @author Reshma Unnikrishnan **/
 
-public class Dashboard_menu {
+public class Dashboard_menu implements IDashboard_menu {
 
 	final Map<Integer, String> dashboard_menu_map = Map.ofEntries(
 		    entry(1, "Game_menu.jsp"),
