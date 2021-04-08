@@ -14,11 +14,11 @@ public class Score_factory {
 	}
 	
 	public static IScore_history create_game_score_history() {
-		return new Player_score_history();
+		return new Game_score_history();
 	}
 	
 	public static IScore_history create_tournament_score_history() {
-		return new Player_score_history();
+		return new Tournaments_score_history();
 	}
-	
+
 }

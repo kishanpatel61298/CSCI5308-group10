@@ -1,9 +1,11 @@
 package dal.asdc.model;
 
+import dal.asdc.model.interfaces.ITournaments;
+
 /**
  * @author Reshma Unnikrishnan**/
 
-public class Tournaments {
+public class Tournaments implements ITournaments {
 	private int tournament_id;
 	private String tournament_time;
 	private int num_of_participants;

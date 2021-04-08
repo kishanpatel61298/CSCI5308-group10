@@ -9,11 +9,12 @@ import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import dal.asdc.dao.Player_dao;
 import dal.asdc.model.Player;
+import dal.asdc.persistence.Player_persistence;
+import dal.asdc.persistence.interfaces.IPlayer_persistence;
 
 public class Groups {
- private Player_dao plyr_dao = new Player_dao();
+ private IPlayer_persistence plyr_dao = new Player_persistence();
  List<Integer> player_list = new ArrayList<>();
  
  public Map<Integer, Collection<List<Player>>> form_tournaments_group() {

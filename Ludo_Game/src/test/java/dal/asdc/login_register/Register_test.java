@@ -5,14 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.mindrot.jbcrypt.BCrypt;
 
-import dal.asdc.dao.Player_dao;
 import dal.asdc.model.Player;
+import dal.asdc.persistence.Player_persistence;
+import dal.asdc.persistence.interfaces.IPlayer_persistence;
 
 public class Register_test {
 	@Test
 	public void register_test() {
 		Player player = new Player();
-		Player_dao plyr_dao = new Player_dao();
+		IPlayer_persistence plyr_dao = new Player_persistence();
 		player.setPlayer_email("admin@gmail.com");
 		player.setPlayer_password("Admin@123");
 		player.setPlayer_password(generate_hash_password(player.getPlayer_password()));    

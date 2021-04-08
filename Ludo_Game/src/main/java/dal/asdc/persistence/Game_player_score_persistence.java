@@ -1,4 +1,4 @@
-package dal.asdc.dao;
+package dal.asdc.persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,19 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dal.asdc.dao.interfaces.IGame_player_score_dao;
-import dal.asdc.dao.interfaces.IJDBC_Connection;
 import dal.asdc.model.Game_player_score;
-import dal.asdc.model.Player;
+import dal.asdc.model.interfaces.IGame_player_score;
+import dal.asdc.persistence.interfaces.IGame_player_score_persistence;
+import dal.asdc.persistence.interfaces.IJdbc_connection;
 
 /**
  * @author Reshma Unnikrishnan**/
 
-public class Game_player_score_dao implements IGame_player_score_dao{
+public class Game_player_score_persistence implements IGame_player_score_persistence{
 	
 	@Override
-	public void insert_score(Game_player_score game_player_score) {
-		IJDBC_Connection jdbc = new JDBC_Connection();
+	public void insert_score(IGame_player_score game_player_score) {
+		IJdbc_connection jdbc = new Jdbc_connection();
 		String create_query = "INSERT into game_player_score (score_id, game_id, player_id, score) "
 				+ "values(?,?,?,?)";
 		try {
@@ -36,9 +36,9 @@ public class Game_player_score_dao implements IGame_player_score_dao{
 	}
 
 	@Override
-	public List<Game_player_score> get_player_score(int player_id) {
-		List<Game_player_score> game_player_scr_list = new ArrayList<>();
-		IJDBC_Connection jdbc = new JDBC_Connection();
+	public List<IGame_player_score> get_player_score(int player_id) {
+		List<IGame_player_score> game_player_scr_list = new ArrayList<>();
+		IJdbc_connection jdbc = new Jdbc_connection();
 		String filter_by_id_query = "SELECT * from game_player_score where player_id = ?";
 		 try{
 			 Connection conn = jdbc.createDBConnection();
@@ -62,9 +62,9 @@ public class Game_player_score_dao implements IGame_player_score_dao{
 	}
 
 	@Override
-	public List<Game_player_score> get_game_score(int game_id) {
-		List<Game_player_score> game_player_scr_list = new ArrayList<>();
-		IJDBC_Connection jdbc = new JDBC_Connection();
+	public List<IGame_player_score> get_game_score(int game_id) {
+		List<IGame_player_score> game_player_scr_list = new ArrayList<>();
+		IJdbc_connection jdbc = new Jdbc_connection();
 		String filter_by_id_query = "SELECT * from game_player_score where game_id = ?";
 		 try{
 			 Connection conn = jdbc.createDBConnection();
@@ -72,7 +72,7 @@ public class Game_player_score_dao implements IGame_player_score_dao{
 	         preparedStatement.setInt(1, game_id);
 	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
 	        	 while (resultSet.next()) {
-	             		Game_player_score game_player_score = null;
+	             		IGame_player_score game_player_score = null;
 	             		game_player_score = new Game_player_score();
 	             		game_player_score.setScore_id(resultSet.getString("score_id"));
 	             		game_player_score.setGame_id(resultSet.getInt("game_id"));

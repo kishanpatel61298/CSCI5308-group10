@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.mindrot.jbcrypt.BCrypt;
 
-import dal.asdc.dao.Player_dao;
 import dal.asdc.model.Player;
+import dal.asdc.persistence.Player_persistence;
+import dal.asdc.persistence.interfaces.IPlayer_persistence;
 
 public class Login_test {
 	
@@ -16,7 +17,7 @@ public class Login_test {
 		  boolean password_matched = false;
 		  player.setPlayer_email("admin@gmail.com");
 		  player.setPlayer_password("Admin@123");
-		  Player_dao plyr_dao = new Player_dao();
+		  IPlayer_persistence plyr_dao = new Player_persistence();
 		  Player fatched_player = plyr_dao.filter_by_emailid(player.getPlayer_email());
 	      assertEquals(fatched_player.getPlayer_email(), player.getPlayer_email()) ;
 	      password_matched = checkPass(player.getPlayer_password(), fatched_player.getPlayer_password());

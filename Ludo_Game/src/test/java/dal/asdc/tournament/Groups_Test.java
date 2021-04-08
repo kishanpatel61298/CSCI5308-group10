@@ -14,11 +14,12 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import dal.asdc.dao.Player_dao;
 import dal.asdc.model.Player;
+import dal.asdc.persistence.Player_persistence;
+import dal.asdc.persistence.interfaces.IPlayer_persistence;
 
 public class Groups_Test {
-	 private Player_dao plyr_dao = new Player_dao();
+	 private IPlayer_persistence plyr_dao = new Player_persistence();
 	 List<Integer> player_list = new ArrayList<>();
 	 
 	@Test

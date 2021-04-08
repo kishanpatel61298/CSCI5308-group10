@@ -1,4 +1,4 @@
-package dal.asdc.dao;
+package dal.asdc.persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,18 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dal.asdc.dao.interfaces.IJDBC_Connection;
-import dal.asdc.dao.interfaces.IPlayer_dao;
 import dal.asdc.model.Player;
+import dal.asdc.model.interfaces.IPlayer;
+import dal.asdc.persistence.interfaces.IJdbc_connection;
+import dal.asdc.persistence.interfaces.IPlayer_persistence;
 
 /**
  * @author Reshma Unnikrishnan **/
 
-public class Player_dao implements IPlayer_dao {
+public class Player_persistence implements IPlayer_persistence {
 		
 	@Override
-	public void save_record(Player player) {
-		IJDBC_Connection jdbc = new JDBC_Connection();
+	public void save_record(IPlayer player) {
+		IJdbc_connection jdbc = new Jdbc_connection();
 		String create_query = "INSERT into Player (player_id, player_name, player_email, player_password, acc_created_date) "
 				+ "values(?,?,?,?,?)";
 		try {
@@ -30,23 +31,22 @@ public class Player_dao implements IPlayer_dao {
             preparedStatement.setString(4, player.getPlayer_password());
             preparedStatement.setString(5, player.getAcc_created_date());
             preparedStatement.executeUpdate();
-            System.out.print("Added Player");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public List<Player> select_all_record() {
-	        List<Player> player_list = new ArrayList<>();
-	        IJDBC_Connection jdbc = new JDBC_Connection();
+	public List<IPlayer> select_all_record() {
+	        List<IPlayer> player_list = new ArrayList<>();
+	        IJdbc_connection jdbc = new Jdbc_connection();
 	        String select_all_query = "SELECT * from Players";
 	        try {
 				Connection conn = jdbc.createDBConnection();
 				PreparedStatement preparedStatement = conn.prepareStatement(select_all_query);
 	            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 	                while (resultSet.next()) {
-	                    Player player = new Player();
+	                    IPlayer player = new Player();
 	                    player.setPlayer_id(resultSet.getInt("player_id"));
 	                    player.setPlayer_name(resultSet.getString("player_name"));
 	                    player.setPlayer_email(resultSet.getString("player_email"));
@@ -62,8 +62,8 @@ public class Player_dao implements IPlayer_dao {
 	}
 
 	@Override
-	public void update_record(int player_id, Player player) {
-		 IJDBC_Connection jdbc = new JDBC_Connection();
+	public void update_record(int player_id, IPlayer player) {
+		IJdbc_connection jdbc = new Jdbc_connection();
 		 String player_update_query = "UPDATE Player SET player_name = ?, player_email = ?, player_password = ?," +
                  " acc_created_date = ? WHERE player_id = ?";
 		 try {
@@ -86,7 +86,7 @@ public class Player_dao implements IPlayer_dao {
 
 	@Override
 	public Player filter_by_id(int player_id) {
-		IJDBC_Connection jdbc = new JDBC_Connection();
+		IJdbc_connection jdbc = new Jdbc_connection();
 		String filter_by_id_query = "SELECT * from Player where player_id = ?";
 		 try{
 			 Connection conn = jdbc.createDBConnection();
@@ -112,7 +112,7 @@ public class Player_dao implements IPlayer_dao {
 	
 	@Override
 	public Player filter_by_emailid(String player_email) {
-		IJDBC_Connection jdbc = new JDBC_Connection();
+		IJdbc_connection jdbc = new Jdbc_connection();
 		String filter_by_emailid_query = "SELECT * from Player where player_email = ?";
 		 try{
 			 Connection conn = jdbc.createDBConnection();
@@ -137,7 +137,7 @@ public class Player_dao implements IPlayer_dao {
 	//This method is used to get n number of rows from player table
 	@Override
 	public List<Integer> select_n_players(int n) {
-		IJDBC_Connection jdbc = new JDBC_Connection();
+		IJdbc_connection jdbc = new Jdbc_connection();
 		 List<Integer> player_list = new ArrayList<>();
 		String player_list_query = "SELECT * FROM Player LIMIT ?";		
 		 try{
@@ -154,6 +154,8 @@ public class Player_dao implements IPlayer_dao {
 	            throw new RuntimeException(sqlException);
 	        }
 	}
+
+
 
 
 }

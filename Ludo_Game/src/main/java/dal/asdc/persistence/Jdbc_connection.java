@@ -1,4 +1,4 @@
-package dal.asdc.dao;
+package dal.asdc.persistence;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,15 +7,38 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
-import dal.asdc.dao.*;
-import dal.asdc.dao.interfaces.IJDBC_Connection;
+import dal.asdc.persistence.interfaces.IJdbc_connection;
 
 /**
  * @author Reshma Unnikrishnan
  * */
 
-public class JDBC_Connection implements IJDBC_Connection{
+public class Jdbc_connection implements IJdbc_connection{
+	
+//	private static final String DB_URL_PROPERTY = "spring.datasource.url";
+//	private static final String DB_USERNAME = "spring.datasource.username";
+//	private static final String DB_PASSWORD = "spring.datasource.password";
+//	
+//	private static Jdbc_connection jdbc_connection = null;
+//	
+//	private static Jdbc_connection getInstance() {
+//		if(jdbc_connection == null) {
+//			jdbc_connection = new Jdbc_connection();
+//		}
+//		return jdbc_connection;
+//	}
+	
+//	public Connection create_jdbc_connection() {
+//		Connection connection = null;
+//		try {
+//			connection=DriverManager.getConnection(ApplicationConfig.getProperty(DB_URL_PROPERTY),
+//					ApplicationConfig.getProperty(DB_USERNAME),
+//					ApplicationConfig.getProperty(DB_PASSWORD));
+//		}catch(SQLException se) {
+//			se.printStackTrace();
+//		}
+//		return connection;
+//	}
 	
 	public Map<String,String> read_db_property_file() {
 	Properties properties = new Properties();
@@ -56,11 +79,4 @@ public class JDBC_Connection implements IJDBC_Connection{
 			}catch(Exception e){ System.out.println(e);}  
 			return conn;
 			}
-	
-	public static void main(String args[]){  
-		
-		JDBC_Connection jdbc = new JDBC_Connection();
-		jdbc.read_db_property_file();
-		jdbc.createDBConnection();
-		System.out.println("No error it runs");
-}}
+}

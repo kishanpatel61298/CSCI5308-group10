@@ -1,9 +1,11 @@
 package dal.asdc.model;
 
+import dal.asdc.model.interfaces.IGame_player_score;
+
 /**
  * @author Reshma Unnikrishnan**/
 
-public class Game_player_score {
+public class Game_player_score implements IGame_player_score{
 	private String score_id;
 	private int game_id;
 	private int player_id;

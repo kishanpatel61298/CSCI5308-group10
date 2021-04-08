@@ -2,6 +2,8 @@ package dal.asdc.ludo_score_history.interfaces;
 
 import java.util.Map;
 
+import dal.asdc.model.interfaces.ITournaments;
+
 /**
  * @author Reshma Unnikrishnan**/
 

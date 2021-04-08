@@ -2,12 +2,14 @@ package dal.asdc.model;
 
 import org.springframework.stereotype.Component;
 
+import dal.asdc.model.interfaces.IPlayer;
+
 /**
  * @author Reshma Unnikrishnan
  * */
 
 @Component
-public class Player {
+public class Player implements IPlayer{
 	private int player_id;
 	private String player_name;
 	private String player_email;
