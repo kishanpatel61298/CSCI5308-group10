@@ -1,9 +1,12 @@
 package dal.asdc.player;
 
-import dal.asdc.movement.Dice_user;
+import dal.asdc.game_handler.IDice;
+import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
+import dal.asdc.game_handler.factory_method.Ludo_game_factory;
+
 import dal.asdc.movement.IMake_Move;
 import dal.asdc.movement.Make_Move;
-import dal.asdc.player.Factory_classes.Player_factory;
+
 import dal.asdc.playing_pieces.Token;
 
 import java.util.ArrayList;
@@ -23,7 +26,10 @@ public class Aggressive_computer_player extends Player {
     private boolean is_done = false;
 
     IMake_Move iMake_move;
-    Dice_user dice_user = Dice_user.instance();
+
+
+    Ludo_game_factory ludo_game_factory = new Four_player_ludo_game_factory();
+    IDice iDice = ludo_game_factory.create_dice();
 
     List<Token> token_list= new ArrayList<>();
     List<Token> all_tokens = new ArrayList<>();
@@ -31,7 +37,7 @@ public class Aggressive_computer_player extends Player {
 
     public List<Token> play(List<Token> token_list){
         iMake_move = new Make_Move();
-        roll = dice_user.roll_dice();
+        roll = iDice.roll_dice();
         for ( int i=0 ; i < 4 ; i++){
             if(token_list.get(i).is_home() && 6 == roll ){
                 token=check_if_home(iMake_move ,token_list.get(i));

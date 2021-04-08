@@ -1,10 +1,13 @@
 package dal.asdc.player;
 
+import dal.asdc.game_handler.IDice;
+import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
+import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.movement.factory_method.Move_factory;
 import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.movement.IMake_Move;
-import dal.asdc.movement.Dice_user;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +27,9 @@ public class Human_player extends Player {
     private int roll;
     Move_factory move_factory = new Simple_move_factory();
     IMake_Move make_move = move_factory.create_make_move();
-    Dice_user dice_user = Dice_user.instance();
+    Ludo_game_factory ludo_game_factory = new Four_player_ludo_game_factory();
+    IDice iDice = ludo_game_factory.create_dice();
+
     List<Player> all_player_list = new ArrayList<>();
     Player_intialiser intialiser;
     Map<String, Player> player_list= new HashMap<>();
@@ -36,7 +41,7 @@ public class Human_player extends Player {
         this.colour=colour;
     }
     public int roll(){
-        roll= dice_user.roll_dice();
+        roll= iDice.roll_dice();
         return roll;
     }
     public List<Token> play(List<Token> token_list){
