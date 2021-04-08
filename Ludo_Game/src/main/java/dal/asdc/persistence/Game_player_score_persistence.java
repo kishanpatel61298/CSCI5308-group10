@@ -30,6 +30,7 @@ public class Game_player_score_persistence implements IGame_player_score_persist
             preparedStatement.setInt(3, game_player_score.getPlayer_id());
             preparedStatement.setInt(4, game_player_score.getScore());
             preparedStatement.executeUpdate();
+            conn.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -54,6 +55,7 @@ public class Game_player_score_persistence implements IGame_player_score_persist
 	             		game_player_score.setScore(resultSet.getInt("score"));
 	             		game_player_scr_list.add(game_player_score);
 	                }
+	             	conn.close();
 	                return game_player_scr_list;
 	            }
 	        } catch (SQLException sqlException) {
@@ -80,6 +82,7 @@ public class Game_player_score_persistence implements IGame_player_score_persist
 	             		game_player_score.setScore(resultSet.getInt("score"));
 	             		game_player_scr_list.add(game_player_score);
 	                }
+	        	 conn.close();
 	                return game_player_scr_list;
 	            }
 	        } catch (SQLException sqlException) {

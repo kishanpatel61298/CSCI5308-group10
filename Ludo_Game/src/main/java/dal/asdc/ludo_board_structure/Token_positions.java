@@ -110,19 +110,4 @@ public class Token_positions implements IToken_positions {
 		 return board_attributes_map;
 	 }
 	 
-	 public Map<String,String> get_game_board_attributes(Map<String,String> token_position_from_game){
-		if(!two_player_positions_map.isEmpty()) {
-			two_player_positions_map.putAll(token_position_from_game);
-			System.out.println("two_player_positions_map size : "+two_player_positions_map.size());
-			 for(Map.Entry<String, String> entry : two_player_positions_map.entrySet()) {
-				  System.out.println(entry.getKey() + "/" + entry.getValue()); }
-		}
-		else if(!three_player_positions_map.isEmpty()) {
-			System.out.println("inside 3 player");
-		}
-		else if(!four_player_positions_map.isEmpty()) {
-			System.out.println("inside 4 player");
-		}
-		return token_position_from_game;
-	 }
 }

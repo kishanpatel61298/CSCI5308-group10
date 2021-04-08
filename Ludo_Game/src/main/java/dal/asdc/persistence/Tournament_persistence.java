@@ -42,6 +42,7 @@ public class Tournament_persistence implements ITournament_persistence{
             preparedStatement.setInt(5, tournaments.getTournament_runner_id());
             preparedStatement.setString(6, tournaments.getTournament_status());
             preparedStatement.executeUpdate();
+            conn.close();
 			}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -65,7 +66,7 @@ public class Tournament_persistence implements ITournament_persistence{
                 	tournaments.setTournament_runner_id(resultSet.getInt("tournament_runner_id"));
                 	tournaments.setTournament_status(resultSet.getString("tournament_status"));
                 	tournament_list.add(tournaments);
-                }
+                }conn.close();
                 return tournament_list;
             }
         } catch (SQLException e) {
@@ -87,7 +88,7 @@ public class Tournament_persistence implements ITournament_persistence{
 	                     preparedStatement.setString(3, tournaments.getTournament_status());
 	                     preparedStatement.setInt(4, tournaments.getTournament_id());
 		             preparedStatement.executeUpdate();
-	                }}
+	                }}conn.close();
 				} catch (SQLException sqlException) {
 			        throw new RuntimeException(sqlException);
 			    }

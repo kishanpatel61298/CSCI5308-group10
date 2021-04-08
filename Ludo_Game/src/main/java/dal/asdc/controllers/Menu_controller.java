@@ -97,7 +97,7 @@ public class Menu_controller {
 
 	@PostMapping("/process_login")
 	public String process_login(@ModelAttribute("user") Player player, Model model) {
-		Player fatched_player = login.login(player);
+		IPlayer fatched_player = login.login(player);
 		if (fatched_player != null) {
 			model.addAttribute("Main_menu", m_menu);
 			return "Menu_display.jsp";
