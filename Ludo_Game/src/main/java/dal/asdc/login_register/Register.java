@@ -1,7 +1,5 @@
 package dal.asdc.login_register;
 
-
-
 import dal.asdc.model.Player;
 import dal.asdc.persistence.Player_persistence;
 import dal.asdc.persistence.interfaces.IPlayer_persistence;
@@ -24,6 +22,7 @@ public class Register {
  
  //To encrypt password
  private String generate_hash_password(String plain_password){
-		return BCrypt.hashpw(plain_password, BCrypt.gensalt());
+	 return null;
+		//return BCrypt.hashpw(plain_password, BCrypt.gensalt());
 	}
 }
