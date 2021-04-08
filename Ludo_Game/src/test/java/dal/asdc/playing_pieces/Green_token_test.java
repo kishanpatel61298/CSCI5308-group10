@@ -8,27 +8,27 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dal.asdc.playing_pieces.factoy_method.Four_colour_token_factory;
-import dal.asdc.playing_pieces.factoy_method.Token_Factory;
+import dal.asdc.playing_pieces.factoy_method.Token_factory;
 
-public class Red_Token_Test {
-
+public class Green_token_test {
+	
 	Token token;
 	
 	@BeforeEach
 	void initialize() {
-		Token_Factory factory = new Four_colour_token_factory();
-		token = factory.crete_red_token(0);
+		Token_factory factory = new Four_colour_token_factory();
+		token = factory.crete_green_token(0);
 	}
 	
 	@Test
 	void constructor_test() {
 		int[][] position = token.get_coordinate_position();
 
-		assertEquals("RED",token.get_token_colour());
+		assertEquals("GREEN",token.get_token_colour());
 		assertEquals(true,token.get_is_token_at_home());
 		assertEquals(false,token.get_is_token_at_winning_box());
 		assertEquals(0,token.get_token_number());
-		assertEquals(2,position[0][0]);
+		assertEquals(11,position[0][0]);
 		assertEquals(3,position[0][1]);
 	}
 	

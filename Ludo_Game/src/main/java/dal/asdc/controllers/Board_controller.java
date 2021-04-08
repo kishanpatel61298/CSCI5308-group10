@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dal.asdc.game_handler.ILudo_game;
-import dal.asdc.game_handler.Ludo_Game;
+import dal.asdc.game_handler.Ludo_game;
 import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
 import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.ludo_board_structure.Ludo_board_formation;

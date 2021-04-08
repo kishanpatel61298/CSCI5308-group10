@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dal.asdc.game_handler.Ludo_Game;
+import dal.asdc.game_handler.Ludo_game;
 import dal.asdc.login_register.Login;
 import dal.asdc.login_register.Register;
 import dal.asdc.login_register.interfaces.ILogin;

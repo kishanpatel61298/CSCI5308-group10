@@ -19,8 +19,8 @@ import dal.asdc.player.Player;
 import dal.asdc.player.Factory_classes.Player_factory;
 import dal.asdc.playing_pieces.Token;
 
-public class Make_Move_Test {
-	IMake_Move make_move;
+public class Make_move_test {
+	IMake_move make_move;
 	List<Player> total_player_list;
 	Player player1;
 	Player player2;

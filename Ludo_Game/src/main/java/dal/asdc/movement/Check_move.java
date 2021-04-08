@@ -3,7 +3,7 @@ package dal.asdc.movement;
  * @author Kishan Rakeshbhai Patel **/
 import dal.asdc.playing_pieces.Token;
 
-public class Check_Move implements ICheck_Move{
+public class Check_move implements ICheck_move{
 		
 	private static final int HIGHEST_NUMBER_ON_DICE = 6;
 

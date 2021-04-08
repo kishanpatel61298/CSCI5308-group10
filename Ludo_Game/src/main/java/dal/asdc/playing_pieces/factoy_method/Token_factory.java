@@ -4,7 +4,7 @@ package dal.asdc.playing_pieces.factoy_method;
 
 import dal.asdc.playing_pieces.Token;
 
-public abstract class Token_Factory {
+public abstract class Token_factory {
 	
 	public abstract Token crete_red_token(int number_of_token);
 	

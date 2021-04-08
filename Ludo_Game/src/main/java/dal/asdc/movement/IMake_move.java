@@ -6,7 +6,7 @@ import java.util.List;
 import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 
-public interface IMake_Move {
+public interface IMake_move {
 	boolean check_moving_path(Token token, int dice_number);
 	
 	List<Token> play_move(Token selected_token, int dice_number, List<Player> all_players);

@@ -4,7 +4,7 @@ package dal.asdc.player;
 import dal.asdc.game_handler.IDice;
 import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
 import dal.asdc.game_handler.factory_method.Ludo_game_factory;
-import dal.asdc.movement.IMake_Move;
+import dal.asdc.movement.IMake_move;
 import dal.asdc.movement.factory_method.Move_factory;
 import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.playing_pieces.Token;
@@ -25,7 +25,7 @@ public class Easy_computer_player extends Player {
     private int  token_index_on_path;
     private int[][] home_position;
     private boolean is_done = false;
-    IMake_Move iMake_move;
+    IMake_move iMake_move;
     Move_factory move_factory = new Simple_move_factory();
 
     List<Token> token_list= new ArrayList<>();
@@ -95,7 +95,7 @@ public class Easy_computer_player extends Player {
 
     }
 
-    private Token check_if_home(IMake_Move iMake_move,Token token){
+    private Token check_if_home(IMake_move iMake_move,Token token){
         List<Token> temp_return = new ArrayList<>();
         temp_return= iMake_move.move_token_out_of_home(token);
         token = temp_return.get(0);
@@ -103,7 +103,7 @@ public class Easy_computer_player extends Player {
 
     }
 
-    private Boolean is_move_possible(Token token,int roll,IMake_Move iMake_move){
+    private Boolean is_move_possible(Token token,int roll,IMake_move iMake_move){
         return iMake_move.check_moving_path(token,roll);
 
     }

@@ -5,7 +5,7 @@ package dal.asdc.game_handler.command;
 import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 
-public class Blue_Command extends Colour_command{
+public class Blue_command extends Colour_command{
 
 	@Override
 	public Token execute() {

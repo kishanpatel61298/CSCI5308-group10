@@ -10,16 +10,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
 
 import dal.asdc.playing_pieces.factoy_method.Four_colour_token_factory;
-import dal.asdc.playing_pieces.factoy_method.Token_Factory;
+import dal.asdc.playing_pieces.factoy_method.Token_factory;
 
-public abstract class Token_Test {
+public abstract class Token_test {
 
 
 	Token token;
 	
 	@BeforeEach
 	void initialize() {
-		Token_Factory factory = new Four_colour_token_factory();
+		Token_factory factory = new Four_colour_token_factory();
 		token = factory.crete_yellow_token(0);
 	}
 	

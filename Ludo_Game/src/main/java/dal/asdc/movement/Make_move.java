@@ -9,20 +9,20 @@ import java.util.List;
 import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 
-public class Make_Move implements IMake_Move {
+public class Make_move implements IMake_move {
 	
 	private static final int INITIAL_VALUE_OF_TOKEN_INDEX = -1;
 	private static final int HIGHEST_NUMBER_ON_DICE = 6;
-	ICheck_Move check_move = new Check_Move();
+	ICheck_move check_move = new Check_move();
 	List<Token> return_token = null;
 	List<Token> all_tokens = null;
 	int[][] token_path;
 	int[][] safe_box;
 	int[][] token_position;
 	int token_index_on_path;
-	private static final Logger LOGGER = LoggerFactory.getLogger(Make_Move.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Make_move.class);
 	
-	public Make_Move() {
+	public Make_move() {
 	}
 	
 	public boolean check_moving_path(Token token, int dice_number) {

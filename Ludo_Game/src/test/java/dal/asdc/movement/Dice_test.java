@@ -11,7 +11,7 @@ import dal.asdc.game_handler.IDice;
 import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
 import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 
-public class DiceTest {
+public class Dice_test {
 
 	@Test
     public void roll_dice_test(){

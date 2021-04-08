@@ -21,7 +21,7 @@ import dal.asdc.player.Player;
 import dal.asdc.player.Factory_classes.Player_factory;
 import dal.asdc.playing_pieces.Token;
 
-public class Input_Parser_Test {
+public class Input_parser_test {
 	
 	IInput_parser input_parser;
 	

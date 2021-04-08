@@ -10,13 +10,13 @@ import dal.asdc.movement.factory_method.Move_factory;
 import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.playing_pieces.factoy_method.Four_colour_token_factory;
-import dal.asdc.playing_pieces.factoy_method.Token_Factory;
+import dal.asdc.playing_pieces.factoy_method.Token_factory;
 
-public class Check_Move_Test {
+public class Check_move_test {
 
-	Token_Factory factory;
+	Token_factory factory;
 	Token token;
-	ICheck_Move check_move;
+	ICheck_move check_move;
 	
 	@BeforeEach
 	void initialize() {
@@ -41,7 +41,7 @@ public class Check_Move_Test {
 	
 	@Test
 	void check_is_red_token_in_winning_square_movable_test() {
-		Check_Move check_move = new Check_Move();
+		Check_move check_move = new Check_move();
 		int[][] new_position = new int[][]{{7,7}};
 		token.set_coordinate_position(new_position);
 		int[][] checking = token.get_coordinate_position();

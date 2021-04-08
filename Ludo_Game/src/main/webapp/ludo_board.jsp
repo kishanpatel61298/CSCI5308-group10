@@ -14,18 +14,15 @@
 </head>
 <body>
 <%	
-	//Map<String,String> token_positions_map = new HashMap<String,String>();
-	//Ludo_board_formation tkn_pos=new Ludo_board_formation();
-	//token_positions_map =tkn_pos.board_attributes();
 	Map<String,String> token_positions_map =(Map)request.getAttribute("token_path");
 %>
-<h1>${turn}</h1>
+<h1 style="padding-left:20px">   ${turn}</h1>
 <h2 style="color:red">${error}</h2>
 
 <button id="genAddress" onclick="location.href='/roll_dice'">
                 Roll Dice
 </button>
-<div>${dice_num}</div>
+<div style="padding-left:20px">    ${dice_num}</div>
 <div class="get_token_choice">
 <form action="/token_select" method="POST">
 <input id="text-box" type="text" name="token" value=${token}>
@@ -158,7 +155,7 @@
 
 
 </div>
-<button id="genAddress" onclick="location.href='/reset_board'">
+<button id="genAddress" onclick="location.href='/reset_board'" style="padding-left:20px">
                 Reset
 </button>
 <button id="genAddress" onclick="location.href='/back_to_menu'">

@@ -15,7 +15,7 @@ import org.mockito.Mock;
 
 import dal.asdc.game_handler.Dice;
 import dal.asdc.game_handler.IDice;
-import dal.asdc.game_handler.Ludo_Game;
+import dal.asdc.game_handler.Ludo_game;
 import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 
@@ -23,12 +23,12 @@ public class Ludo_game_Test {
 	
 	@Mock
 	IDice dice;
-	Ludo_Game game_controller;
+	Ludo_game game_controller;
 	@BeforeEach
 	void initialize() {
 		Map<Integer, String> player_id_list = new HashMap<>();
 		game_controller = null;
-		game_controller = Ludo_Game.instance("two_player",player_id_list);
+		game_controller = Ludo_game.instance("two_player",player_id_list);
 	}
 	
 	@Test

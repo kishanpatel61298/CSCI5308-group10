@@ -3,14 +3,14 @@ package dal.asdc.playing_pieces;
  * @author Kishan Rakeshbhai Patel **/
 import dal.asdc.ludo_board_structure.Token_paths;
 
-public class Blue_Token extends Token{
+public class Blue_token extends Token{
 	
 	private static final String BLUE_COLOUR = "BLUE";
 	static int[][] blue_home = {{2,12},{2,11},{3,12},{3,11}};
 	int[][] winning_square = {{7,7}};
 	int[][] blue_token_path;
 
-	public Blue_Token(int numer_of_token) {
+	public Blue_token(int numer_of_token) {
 		super(BLUE_COLOUR,numer_of_token,blue_home[numer_of_token][0],blue_home[numer_of_token][1]);
 		create_path();
 	}

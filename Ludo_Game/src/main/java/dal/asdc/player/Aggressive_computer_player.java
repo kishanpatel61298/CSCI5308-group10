@@ -4,8 +4,8 @@ import dal.asdc.game_handler.IDice;
 import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
 import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 
-import dal.asdc.movement.IMake_Move;
-import dal.asdc.movement.Make_Move;
+import dal.asdc.movement.IMake_move;
+import dal.asdc.movement.Make_move;
 
 import dal.asdc.playing_pieces.Token;
 
@@ -25,7 +25,7 @@ public class Aggressive_computer_player extends Player {
     private int[][] home_position;
     private boolean is_done = false;
 
-    IMake_Move iMake_move;
+    IMake_move iMake_move;
 
 
     Ludo_game_factory ludo_game_factory = new Four_player_ludo_game_factory();
@@ -36,7 +36,7 @@ public class Aggressive_computer_player extends Player {
     List<Player> all_players = new ArrayList<>();
 
     public List<Token> play(List<Token> token_list){
-        iMake_move = new Make_Move();
+        iMake_move = new Make_move();
         roll = iDice.roll_dice();
         for ( int i=0 ; i < 4 ; i++){
             if(token_list.get(i).is_home() && 6 == roll ){
@@ -83,12 +83,12 @@ public class Aggressive_computer_player extends Player {
         return null;
     }
 
-    private Boolean is_move_possible(Token token,int roll,IMake_Move iMake_move){
+    private Boolean is_move_possible(Token token,int roll,IMake_move iMake_move){
         return iMake_move.check_moving_path(token,roll);
 
     }
 
-    private Token check_if_home(IMake_Move iMake_move,Token token){
+    private Token check_if_home(IMake_move iMake_move,Token token){
         List<Token> temp_return = new ArrayList<>();
         temp_return= iMake_move.move_token_out_of_home(token);
         token = temp_return.get(0);

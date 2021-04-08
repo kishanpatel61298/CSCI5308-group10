@@ -17,14 +17,14 @@ import dal.asdc.game_handler.command.Two_player_command;
 import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
 import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.ludo_board_structure.Token_paths;
-import dal.asdc.movement.IMake_Move;
+import dal.asdc.movement.IMake_move;
 import dal.asdc.movement.factory_method.Move_factory;
 import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
 import dal.asdc.player.Factory_classes.Player_factory;
 
-public class Ludo_Game implements ILudo_game{
+public class Ludo_game implements ILudo_game{
 
 	private static final String COMPUTER_PLAYER_GAME = "computer_player";
 	private static final String FOUR_PLAYER_GAME = "four_player";
@@ -50,19 +50,19 @@ public class Ludo_Game implements ILudo_game{
 	Token_paths token_paths = new Token_paths();
 	Map<String,String> winner_map = new HashMap<>();
 	IInput_parser input_parser = null;
-	IMake_Move make_move = null;
+	IMake_move make_move = null;
 	IDice dice = null;
 	Map<String,Board_creation_command> input_commands = new HashMap<>();
-	private static Ludo_Game ludo_game = null;
+	private static Ludo_game ludo_game = null;
 	
-	public static Ludo_Game instance(String type, Map<Integer,String> player_list) {
+	public static Ludo_game instance(String type, Map<Integer,String> player_list) {
 		if(null == ludo_game) {
-			ludo_game = new Ludo_Game(type, player_list);
+			ludo_game = new Ludo_game(type, player_list);
 		}
 		return ludo_game;
 	}
 	
-	public Ludo_Game(String game_type, Map<Integer,String> player_list) {
+	public Ludo_game(String game_type, Map<Integer,String> player_list) {
 		type_of_game = game_type;
 		Player_factory factory = new Player_factory_normal();
 		IPlayer_intialiser initialiser = factory.create_player_intialiser();

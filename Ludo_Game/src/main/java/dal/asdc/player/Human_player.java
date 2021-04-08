@@ -6,7 +6,7 @@ import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.movement.factory_method.Move_factory;
 import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.playing_pieces.Token;
-import dal.asdc.movement.IMake_Move;
+import dal.asdc.movement.IMake_move;
 
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class Human_player extends Player {
     private boolean is_done = false;
     private int roll;
     Move_factory move_factory = new Simple_move_factory();
-    IMake_Move make_move = move_factory.create_make_move();
+    IMake_move make_move = move_factory.create_make_move();
     Ludo_game_factory ludo_game_factory = new Four_player_ludo_game_factory();
     IDice iDice = ludo_game_factory.create_dice();
 

@@ -11,7 +11,7 @@ import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.game_handler.command.*;
 
-public class Input_Parser implements IInput_parser{
+public class Input_parser implements IInput_parser{
 	
 	private static final char LETTER_B = 'b';
 	private static final char LETTER_Y = 'y';
@@ -21,11 +21,11 @@ public class Input_Parser implements IInput_parser{
 	Map<Character,Colour_command> input_commands = new HashMap<>();
 	String input_text = "";
 	
-	public Input_Parser(){
-		input_commands.put(LETTER_R, new Red_Command());
-		input_commands.put(LETTER_G, new Green_Command());
-		input_commands.put(LETTER_Y, new Yellow_Command());
-		input_commands.put(LETTER_B, new Blue_Command());
+	public Input_parser(){
+		input_commands.put(LETTER_R, new Red_command());
+		input_commands.put(LETTER_G, new Green_command());
+		input_commands.put(LETTER_Y, new Yellow_command());
+		input_commands.put(LETTER_B, new Blue_command());
 	}
 	
 	public boolean check_input(String input) {

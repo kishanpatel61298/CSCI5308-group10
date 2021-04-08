@@ -6,30 +6,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import dal.asdc.playing_pieces.factoy_method.Four_colour_token_factory;
-import dal.asdc.playing_pieces.factoy_method.Token_Factory;
+import dal.asdc.playing_pieces.factoy_method.Token_factory;
 
-public class Green_Token_Test {
+public class Blue_token_test {
 	
 	Token token;
 	
 	@BeforeEach
 	void initialize() {
-		Token_Factory factory = new Four_colour_token_factory();
-		token = factory.crete_green_token(0);
+		Token_factory factory = new Four_colour_token_factory();
+		token = factory.crete_blue_token(0);
 	}
 	
 	@Test
 	void constructor_test() {
 		int[][] position = token.get_coordinate_position();
 
-		assertEquals("GREEN",token.get_token_colour());
+		assertEquals("BLUE",token.get_token_colour());
 		assertEquals(true,token.get_is_token_at_home());
 		assertEquals(false,token.get_is_token_at_winning_box());
 		assertEquals(0,token.get_token_number());
-		assertEquals(11,position[0][0]);
-		assertEquals(3,position[0][1]);
+		assertEquals(2,position[0][0]);
+		assertEquals(12,position[0][1]);
 	}
 	
 	@Test
@@ -56,4 +55,5 @@ public class Green_Token_Test {
 		token.set_at_home();
 		assertEquals(true,token.is_home());	
 	}
+
 }
