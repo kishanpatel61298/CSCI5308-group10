@@ -109,6 +109,53 @@ public class Player_persistence implements IPlayer_persistence {
 	            throw new RuntimeException(sqlException);
 	        }
 	}
+	
+	@Override
+	public Player filter_by_emailid(String player_email) {
+		IJdbc_connection jdbc = new Jdbc_connection();
+		String filter_by_emailid_query = "SELECT * from Player where player_email = ?";
+		 try{
+			 Connection conn = jdbc.createDBConnection();
+	         PreparedStatement preparedStatement = conn.prepareStatement(filter_by_emailid_query);
+	         preparedStatement.setString(1, player_email);
+	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	        	 Player player = null;
+	             	if (resultSet.next()) {
+	             		player = new Player();
+	             		player.setPlayer_name(resultSet.getString("player_name"));
+	             		player.setPlayer_email(resultSet.getString("player_email"));
+	             		player.setPlayer_password(resultSet.getString("player_password"));
+	             		player.setAcc_created_date(resultSet.getString("acc_created_date"));
+	                }
+	                return player;
+	            }
+	        } catch (SQLException sqlException) {
+	            throw new RuntimeException(sqlException);
+	        }
+	}
+	
+	//This method is used to get n number of rows from player table
+	@Override
+	public List<Integer> select_n_players(int n) {
+		IJdbc_connection jdbc = new Jdbc_connection();
+		 List<Integer> player_list = new ArrayList<>();
+		String player_list_query = "SELECT * FROM Player LIMIT ?";		
+		 try{
+			 Connection conn = jdbc.createDBConnection();
+	         PreparedStatement preparedStatement = conn.prepareStatement(player_list_query);
+	         preparedStatement.setInt(1, n);
+	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	                while (resultSet.next()) {
+	                    player_list.add(resultSet.getInt("player_id"));
+	                }
+	                return player_list;
+	            }
+	        } catch (SQLException sqlException) {
+	            throw new RuntimeException(sqlException);
+	        }
+	}
+
+
 
 
 }

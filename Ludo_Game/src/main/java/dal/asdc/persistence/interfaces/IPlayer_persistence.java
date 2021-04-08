@@ -14,5 +14,7 @@ public interface IPlayer_persistence {
 	public List<IPlayer> select_all_record();
 	public void update_record(int player_id, IPlayer player);
 	public Player filter_by_id(int player_id);
+	public List<Integer> select_n_players(int n);
+	public Player filter_by_emailid(String player_email);
 }
 

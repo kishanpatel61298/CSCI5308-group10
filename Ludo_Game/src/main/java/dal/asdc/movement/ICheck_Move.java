@@ -1,5 +1,6 @@
 package dal.asdc.movement;
-
+/**
+ * @author Kishan Rakeshbhai Patel **/
 import dal.asdc.playing_pieces.Token;
 
 public interface ICheck_Move {
