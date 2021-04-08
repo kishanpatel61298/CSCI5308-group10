@@ -30,7 +30,7 @@ public class Player_history{
 		return this.player_persistence.select_all_record();
 	}
 	
-	public Player search_player_history_by_id(int plyr_id) {
+	public IPlayer search_player_history_by_id(int plyr_id) {
 		return this.player_persistence.filter_by_id(plyr_id);
 	}
 	

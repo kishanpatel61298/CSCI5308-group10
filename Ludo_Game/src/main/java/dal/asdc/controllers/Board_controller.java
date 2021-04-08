@@ -39,6 +39,7 @@ public class Board_controller {
 	public String decide_game_menu(@RequestParam("game_menu") int gmenu, Model model) {
 		model.addAttribute("gamemenu", gmenu);
 		String type = l_board.add_game_type(gmenu);
+		System.out.println();
 		Map<Integer,String> player_map = new HashMap<Integer,String>(){{
 			put(4, "Jay");
 			put(5, "Rahul");

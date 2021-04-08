@@ -16,7 +16,7 @@ import dal.asdc.persistence.interfaces.IPlayer_persistence;
  * @author Reshma Unnikrishnan **/
 
 public class Player_persistence implements IPlayer_persistence {
-		
+
 	@Override
 	public void save_record(IPlayer player) {
 		IJdbc_connection jdbc = new Jdbc_connection();
@@ -31,6 +31,7 @@ public class Player_persistence implements IPlayer_persistence {
             preparedStatement.setString(4, player.getPlayer_password());
             preparedStatement.setString(5, player.getAcc_created_date());
             preparedStatement.executeUpdate();
+            conn.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -54,6 +55,7 @@ public class Player_persistence implements IPlayer_persistence {
 	                    player.setAcc_created_date(resultSet.getString("acc_created_date"));
 	                    player_list.add(player);
 	                }
+	                conn.close();
 	                return player_list;
 	            }
 	        } catch (SQLException e) {
@@ -77,7 +79,8 @@ public class Player_persistence implements IPlayer_persistence {
 	                     preparedStatement.setString(4, player.getPlayer_password());
 	                     preparedStatement.setString(5, player.getAcc_created_date());
 		             preparedStatement.executeUpdate();
-	                }}
+	                }
+	                conn.close();}
 				} catch (SQLException sqlException) {
 			        throw new RuntimeException(sqlException);
 			    }
@@ -85,7 +88,7 @@ public class Player_persistence implements IPlayer_persistence {
 	}
 
 	@Override
-	public Player filter_by_id(int player_id) {
+	public IPlayer filter_by_id(int player_id) {
 		IJdbc_connection jdbc = new Jdbc_connection();
 		String filter_by_id_query = "SELECT * from Player where player_id = ?";
 		 try{
@@ -102,7 +105,7 @@ public class Player_persistence implements IPlayer_persistence {
 	             		player.setPlayer_email(resultSet.getString("player_email"));
 	             		player.setPlayer_password(resultSet.getString("player_password"));
 	             		player.setAcc_created_date(resultSet.getString("acc_created_date"));
-	                }
+	                }conn.close();
 	                return player;
 	            }
 	        } catch (SQLException sqlException) {
@@ -111,7 +114,7 @@ public class Player_persistence implements IPlayer_persistence {
 	}
 	
 	@Override
-	public Player filter_by_emailid(String player_email) {
+	public IPlayer filter_by_emailid(String player_email) {
 		IJdbc_connection jdbc = new Jdbc_connection();
 		String filter_by_emailid_query = "SELECT * from Player where player_email = ?";
 		 try{
@@ -126,7 +129,7 @@ public class Player_persistence implements IPlayer_persistence {
 	             		player.setPlayer_email(resultSet.getString("player_email"));
 	             		player.setPlayer_password(resultSet.getString("player_password"));
 	             		player.setAcc_created_date(resultSet.getString("acc_created_date"));
-	                }
+	                }conn.close();
 	                return player;
 	            }
 	        } catch (SQLException sqlException) {
@@ -138,7 +141,7 @@ public class Player_persistence implements IPlayer_persistence {
 	@Override
 	public List<Integer> select_n_players(int n) {
 		IJdbc_connection jdbc = new Jdbc_connection();
-		 List<Integer> player_list = new ArrayList<>();
+		List<Integer> player_list = new ArrayList<>();
 		String player_list_query = "SELECT * FROM Player LIMIT ?";		
 		 try{
 			 Connection conn = jdbc.createDBConnection();
@@ -147,7 +150,7 @@ public class Player_persistence implements IPlayer_persistence {
 	         try (ResultSet resultSet = preparedStatement.executeQuery()) {
 	                while (resultSet.next()) {
 	                    player_list.add(resultSet.getInt("player_id"));
-	                }
+	                }conn.close();
 	                return player_list;
 	            }
 	        } catch (SQLException sqlException) {

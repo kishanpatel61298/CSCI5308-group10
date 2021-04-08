@@ -13,5 +13,4 @@ public interface IToken_positions {
 	public Map<String,String> get_three_player_positions();
 	public Map<String,String> get_four_player_positions();
 	public Map<String,String> get_board_attributes(int ply_num);
-	public Map<String,String> get_game_board_attributes(Map<String,String> token_position_from_game);
 }
