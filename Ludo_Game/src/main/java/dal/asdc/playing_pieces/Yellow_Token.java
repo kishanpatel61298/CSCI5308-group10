@@ -1,5 +1,6 @@
 package dal.asdc.playing_pieces;
-
+/**
+ * @author Kishan Rakeshbhai Patel **/
 import dal.asdc.ludo_board_structure.Token_paths;
 
 public class Yellow_Token extends Token{

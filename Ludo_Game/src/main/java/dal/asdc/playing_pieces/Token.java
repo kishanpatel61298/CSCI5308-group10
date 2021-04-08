@@ -1,5 +1,6 @@
 package dal.asdc.playing_pieces;
-
+/**
+ * @author Kishan Rakeshbhai Patel **/
 public abstract class Token {
     int[][] position;
     private boolean is_token_at_home=true;
