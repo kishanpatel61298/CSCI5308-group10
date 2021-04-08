@@ -3,6 +3,8 @@ package dal.asdc.login_register;
 
 
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import dal.asdc.login_register.interfaces.IRegister;
 import dal.asdc.model.Player;
 import dal.asdc.model.interfaces.IPlayer;
@@ -26,14 +28,7 @@ public class Register implements IRegister{
 	    }		 
  }
  
-<<<<<<< Ludo_Game/src/main/java/dal/asdc/login_register/Register.java
 	private String generate_hash_password(String plain_password){
 		return BCrypt.hashpw(plain_password, BCrypt.gensalt());
-=======
- //To encrypt password
- private String generate_hash_password(String plain_password){
-	 return null;
-		//return BCrypt.hashpw(plain_password, BCrypt.gensalt());
->>>>>>> Ludo_Game/src/main/java/dal/asdc/login_register/Register.java
 	}
 }
