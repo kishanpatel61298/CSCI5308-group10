@@ -12,7 +12,7 @@ import dal.asdc.player.Player;
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.game_handler.command.*;
 
-public class Input_Parser {
+public class Input_Parser implements IInput_parser{
 	
 	Map<Character,Command> input_commands = new HashMap<>();
 	
@@ -22,7 +22,6 @@ public class Input_Parser {
 		input_commands.put('g', new Green_Command());
 		input_commands.put('y', new Yellow_Command());
 		input_commands.put('b', new Blue_Command());
-
 	}
 	
 	public boolean check_input(String input) {

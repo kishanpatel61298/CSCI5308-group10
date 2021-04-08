@@ -158,6 +158,11 @@
 
 
 </div>
-
+<button id="genAddress" onclick="location.href='/reset_board'">
+                Reset
+</button>
+<button id="genAddress" onclick="location.href='/back_to_menu'">
+                Back To Menu
+</button>
 </body>
 </html>

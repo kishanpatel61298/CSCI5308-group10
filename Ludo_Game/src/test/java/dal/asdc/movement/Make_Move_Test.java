@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import dal.asdc.movement.IMake_Move;
 import dal.asdc.movement.Make_Move;
 import dal.asdc.movement.factory_method.Move_factory;
+import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
 import dal.asdc.player.Player_factory;
@@ -27,7 +28,7 @@ public class Make_Move_Test {
 	
 	@BeforeEach
 	void initialize() {
-		Move_factory move_factory = new Move_factory();
+		Move_factory move_factory = new Simple_move_factory();
 		make_move = move_factory.create_make_move();
 		total_player_list = new ArrayList<>(); 
 		

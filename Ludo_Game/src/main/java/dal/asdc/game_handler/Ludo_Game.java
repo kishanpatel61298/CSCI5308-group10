@@ -7,15 +7,18 @@ import java.util.List;
 import java.util.Map;
 
 import dal.asdc.playing_pieces.Token;
+import dal.asdc.game_handler.factory_method.Four_player_ludo_game_factory;
+import dal.asdc.game_handler.factory_method.Ludo_game_factory;
 import dal.asdc.ludo_board_structure.Token_paths;
-import dal.asdc.movement.Dice;
-import dal.asdc.movement.Make_Move;
+import dal.asdc.movement.IMake_Move;
+import dal.asdc.movement.factory_method.Move_factory;
+import dal.asdc.movement.factory_method.Simple_move_factory;
 import dal.asdc.player.IPlayer_intialiser;
 import dal.asdc.player.Player;
 import dal.asdc.player.Player_factory;
 import dal.asdc.player.Player_factory_normal;
 
-public class Ludo_Game {
+public class Ludo_Game implements ILudo_game{
 	
 	Player player1 = null;
 	Player player2 = null;
@@ -23,16 +26,17 @@ public class Ludo_Game {
 	Player player4 = null;
 	private Player current_turn = null;
 	private List<Player> total_player_list = new ArrayList<>();
-	private static Ludo_Game ludo_game = null;
 	private boolean dice_rolled = false;
 	private String error_message = "";
-	Input_Parser input_parser = null;
-	Make_Move make_move = null;
-	Dice dice = new Dice();
 	int dice_number;
+	String type_of_game = null;
 	boolean is_defeat_move = false;
 	Token_paths token_paths = new Token_paths();
 	Map<String,Integer> winner_map = new HashMap<>();
+	IInput_parser input_parser = null;
+	IMake_Move make_move = null;
+	IDice dice = null;
+	private static Ludo_Game ludo_game = null;
 	
 	public static Ludo_Game instance(String type, Map<Integer,String> player_list) {
 		if(null == ludo_game) {
@@ -41,16 +45,10 @@ public class Ludo_Game {
 		return ludo_game;
 	}
 	
-	public String get_current_turn_text() {
-        String turn_text = get_current_turn().getColour()+"'s turn";
-        return turn_text;
-    }
-	
 	public Ludo_Game(String game_type, Map<Integer,String> player_list) {
+		type_of_game = game_type;
 		Player_factory factory = new Player_factory_normal();
 		IPlayer_intialiser initialiser = factory.create_player_intialiser();
-		
-		input_parser = new Input_Parser();
 		if(game_type.equals("two_player")) {
 			initialiser.intialise(2);
 		}else if(game_type.equals("three_player")) {
@@ -65,7 +63,12 @@ public class Ludo_Game {
 			total_player_list.add(iterate.getValue());
 		}
 		next_turn();
-		make_move = new Make_Move();
+		Ludo_game_factory game_factory = new Four_player_ludo_game_factory();
+		input_parser = game_factory.create_input_parser();
+		dice = game_factory.create_dice();
+		
+		Move_factory move_factory = new Simple_move_factory();
+		make_move = move_factory.create_make_move();
 		set_dice_rolled(false);
 	}
 
@@ -96,7 +99,6 @@ public class Ludo_Game {
                 }
                 update_player(updated_tokens);
                 next_turn();
-                send_data_to_controller();
                 set_dice_rolled(false);
                 return true;
             }else {
@@ -122,21 +124,11 @@ public class Ludo_Game {
 			  tokens_position[counter][1]=coordinates[0][1];
 			  counter++;
 			  all_tokens.add(token);
-			  //String token_name = token.get_token_colour().substring(0, 1)+(token.get_token_number()+1);
-			  //positions.put("{"+ coordinates[0][0]+","+coordinates[0][1] +"}", token_name);
 		  }
 		}
-		 
         int[][] total_path = token_paths.total_path;
         for(int i=0;i<total_path.length;i++) {
         	int[][] temp_position = {{total_path[i][0],total_path[i][1]}};
-			/*
-			 * for(int j=0;j<tokens_position.length;j++) { if(temp_position[0][0] ==
-			 * tokens_position[j][0] && temp_position[0][1] == tokens_position[j][1]) {
-			 * String token_name = token.get_token_colour().substring(0,
-			 * 1)+(token.get_token_number()+1); positions.put("{"+
-			 * coordinates[0][0]+","+coordinates[0][1] +"}", token_name); } }
-			 */
         	boolean is_set = false;
         	String token_name = "";
         	for(Token token : all_tokens) {
@@ -241,11 +233,6 @@ public class Ludo_Game {
 		}
 		return next_player;
 	}
-	
-	private void send_data_to_controller() {
-		//String current_turn_text = get_current_turn().getColour().concat("'s turn");
-		
-	}
 
 	private boolean check_turn(Token token_from_input) {
 		Player temp_current_player = get_current_turn();
@@ -254,7 +241,12 @@ public class Ludo_Game {
 		}
 		return false;
 	}
-		
+	
+	public String get_current_turn_text() {
+        String turn_text = get_current_turn().getColour()+"'s turn";
+        return turn_text;
+    }
+	
 	private Player check_player_is_done(List<Token> four_tokens, Player temp_player) {
 		int tokens_at_winning_box = 0;
 		for(Token token : four_tokens) {
@@ -310,7 +302,7 @@ public class Ludo_Game {
 	public void set_error_message(String error_message) {
 		this.error_message = error_message;
 	}
-	
+
 	public String get_error_message() {
 		return error_message;
 	}
