@@ -15,6 +15,8 @@ import dal.asdc.ludo_board_structure.Ludo_board_formation;
 import dal.asdc.ludo_board_structure.Token_positions;
 import dal.asdc.model.Game_token_positions;
 
+/**
+ * @author Reshma Unnikrishnan **/
 @Controller
 public class Board_controller {
 	

@@ -1,5 +1,7 @@
 package dal.asdc.model.interfaces;
 
+/**
+ * @author Reshma Unnikrishnan**/
 public interface IGame_player_score {
 	
 	public String getScore_id();

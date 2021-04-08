@@ -1,5 +1,7 @@
 package dal.asdc.model.interfaces;
 
+/**
+ * @author Reshma Unnikrishnan**/
 public interface IGame_token_positions {
 	public String getTurn();
 	public void setTurn(String turn);
