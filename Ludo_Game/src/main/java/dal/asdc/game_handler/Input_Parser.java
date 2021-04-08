@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import dal.asdc.player.Player;
+import dal.asdc.player.Human_player;
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.game_handler.command.*;
 
@@ -40,7 +40,7 @@ public class Input_Parser {
 		return tokens;
 	}
 	
-	public Token get_player_from_input(List<Player> player_list_temp, char[] input_tokens) {
+	public Token get_player_from_input(List<Human_player> player_list_temp, char[] input_tokens) {
 		char first_letter = input_tokens[0];
 		first_letter = Character.toLowerCase(first_letter);
 		Command command = input_commands.get(first_letter);

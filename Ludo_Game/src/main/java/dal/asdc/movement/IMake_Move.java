@@ -3,18 +3,18 @@ package dal.asdc.movement;
  * @author Kishan Rakeshbhai Patel **/
 import java.util.List;
 
-import dal.asdc.player.Player;
+import dal.asdc.player.Human_player;
 import dal.asdc.playing_pieces.Token;
 
 public interface IMake_Move {
 	boolean check_moving_path(Token token, int dice_number);
 	
-	List<Token> play_move(Token selected_token, int dice_number, List<Player> all_players);
+	List<Token> play_move(Token selected_token, int dice_number, List<Human_player> all_players);
 	
 	int get_index_of_token_on_path(int[][] token_position, int
 			[][] token_path);
 	
-	List<Token> add_all_tokens_other_than_selected_into_list(Token selected_token, List<Player> all_players);
+	List<Token> add_all_tokens_other_than_selected_into_list(Token selected_token, List<Human_player> all_players);
 	
 	boolean is_defeat_move_or_not(int[][] after_move_position, Token selected_token, List<Token> all_tokens);
 	 

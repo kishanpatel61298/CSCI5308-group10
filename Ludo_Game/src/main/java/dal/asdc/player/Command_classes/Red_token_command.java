@@ -1,13 +1,13 @@
 package dal.asdc.player.Command_classes;
-import dal.asdc.player.Player;
+import dal.asdc.player.Human_player;
 import dal.asdc.player.Player_command;
 import dal.asdc.playing_pieces.*;
 
 public class Red_token_command extends Player_command {
 
-    private Player player;
+    private Human_player player;
     private final int[][] RED_HOME_POSITION={{2,3},{3,3},{3,2},{2,2}};
-    public Red_token_command(Player player) {
+    public Red_token_command(Human_player player) {
         this.player = player;
     }
 

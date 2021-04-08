@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import dal.asdc.player.Factory_classes.Player_factory_normal;
 import org.junit.jupiter.api.Test;
 
 import dal.asdc.game_handler.Input_Parser;
 import dal.asdc.player.IPlayer_intialiser;
-import dal.asdc.player.Player;
-import dal.asdc.player.Player_factory;
-import dal.asdc.player.Player_factory_normal;
+import dal.asdc.player.Human_player;
+import dal.asdc.player.Factory_classes.Player_factory;
 import dal.asdc.playing_pieces.Token;
 
 public class Input_Parser_Test {
@@ -46,14 +46,14 @@ public class Input_Parser_Test {
 	@Test
 	void get_token_test_one() {
 		Input_Parser input_parser = new Input_Parser();
-		List<Player> total_player_list = new ArrayList<>();
+		List<Human_player> total_player_list = new ArrayList<>();
 		char[] char_array = input_parser.get_word_tokens("R1");
 		
 		Player_factory factory = new Player_factory_normal();
 		IPlayer_intialiser initialiser = factory.create_player_intialiser();
 		initialiser.intialise(2);
-		Map<String,Player> map = initialiser.getPlayer_list();
-		for(Map.Entry<String,Player> iterate : map.entrySet()) {
+		Map<String, Human_player> map = initialiser.getPlayer_list();
+		for(Map.Entry<String, Human_player> iterate : map.entrySet()) {
 			total_player_list.add(iterate.getValue());
 		}
 		
@@ -65,14 +65,14 @@ public class Input_Parser_Test {
 	@Test
 	void get_token_test_four() {
 		Input_Parser input_parser = new Input_Parser();
-		List<Player> total_player_list = new ArrayList<>();
+		List<Human_player> total_player_list = new ArrayList<>();
 		
 		char[] char_array = input_parser.get_word_tokens("r4");
 		Player_factory factory = new Player_factory_normal();
 		IPlayer_intialiser initialiser = factory.create_player_intialiser();
 		initialiser.intialise(2);
-		Map<String,Player> map = initialiser.getPlayer_list();
-		for(Map.Entry<String,Player> iterate : map.entrySet()) {
+		Map<String, Human_player> map = initialiser.getPlayer_list();
+		for(Map.Entry<String, Human_player> iterate : map.entrySet()) {
 			total_player_list.add(iterate.getValue());
 		}
 		

@@ -3,12 +3,13 @@ package dal.asdc.player;
 import dal.asdc.movement.Dice_user;
 import dal.asdc.movement.IMake_Move;
 import dal.asdc.movement.Make_Move;
+import dal.asdc.player.Factory_classes.Player_factory;
 import dal.asdc.playing_pieces.Token;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Aggressive_computer_player extends Player_abstract{
+public class Aggressive_computer_player extends Player {
 
     private String colour;
     private Token token;
@@ -24,7 +25,7 @@ public class Aggressive_computer_player extends Player_abstract{
 
     List<Token> token_list= new ArrayList<>();
     List<Token> all_tokens = new ArrayList<>();
-    List<Player> all_players = new ArrayList<>();
+    List<Human_player> all_players = new ArrayList<>();
 
     public List<Token> play(List<Token> token_list){
         iMake_move = new Make_Move();
@@ -94,4 +95,5 @@ public class Aggressive_computer_player extends Player_abstract{
     public void setHome_position(int[][] home_position) {
         this.home_position = home_position;
     }
+
 }

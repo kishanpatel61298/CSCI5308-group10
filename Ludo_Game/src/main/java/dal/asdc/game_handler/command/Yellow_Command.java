@@ -1,16 +1,15 @@
 package dal.asdc.game_handler.command;
 /**
  * @author Kishan Rakeshbhai Patel **/
-import dal.asdc.game_handler.command.Command.Token_Colour;
-import dal.asdc.player.Player;
+import dal.asdc.player.Human_player;
 import dal.asdc.playing_pieces.Token;
 
 public class Yellow_Command extends Command{
 
 	@Override
 	public Token execute() {
-		for(Player player : player_list) {
-			Player temp_player = player;
+		for(Human_player player : player_list) {
+			Human_player temp_player = player;
 			if(temp_player.getColour().equals(Token_Colour.YELLOW.toString())) {
 				Token token = get_token(temp_player,second_letter);
 				return token;

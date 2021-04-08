@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Easy_computer_player extends Player_abstract{
+public class Easy_computer_player extends Player {
 
     private String colour;
     private Token token;
@@ -24,7 +24,7 @@ public class Easy_computer_player extends Player_abstract{
 
     List<Token> token_list= new ArrayList<>();
     List<Token> all_tokens = new ArrayList<>();
-    List<Player> all_players = new ArrayList<>();
+    List<Human_player> all_players = new ArrayList<>();
 
     public List<Token> play(List<Token> token_list){
         iMake_move = new Make_Move();

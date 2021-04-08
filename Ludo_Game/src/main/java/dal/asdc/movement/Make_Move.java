@@ -4,7 +4,7 @@ package dal.asdc.movement;
 import java.util.ArrayList;
 import java.util.List;
 
-import dal.asdc.player.Player;
+import dal.asdc.player.Human_player;
 import dal.asdc.playing_pieces.Token;
 
 public class Make_Move implements IMake_Move {
@@ -31,7 +31,7 @@ public class Make_Move implements IMake_Move {
 	}
 	
 	@Override
-	public List<Token> play_move(Token selected_token, int dice_number, List<Player> all_players) {
+	public List<Token> play_move(Token selected_token, int dice_number, List<Human_player> all_players) {
 		token_path = selected_token.get_token_path();
 		safe_box = selected_token.get_safe_boxes();
 		return_token = new ArrayList<>();
@@ -152,11 +152,11 @@ public class Make_Move implements IMake_Move {
 	}
 
 	@Override
-	public List<Token> add_all_tokens_other_than_selected_into_list(Token selected_token, List<Player> all_players) {
+	public List<Token> add_all_tokens_other_than_selected_into_list(Token selected_token, List<Human_player> all_players) {
 		List<Token> all_token_bucket = new ArrayList<>();
 		for(int player_count = 0 ; player_count < all_players.size() ; player_count++) {
 
-			Player temp_player = all_players.get(player_count);
+			Human_player temp_player = all_players.get(player_count);
 			List<Token> temp_player_tokens = temp_player.get_all_tokens();
 			for(int tokens = 0 ; tokens < temp_player_tokens.size() ; tokens++) {
 				if(temp_player_tokens.get(tokens).get_token_colour().equals(selected_token.get_token_colour()) && 

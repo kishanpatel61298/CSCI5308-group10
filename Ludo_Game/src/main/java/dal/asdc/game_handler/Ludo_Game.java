@@ -6,23 +6,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dal.asdc.player.Factory_classes.Player_factory_normal;
 import dal.asdc.playing_pieces.Token;
 import dal.asdc.ludo_board_structure.Token_paths;
 import dal.asdc.movement.Dice;
 import dal.asdc.movement.Make_Move;
 import dal.asdc.player.IPlayer_intialiser;
-import dal.asdc.player.Player;
-import dal.asdc.player.Player_factory;
-import dal.asdc.player.Player_factory_normal;
+import dal.asdc.player.Human_player;
+import dal.asdc.player.Factory_classes.Player_factory;
 
 public class Ludo_Game {
 	
-	Player player1 = null;
-	Player player2 = null;
-	Player player3 = null;
-	Player player4 = null;
-	private Player current_turn = null;
-	private List<Player> total_player_list = new ArrayList<>();
+	Human_player player1 = null;
+	Human_player player2 = null;
+	Human_player player3 = null;
+	Human_player player4 = null;
+	private Human_player current_turn = null;
+	private List<Human_player> total_player_list = new ArrayList<>();
 	private static Ludo_Game ludo_game = null;
 	private boolean dice_rolled = false;
 	private String error_message = "";
@@ -60,8 +60,8 @@ public class Ludo_Game {
 		}else if(game_type.equals("computer_player")) {
 			//initialize_computer_players();
 		}
-		Map<String,Player> map = initialiser.getPlayer_list();
-		for(Map.Entry<String,Player> iterate : map.entrySet()) {
+		Map<String, Human_player> map = initialiser.getPlayer_list();
+		for(Map.Entry<String, Human_player> iterate : map.entrySet()) {
 			total_player_list.add(iterate.getValue());
 		}
 		next_turn();
@@ -114,7 +114,7 @@ public class Ludo_Game {
 		int[][] tokens_position = new int[get_total_player_list().size()*4][2];
 		int counter=0;
 		List<Token> all_tokens = new ArrayList<>();
-        for(Player player : get_total_player_list()) { 
+        for(Human_player player : get_total_player_list()) {
 		  List<Token> four_tokens =player.get_all_tokens();
 		  for(Token token : four_tokens) { 
 			  int[][] coordinates = token.get_coordinate_position();
@@ -158,9 +158,9 @@ public class Ludo_Game {
     }
 	
 	public void update_player(List<Token> updated_tokens) {
-		List<Player> all_players = get_total_player_list();
+		List<Human_player> all_players = get_total_player_list();
 		for(int player_index = 0 ; player_index < all_players.size() ; player_index++) {
-			Player temp_player = all_players.get(player_index);
+			Human_player temp_player = all_players.get(player_index);
 			List<Token> four_tokens = temp_player.get_all_tokens();
 			int updated_token_index = 0;
 
@@ -181,8 +181,8 @@ public class Ludo_Game {
 	}
 
 	public void next_turn() {
-		Player current_player_temp = get_current_turn();
-		List<Player> temp_list = get_total_player_list();
+		Human_player current_player_temp = get_current_turn();
+		List<Human_player> temp_list = get_total_player_list();
 		if(current_player_temp==null) {
 			current_player_temp = temp_list.get(0);
 			set_current_turn(current_player_temp);
@@ -192,7 +192,7 @@ public class Ludo_Game {
 				return;
 			}
 			
-			Player next_player = get_next_player(temp_list,current_player_temp);
+			Human_player next_player = get_next_player(temp_list,current_player_temp);
 			if(next_player.get_is_done()) {
 				//next_turn();
 				//do something here
@@ -231,9 +231,9 @@ public class Ludo_Game {
 		
     }
 	
-	private Player get_next_player(List<Player> temp_list, Player current_player_temp) {
+	private Human_player get_next_player(List<Human_player> temp_list, Human_player current_player_temp) {
 		int index = temp_list.indexOf(current_player_temp);
-		Player next_player;
+		Human_player next_player;
 		if(index == (temp_list.size()-1)) {
 			next_player = temp_list.get(0);
 		}else {
@@ -248,14 +248,14 @@ public class Ludo_Game {
 	}
 
 	private boolean check_turn(Token token_from_input) {
-		Player temp_current_player = get_current_turn();
+		Human_player temp_current_player = get_current_turn();
 		if(token_from_input.get_token_colour().equals(temp_current_player.getColour())) {
 			return true;
 		}
 		return false;
 	}
 		
-	private Player check_player_is_done(List<Token> four_tokens, Player temp_player) {
+	private Human_player check_player_is_done(List<Token> four_tokens, Human_player temp_player) {
 		int tokens_at_winning_box = 0;
 		for(Token token : four_tokens) {
 			if(token.get_is_token_at_winning_box()) {
@@ -272,7 +272,7 @@ public class Ludo_Game {
 		return temp_player;
 	}
 	
-	private void set_winner_in_map(Player temp_player) {
+	private void set_winner_in_map(Human_player temp_player) {
 		if(winner_map.isEmpty()) {
 			//winner_map.put("Winner", temp_player.get_id);
 			return;
@@ -283,19 +283,19 @@ public class Ludo_Game {
 		}
 	}
 	
-	public Player get_current_turn() {
+	public Human_player get_current_turn() {
 		return current_turn;
 	}
 
-	public void set_current_turn(Player current_turn) {
+	public void set_current_turn(Human_player current_turn) {
 		this.current_turn = current_turn;
 	}
 	
-	public List<Player> get_total_player_list() {
+	public List<Human_player> get_total_player_list() {
 		return total_player_list;
 	}
 
-	public void set_total_player_list(List<Player> total_player_list_temp_var) {
+	public void set_total_player_list(List<Human_player> total_player_list_temp_var) {
 		total_player_list = total_player_list_temp_var;
 	}
 	
