@@ -11,12 +11,15 @@ import dal.asdc.ludo_menu.Main_dashboard_menu.redirect_class;
 
 class Main_dashboard_menu_Test {
 
-private Main_dashboard_menu main_dash_menu;
-private Main_menu main_menu;
+	public Main_dashboard_menu main_dash_menu;
+	public Main_menu main_menu;
+	public menu_options menu_op;
 	
 	@BeforeEach
 	void initEach() {
+		
 		main_dash_menu = new Main_dashboard_menu();
+		main_menu = new Main_menu(menu_op);
 	}
 	
 	@Test

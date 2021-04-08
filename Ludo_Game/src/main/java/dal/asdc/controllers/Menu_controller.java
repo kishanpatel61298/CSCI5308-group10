@@ -89,6 +89,8 @@ public class Menu_controller {
 	@PostMapping("/process_register")
 	public String processRegister(@ModelAttribute("user") Player player) {
 		boolean is_registerd = register.register(player);
+		player.setPlayer_email(null);
+		player.setPlayer_password(null);
 		if(is_registerd) {
 			return "login_form.jsp";
 		}

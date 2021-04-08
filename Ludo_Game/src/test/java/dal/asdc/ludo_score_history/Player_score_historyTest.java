@@ -26,8 +26,8 @@ class Player_score_historyTest {
 
 	@Test
 	void testForm_score_board() {
-		player_score_his.load_history(1);
-		player_score_his.form_score_board();
+//		player_score_his.load_history(1);
+//		player_score_his.form_score_board();
 	}
 
 	@Test
@@ -36,8 +36,8 @@ class Player_score_historyTest {
 
 	@Test
 	void testForm_save_score() {
-		player_score_his.form_save_score("|1", 2, 1, 20);
-		player_score_his.form_save_score("3|1", 3, 1, 50);
+//		player_score_his.form_save_score("|1", 2, 1, 20);
+//		player_score_his.form_save_score("3|1", 3, 1, 50);
 	}
 
 }
