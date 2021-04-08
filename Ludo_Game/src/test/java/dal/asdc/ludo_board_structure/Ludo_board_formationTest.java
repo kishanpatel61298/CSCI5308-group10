@@ -46,10 +46,26 @@ class Ludo_board_formationTest {
 		assertEquals(2,lbf.player_num);
 	}
 	
+	@Test
+	void testadd_game_type_two() {
+		lbf.add_game_type(2);
+		assertEquals(3,lbf.player_num);
+	}
+	
+	@Test
+	void testadd_game_type_three() {
+		lbf.add_game_type(3);
+		assertEquals(4,lbf.player_num);
+	}
+	
+	@Test
+	void testadd_game_type_five() {
+		assertEquals("computer_player",lbf.add_game_type(5));
+	}
 
 	@Test
-	Map<String,String> board_attributes(){
-		return null;
-		
+	void  testboard_attributes(){
+		lbf.player_num=2;
+		assertEquals(16,lbf.board_attributes().size());
 	}
 }

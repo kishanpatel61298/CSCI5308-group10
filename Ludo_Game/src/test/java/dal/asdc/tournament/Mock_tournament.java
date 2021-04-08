@@ -5,14 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dal.asdc.model.Player;
-import dal.asdc.persistence.Player_persistence;
-import dal.asdc.persistence.interfaces.IPlayer_persistence;
-
 public class Mock_tournament {
 	
-	IPlayer_persistence player_dao = new Player_persistence();
-	public static ArrayList<Player> players = new ArrayList<>();
+	public static ArrayList<Integer> players = new ArrayList<>();
 	
 	static List<Integer> group1 = new ArrayList<Integer>() {{
 		add(1);
@@ -51,14 +46,6 @@ public class Mock_tournament {
 		 put(3,group3);
 		 put(4,group4);
 		}};;
-		
-	public void form_players() {
-		Player player = new Player();
-		for(int i =1; i<=12;i++) {
-			player = player_dao.filter_by_id(i);
-			players.add(player);
-		}
-	}
 	
 	static Map<Integer, List<Integer>> one_group_map = new HashMap<Integer, List<Integer>>() {{
 		put(1,group1);
@@ -66,7 +53,7 @@ public class Mock_tournament {
 		
 	static Map<Integer, List<Integer>> group_map_ten_players = new HashMap<Integer, List<Integer>>() {{
 		put(1,group1);
-		put(2,group2);
+		put(2,group2); 
 		put(3,group5);
 		}};;
 	
@@ -81,5 +68,11 @@ public class Mock_tournament {
 		add(11);	
 	}};
 	
-	
+	public void form_players() {
+		for(int i =1; i<=12;i++) {
+			players.add(i);
+		}
+	}
+
+
 }

@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class LudoGameApplicationTest {
+class Token_pathsTest {
 
-//	@Test
-//	void testMain() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
 
 }

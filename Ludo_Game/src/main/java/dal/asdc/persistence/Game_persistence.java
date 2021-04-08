@@ -22,7 +22,7 @@ public class Game_persistence implements IGame_persistence{
 		Connection conn = jdbc.createDBConnection();
 		}catch(Exception e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 	
 	@Override
@@ -40,6 +40,7 @@ public class Game_persistence implements IGame_persistence{
             preparedStatement.setInt(5, game.getGame_runner_id());
             preparedStatement.setString(6, game.getGame_status());
             preparedStatement.executeUpdate();
+            conn.close();
 			}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -63,7 +64,7 @@ public class Game_persistence implements IGame_persistence{
 	                    game.setGame_runner_id(resultSet.getInt("game_runner_id"));
 	                    game.setGame_status(resultSet.getString("game_status"));
 	                    game_list.add(game);
-	                }
+	                }conn.close();
 	                return game_list;
 	            }
 	        } catch (SQLException e) {
@@ -86,7 +87,7 @@ public class Game_persistence implements IGame_persistence{
 	                     preparedStatement.setInt(3, game.getGame_runner_id());
 	                     preparedStatement.setString(4, game.getGame_status()); 
 		             preparedStatement.executeUpdate();
-	                }}
+	                }}conn.close();
 				} catch (SQLException sqlException) {
 			        throw new RuntimeException(sqlException);
 			    }
