@@ -1,0 +1,21 @@
+image: java-latest
+
+stages:
+    - build
+    - test
+
+build:
+    tags:
+      - ugrad
+    stage: build
+    script:
+      - cd ./Ludo_Game
+      - mvn compile
+
+test:
+    tags:
+      - ugrad
+    stage: test
+    script:
+      - cd ./Ludo_Game
+      - mvn clean test
